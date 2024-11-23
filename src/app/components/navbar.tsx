@@ -1,31 +1,31 @@
-'use client'
+'use client';
 
-import { Menu } from 'lucide-react'
-import { useEffect,useState } from 'react'
+import { Menu } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
-import { Button } from '@/components/ui/button'
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
   { name: 'Traslados', href: '/traslados' },
   { name: 'Bajas', href: '/bajas' },
-  { name: 'Mantenimientos', href: '/mantenimientos' },
-]
+  { name: 'Mantenimientos', href: '/mantenimientos' }
+];
 
 export function Navbar() {
-  const pathname = usePathname()
-  const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <nav
@@ -76,7 +76,9 @@ export function Navbar() {
                       {item.name}
                     </Link>
                   ))}
-                  <Button className="mt-4" onClick={() => setIsOpen(false)}>Sign In</Button>
+                  <Button className="mt-4" onClick={() => setIsOpen(false)}>
+                    Sign In
+                  </Button>
                 </div>
               </SheetContent>
             </Sheet>
@@ -84,6 +86,5 @@ export function Navbar() {
         </div>
       </div>
     </nav>
-  )
+  );
 }
-
