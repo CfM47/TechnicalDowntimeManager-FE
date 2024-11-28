@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { AuthModal } from '@/app/Components/AuthModal';
 
 const navItems = [
   { name: 'Traslados', href: '/traslados' },
@@ -52,7 +53,7 @@ export function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <Button>Sign In</Button>
+           <AuthModal/>
           </div>
           <div className="md:hidden flex items-center">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -76,9 +77,7 @@ export function Navbar() {
                       {item.name}
                     </Link>
                   ))}
-                  <Button className="mt-4" onClick={() => setIsOpen(false)}>
-                    Sign In
-                  </Button>
+                  <AuthModal/>
                 </div>
               </SheetContent>
             </Sheet>
