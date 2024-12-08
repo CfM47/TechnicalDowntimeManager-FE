@@ -1,6 +1,9 @@
 import { EntitiesPage } from '../components/EntitiesPage';
-import { TableHeader } from '../components/EntityTable';
-interface Traslado {
+import { Body } from './components/Body';
+import { MenuContent } from './components/MenuContent';
+
+import { Button } from '@/components/ui/button';
+export interface Traslado {
   id: number;
   fecha: string;
   origen: string;
@@ -22,13 +25,11 @@ export default function TrasladosPage() {
     { id: 11, fecha: '2021-01-02', origen: 'Bodega 2', destino: 'Bodega 3' },
     { id: 12, fecha: '2021-01-03', origen: 'Bodega 3', destino: 'Bodega 4' }
   ];
-  const headers: TableHeader<Traslado>[] = [
-    { key: 'id', label: 'ID' },
-    { key: 'fecha', label: 'Fecha' },
-    { key: 'origen', label: 'Origen' },
-    { key: 'destino', label: 'Destino' }
-  ];
+  const heads = ['ID', 'Fecha', 'Origen', 'Destino'];
   const title = 'Traslados';
+  const menuContent = <MenuContent />;
+  const addButton = <Button>Añadir</Button>;
+  const tableBody = <Body {...{ menuContent, data }} />;
 
-  return <EntitiesPage<Traslado> {...{ title, data, headers }}></EntitiesPage>;
+  return <EntitiesPage {...{ title, heads, addButton, tableBody }} />;
 }

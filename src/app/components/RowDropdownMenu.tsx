@@ -1,24 +1,18 @@
-'use client';
 import { MoreHorizontal } from 'lucide-react';
+import { ReactNode } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 
-export interface RowDropdownMenuItem {
-  label: string;
-  action: () => Promise<void>;
-}
-
 interface RowDropdownMenuProps {
-  options: RowDropdownMenuItem[];
+  menuContent: ReactNode;
 }
 
-export const RowDropdownMenu = ({ options }: RowDropdownMenuProps) => {
+export const RowDropdownMenu = ({ menuContent }: RowDropdownMenuProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -27,13 +21,7 @@ export const RowDropdownMenu = ({ options }: RowDropdownMenuProps) => {
           <MoreHorizontal className="h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {options.map((option, index) => (
-          <DropdownMenuItem key={index} onClick={option.action}>
-            {option.label}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
+      <DropdownMenuContent align="end">{menuContent}</DropdownMenuContent>
     </DropdownMenu>
   );
 };
