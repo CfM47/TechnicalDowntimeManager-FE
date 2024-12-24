@@ -3,14 +3,14 @@ import { Body } from './components/Body';
 import { MenuContent } from './components/MenuContent';
 
 import { Button } from '@/components/ui/button';
-import { mockTransfers } from '@/mock/tables';
+import { mockDowntimes } from '@/mock/tables';
 
 export default function TrasladosPage() {
-  const heads = ['Remitente', 'Origen', 'Destino', 'Fecha', 'Estado'];
+  const heads = ['Remitente', 'Equipo', 'Destino', 'Receptor', 'Fecha'];
   const title = 'Traslados';
   const menuContent = <MenuContent />;
   const addButton = <Button>Añadir</Button>;
-  const tableBody = <Body {...{ menuContent, data: mockTransfers }} />;
+  const tableBody = <Body {...{ menuContent, data: mockDowntimes }} />;
 
   return <EntitiesPage {...{ title, heads, addButton, tableBody }} />;
 }

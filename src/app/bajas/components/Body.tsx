@@ -3,10 +3,10 @@ import { ReactNode } from 'react';
 import { RowDropdownMenu } from '../../components/RowDropdownMenu';
 
 import { TableCell, TableRow } from '@/components/ui/table';
-import { Transfer } from '@/types/transfer';
+import { Downtime } from '@/types/downtime';
 
 interface BodyProps {
-  data: Array<Transfer>;
+  data: Array<Downtime>;
   menuContent: ReactNode;
 }
 
@@ -16,10 +16,10 @@ export const Body = ({ data, menuContent }: BodyProps) => {
       {data.map((item, index) => (
         <TableRow key={index}>
           <TableCell>{item.id_sender}</TableCell>
-          <TableCell>{item.id_origin_dep}</TableCell>
-          <TableCell>{item.id_receiver_dep}</TableCell>
+          <TableCell>{item.id_equipment}</TableCell>
+          <TableCell>{item.id_dep_receiver}</TableCell>
+          <TableCell>{item.id_receiver}</TableCell>
           <TableCell>{item.date}</TableCell>
-          <TableCell>{item.downtime_status}</TableCell>
           <TableCell>
             <RowDropdownMenu {...{ menuContent }} />
           </TableCell>
