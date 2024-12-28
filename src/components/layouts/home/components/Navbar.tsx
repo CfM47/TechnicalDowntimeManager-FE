@@ -3,16 +3,16 @@
 import { Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { AuthModal } from '@/app/components/AuthModal';
+import { AuthModal } from '@/components/modals/auth-modal';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { name: 'Traslados', href: '/traslados' },
-  { name: 'Bajas', href: '/bajas' },
-  { name: 'Mantenimientos', href: '/mantenimientos' }
+  { name: 'Traslados', href: '/transfers' },
+  { name: 'Bajas', href: '/downtimes' },
+  { name: 'Mantenimientos', href: '/maintenances' }
 ];
 
 export function Navbar() {
