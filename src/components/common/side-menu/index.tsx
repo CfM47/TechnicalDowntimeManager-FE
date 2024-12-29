@@ -22,7 +22,7 @@ export const SideMenu = ({ items }: SideMenuProps) => {
         <SheetTrigger asChild>
           <Button variant="outline" size="icon">
             <Menu className="h-6 w-6" />
-            <span className="sr-only">Toggle menu</span>
+            <span className="sr-only">Abrir menú</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="right">
