@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { RowDropdownMenu } from '../../../common/row-dropdown-menu/RowDropdownMenu';
+import { RowDropdownMenu } from '../../../common/row-dropdown-menu';
 
 import { TableCell, TableRow } from '@/components/ui/table';
 import { Transfer } from '@/types/transfer';
