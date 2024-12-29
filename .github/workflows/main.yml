@@ -1,6 +1,6 @@
-name: Lint and Format Check
+name: Protect pull request Check
 
-on: [push]
+on: [pull_request]
 
 jobs:
   lint-and-format:
@@ -15,11 +15,19 @@ jobs:
       with:
         node-version: '20'
 
+    - name: Cache pnpm store
+      uses: actions/cache@v4.2.0
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+    
     - name: Install pnpm
       run: npm install -g pnpm
 
     - name: Install dependencies
-      run: pnpm install --no-frozen-lockfile
+      run: pnpm install
 
     - name: Run linter
       run: pnpm lint
