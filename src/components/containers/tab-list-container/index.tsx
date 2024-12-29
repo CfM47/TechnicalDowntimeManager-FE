@@ -1,5 +1,4 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { cn } from '@/lib/utils';
 
 interface TabListContainerProps {
   tabsDefinition: { value: string; label: string }[];
@@ -11,9 +10,9 @@ export const TabListContainer = ({ tabsDefinition, tabsComponents }: TabListCont
 
   return (
     <Tabs defaultValue={tabsDefinition[0].value} className="w-full">
-      <TabsList className={cn(`grid w-full grid-cols-${tabsDefinition.length}`)}>
+      <TabsList className="flex flex-row w-full items-stretch justify-between">
         {tabsDefinition.map(({ value, label }) => (
-          <TabsTrigger key={value} value={value}>
+          <TabsTrigger key={value} value={value} className="flex-1 text-center">
             {label}
           </TabsTrigger>
         ))}
