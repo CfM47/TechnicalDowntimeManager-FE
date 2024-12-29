@@ -1,4 +1,4 @@
-import { TabListContainer } from '@/components/common/tab-list-container';
+import { TabListContainer } from '@/components/containers/tab-list-container';
 import { SignInForm } from '@/components/forms/sign-in';
 import { SignUpForm } from '@/components/forms/sign-up';
 
