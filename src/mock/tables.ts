@@ -1,5 +1,6 @@
 import { Downtime } from '@/types/downtime';
 import { Maintenance } from '@/types/maitenance';
+import { Rate } from '@/types/rate';
 import { Transfer } from '@/types/transfer';
 
 export const mockTransfers: Transfer[] = [
@@ -133,5 +134,50 @@ export const mockMaintenances: Maintenance[] = [
     date: '2023-10-05',
     type: 'corrective',
     cost: 180
+  }
+];
+
+export const mockRate: Rate[] = [
+  {
+    id_technician: 'tech1',
+    id_user: 'user1',
+    date: '2023-10-01',
+    comment: 'Good job doing maintenance',
+    score: 5
+  },
+  {
+    id_technician: 'tech5',
+    id_user: 'user2',
+    date: '2023-11-01',
+    comment: 'Job was not done properly',
+    score: 2
+  },
+  {
+    id_technician: 'tech2',
+    id_user: 'user3',
+    date: '2023-10-11',
+    comment: 'Good job doing maintenance',
+    score: 5
+  },
+  {
+    id_technician: 'tech4',
+    id_user: 'user6',
+    date: '2023-10-01',
+    comment: 'Good job doing transfer',
+    score: 5
+  },
+  {
+    id_technician: 'tech1',
+    id_user: 'user1',
+    date: '2023-10-01',
+    comment: 'mistakes were made on maintenance',
+    score: 3
+  },
+  {
+    id_technician: 'tech9',
+    id_user: 'user7',
+    date: '2023-9-02',
+    comment: 'bad job doing downtime',
+    score: 2
   }
 ];
