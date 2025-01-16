@@ -7,7 +7,8 @@ import Link from 'next/link';
 const navItems = [
   { name: 'Traslados', href: '/transfers' },
   { name: 'Bajas', href: '/downtimes' },
-  { name: 'Mantenimientos', href: '/maintenances' }
+  { name: 'Mantenimientos', href: '/maintenances' },
+  { name: 'Valoraciones', href: '/rate' }
 ];
 
 export const Navbar = () => {
