@@ -10,7 +10,7 @@ interface BodyProps {
   menuContent: ReactNode;
 }
 
-export const Body = ({ data, menuContent }: BodyProps) => {
+export const Body = ({ data = [], menuContent }: BodyProps) => {
   return (
     <>
       {data.map((item, index) => (
