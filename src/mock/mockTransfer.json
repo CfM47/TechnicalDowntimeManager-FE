@@ -1,0 +1,47 @@
+[
+  {
+    "id_sender": "user1",
+    "id_receiver": "user2",
+    "id_equipment": "eq1",
+    "date": "2023-10-01",
+    "id_origin_dep": "dep1",
+    "id_receiver_dep": "dep2",
+    "downtime_status": "active"
+  },
+  {
+    "id_sender": "user3",
+    "id_receiver": "user4",
+    "id_equipment": "eq2",
+    "date": "2023-10-02",
+    "id_origin_dep": "dep3",
+    "id_receiver_dep": "dep4",
+    "downtime_status": "inactive"
+  },
+  {
+    "id_sender": "user5",
+    "id_receiver": "user6",
+    "id_equipment": "eq3",
+    "date": "2023-10-03",
+    "id_origin_dep": "dep5",
+    "id_receiver_dep": "dep6",
+    "downtime_status": "active"
+  },
+  {
+    "id_sender": "user7",
+    "id_receiver": "user8",
+    "id_equipment": "eq4",
+    "date": "2023-10-04",
+    "id_origin_dep": "dep7",
+    "id_receiver_dep": "dep8",
+    "downtime_status": "inactive"
+  },
+  {
+    "id_sender": "user9",
+    "id_receiver": "user10",
+    "id_equipment": "eq5",
+    "date": "2023-10-05",
+    "id_origin_dep": "dep9",
+    "id_receiver_dep": "dep10",
+    "downtime_status": "active"
+  }
+]

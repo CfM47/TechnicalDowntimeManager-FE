@@ -10,7 +10,7 @@ interface BodyProps {
   menuContent: ReactNode;
 }
 
-export const Body = ({ data, menuContent }: BodyProps) => {
+export const Body = ({ data = [], menuContent }: BodyProps) => {
   return (
     <>
       {data.map((item, index) => (
@@ -18,6 +18,7 @@ export const Body = ({ data, menuContent }: BodyProps) => {
           <TableCell>{item.id_sender}</TableCell>
           <TableCell>{item.id_origin_dep}</TableCell>
           <TableCell>{item.id_receiver_dep}</TableCell>
+          <TableCell>{item.id_receiver}</TableCell>
           <TableCell>{item.date}</TableCell>
           <TableCell>{item.downtime_status}</TableCell>
           <TableCell>

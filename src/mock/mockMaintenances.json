@@ -1,0 +1,37 @@
+[
+  {
+    "id_technician": "tech1",
+    "id_equipment": "eq1",
+    "date": "2023-10-01",
+    "type": "preventive",
+    "cost": 100
+  },
+  {
+    "id_technician": "tech2",
+    "id_equipment": "eq2",
+    "date": "2023-10-02",
+    "type": "corrective",
+    "cost": 200
+  },
+  {
+    "id_technician": "tech3",
+    "id_equipment": "eq3",
+    "date": "2023-10-03",
+    "type": "predictive",
+    "cost": 150
+  },
+  {
+    "id_technician": "tech4",
+    "id_equipment": "eq4",
+    "date": "2023-10-04",
+    "type": "preventive",
+    "cost": 120
+  },
+  {
+    "id_technician": "tech5",
+    "id_equipment": "eq5",
+    "date": "2023-10-05",
+    "type": "corrective",
+    "cost": 180
+  }
+]

@@ -3,7 +3,7 @@ import { MenuContent } from './components/MenuContent';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { Button } from '@/components/ui/button';
-import { mockRate } from '@/mock/tables';
+import mockRate from '@/mock/mockRate.json';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface RatePageProps {}
@@ -13,7 +13,7 @@ export const RatePage = ({}: RatePageProps) => {
   const title = 'Valoraciones';
   const menuContent = <MenuContent />;
   const addButton = <Button>Añadir</Button>;
-  const tableBody = <Body {...{ menuContent, data: mockRate }} />;
+  const tableBody = <Body data={mockRate} menuContent={menuContent} />;
 
   return <EntityPage {...{ title, heads, addButton, tableBody }} />;
 };

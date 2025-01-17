@@ -3,7 +3,7 @@ import { MenuContent } from './components/MenuContent';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { Button } from '@/components/ui/button';
-import { mockDowntimes } from '@/mock/tables';
+import mockDowntimes from '@/mock/mockDowntimes.json';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface DowntimesPageProps {}
@@ -13,7 +13,7 @@ export const DowntimesPage = ({}: DowntimesPageProps) => {
   const title = 'Bajas';
   const menuContent = <MenuContent />;
   const addButton = <Button>Añadir</Button>;
-  const tableBody = <Body {...{ menuContent, data: mockDowntimes }} />;
+  const tableBody = <Body data={mockDowntimes} menuContent={menuContent} />;
 
   return <EntityPage {...{ title, heads, addButton, tableBody }} />;
 };
