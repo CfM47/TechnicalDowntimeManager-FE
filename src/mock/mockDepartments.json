@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1",
+    "name": "Engineering"
+  },
+  {
+    "id": "2",
+    "name": "Human Resources"
+  },
+  {
+    "id": "3",
+    "name": "Marketing"
+  },
+  {
+    "id": "4",
+    "name": "Sales"
+  },
+  {
+    "id": "5",
+    "name": "Finance"
+  },
+  {
+    "id": "6",
+    "name": "Customer Support"
+  },
+  {
+    "id": "7",
+    "name": "IT"
+  },
+  {
+    "id": "8",
+    "name": "Legal"
+  },
+  {
+    "id": "9",
+    "name": "Operations"
+  },
+  {
+    "id": "10",
+    "name": "Product Management"
+  }
+]
