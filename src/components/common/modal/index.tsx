@@ -37,7 +37,7 @@ export const Modal = ({
       <DialogTrigger asChild>
         <Button {...triggerProps} />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px] max-h-[95vh] overflow-y-auto scrollbar-hide">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
