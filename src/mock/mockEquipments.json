@@ -1,0 +1,68 @@
+[
+  {
+    "id": "eq1",
+    "name": "Excavator",
+    "type": "Heavy",
+    "state": "Operational",
+    "department": {
+      "id": "dep1",
+      "name": "Construction"
+    },
+    "acquisition_date": "2020-01-15"
+  },
+  {
+    "id": "eq2",
+    "name": "Bulldozer",
+    "type": "Heavy",
+    "state": "Under Maintenance",
+    "department": {
+      "id": "dep1",
+      "name": "Construction"
+    },
+    "acquisition_date": "2019-07-22"
+  },
+  {
+    "id": "eq3",
+    "name": "3D Printer",
+    "type": "Light",
+    "state": "Operational",
+    "department": {
+      "id": "dep2",
+      "name": "Research and Development"
+    },
+    "acquisition_date": "2021-03-10"
+  },
+  {
+    "id": "eq4",
+    "name": "Forklift",
+    "type": "Medium",
+    "state": "Operational",
+    "department": {
+      "id": "dep3",
+      "name": "Warehouse"
+    },
+    "acquisition_date": "2018-11-05"
+  },
+  {
+    "id": "eq5",
+    "name": "Laser Cutter",
+    "type": "Light",
+    "state": "Operational",
+    "department": {
+      "id": "dep2",
+      "name": "Research and Development"
+    },
+    "acquisition_date": "2022-06-17"
+  },
+  {
+    "id": "eq6",
+    "name": "Crane",
+    "type": "Heavy",
+    "state": "Under Maintenance",
+    "department": {
+      "id": "dep1",
+      "name": "Construction"
+    },
+    "acquisition_date": "2017-09-30"
+  }
+]
