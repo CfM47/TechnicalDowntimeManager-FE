@@ -8,7 +8,8 @@ const navItems = [
   { name: 'Traslados', href: '/transfers' },
   { name: 'Bajas', href: '/downtimes' },
   { name: 'Mantenimientos', href: '/maintenances' },
-  { name: 'Valoraciones', href: '/rate' }
+  { name: 'Valoraciones', href: '/rate' },
+  { name: 'Usuarios', href: '/user' }
 ];
 
 export const Navbar = () => {
