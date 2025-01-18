@@ -1,9 +1,13 @@
+import { Department } from './department';
+import { EquipmentInfo } from './equipment';
+import { UserInfo } from './user';
+
 export interface Downtime {
-  id_sender: string;
-  id_receiver: string;
-  id_equipment: string;
+  sender: UserInfo;
+  receiver: UserInfo;
+  equipment: EquipmentInfo;
   date: string;
-  id_dep_receiver: string;
+  dep_receiver: Department;
   status: string;
   cause: string;
 }
