@@ -17,7 +17,8 @@ interface ModalProps {
   description?: string;
   bodyContent: React.ReactNode;
   footerContent: React.ReactNode;
-  onClose?: () => void;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 export const Modal = ({
@@ -26,10 +27,11 @@ export const Modal = ({
   description,
   bodyContent,
   footerContent,
-  onClose
+  open,
+  onOpenChange
 }: ModalProps) => {
   return (
-    <Dialog onOpenChange={onClose}>
+    <Dialog {...{ open, onOpenChange }}>
       <DialogTrigger asChild>
         <Button
           variant="outline"
