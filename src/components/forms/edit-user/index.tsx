@@ -2,10 +2,9 @@
 
 import { useForm } from 'react-hook-form';
 
-import { createUserDefaultValues, createUserSchema } from './schema';
+import { editUserSchema, UserDefaultValues } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
-import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -16,22 +15,23 @@ import { Role } from '@/types/role';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-export type CreateUserFormValues = z.infer<typeof createUserSchema>;
+export type EditUserFormValues = z.infer<typeof editUserSchema>;
 
-export interface CreateUserFormProps {
+export interface EditUserFormProps {
   setOpen: (value: boolean) => void;
+  userData: EditUserFormValues;
 }
 
-export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
-  const form = useForm<CreateUserFormValues>({
-    resolver: zodResolver(createUserSchema),
-    defaultValues: createUserDefaultValues
+export const EditUserForm = ({ setOpen, userData }: EditUserFormProps) => {
+  const form = useForm<EditUserFormValues>({
+    resolver: zodResolver(editUserSchema),
+    defaultValues: { ...UserDefaultValues, ...userData }
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: CreateUserFormValues) => {
-    //TODO: consumir del servicio de users post
-    console.log('submiting');
+  const onSubmit = (values: EditUserFormValues) => {
+    //TODO: consumir del servicio de users put
+    console.log('submitting');
     setOpen(false);
   };
 
@@ -47,11 +47,6 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
           label="Nombre"
           description="Nombre de usuario"
           placeholder="John Doe"
-        />
-        <RHFSecretInput
-          name="password"
-          label="contraseña"
-          description="!!! Esta contraseña no puede ser cambiada"
         />
         <RHFSelect
           name="id_department"
@@ -71,7 +66,7 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <Button type="submit" variant="default">
-            Crear
+            Guardar
           </Button>
         </div>
       </form>
