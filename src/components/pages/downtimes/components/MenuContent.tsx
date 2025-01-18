@@ -1,8 +1,13 @@
 'use client';
 
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
+import { Downtime } from '@/types/downtime';
 
-export const MenuContent = () => {
+interface MenuContentProps {
+  item: Downtime;
+}
+
+export const MenuContent = ({}: MenuContentProps) => {
   const options = [
     { label: 'Editar', action: () => Promise.resolve() },
     { label: 'Eliminar', action: () => Promise.resolve() },

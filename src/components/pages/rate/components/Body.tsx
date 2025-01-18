@@ -1,30 +1,31 @@
-import { ReactNode } from 'react';
-
 import { RowDropdownMenu } from '../../../common/row-dropdown-menu';
+import { MenuContent } from './MenuContent';
 
 import { TableCell, TableRow } from '@/components/ui/table';
 import { Rate } from '@/types/rate';
 
 interface BodyProps {
   data: Array<Rate>;
-  menuContent: ReactNode;
 }
 
-export const Body = ({ data = [], menuContent }: BodyProps) => {
+export const Body = ({ data = [] }: BodyProps) => {
   return (
     <>
-      {data.map((item, index) => (
-        <TableRow key={index}>
-          <TableCell>{item.technician.name}</TableCell>
-          <TableCell>{item.user.name}</TableCell>
-          <TableCell>{item.date}</TableCell>
-          <TableCell>{item.comment}</TableCell>
-          <TableCell>{item.score}</TableCell>
-          <TableCell>
-            <RowDropdownMenu {...{ menuContent }} />
-          </TableCell>
-        </TableRow>
-      ))}
+      {data.map((item, index) => {
+        const menuContent = <MenuContent item={item} />;
+        return (
+          <TableRow key={index}>
+            <TableCell>{item.technician.name}</TableCell>
+            <TableCell>{item.user.name}</TableCell>
+            <TableCell>{item.date}</TableCell>
+            <TableCell>{item.comment}</TableCell>
+            <TableCell>{item.score}</TableCell>
+            <TableCell>
+              <RowDropdownMenu {...{ menuContent }} />
+            </TableCell>
+          </TableRow>
+        );
+      })}
     </>
   );
 };
