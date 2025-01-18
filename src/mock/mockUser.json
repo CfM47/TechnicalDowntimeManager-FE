@@ -1,0 +1,32 @@
+[
+  {
+    "id": "01",
+    "name": "Pablo Gómez",
+    "department": { "id": "dep1", "name": "Dept1" },
+    "role": { "id": "1", "name": "technician" }
+  },
+  {
+    "id": "02",
+    "name": "Jossué Arteche",
+    "department": { "id": "dep2", "name": "Dept2" },
+    "role": { "id": "2", "name": "admin" }
+  },
+  {
+    "id": "03",
+    "name": "Diego M. Viera",
+    "department": { "id": "dep3", "name": "Dept3" },
+    "role": { "id": "2", "name": "admin" }
+  },
+  {
+    "id": "04",
+    "name": "Luis A. Arteaga",
+    "department": { "id": "dep4", "name": "Dept4" },
+    "role": { "id": "1", "name": "technician" }
+  },
+  {
+    "id": "05",
+    "name": "Mauricio Sunde",
+    "department": { "id": "dep5", "name": "Dept5" },
+    "role": { "id": "1", "name": "technician" }
+  }
+]
