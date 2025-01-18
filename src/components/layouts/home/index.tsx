@@ -8,7 +8,9 @@ export const HomeLayout = ({ children }: HomeLayoutProps) => {
   return (
     <>
       <Navbar />
-      {children}
+      <div className="bg-cover bg-no-repeat bg-[url('/assets/back_sm.svg')] md:bg-[url('/assets/back.svg')]">
+        {children}
+      </div>
     </>
   );
 };
