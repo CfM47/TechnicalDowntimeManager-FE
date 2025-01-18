@@ -1,0 +1,74 @@
+[
+  {
+    "id": "10",
+    "name": "Equipment 1",
+    "type": "electronics",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt1" },
+    "acquisition_date": "2024-09-12"
+  },
+  {
+    "id": "11",
+    "name": "Equipment 12",
+    "type": "mechanical",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt2" },
+    "acquisition_date": "2022-10-01"
+  },
+  {
+    "id": "12",
+    "name": "Equipment 21",
+    "type": "electronics",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt3" },
+    "acquisition_date": "2022-03-12"
+  },
+  {
+    "id": "13",
+    "name": "Equipment 13",
+    "type": "mechanical",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt1" },
+    "acquisition_date": "2020-07-07"
+  },
+  {
+    "id": "14",
+    "name": "Equipment 17",
+    "type": "mechanical",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt4" },
+    "acquisition_date": "2022-10-01"
+  },
+  {
+    "id": "15",
+    "name": "Equipment 12",
+    "type": "electronics",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt4" },
+    "acquisition_date": "2023-11-11"
+  },
+  {
+    "id": "16",
+    "name": "Equipment 23",
+    "type": "mechanical",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt2" },
+    "acquisition_date": "2021-01-09"
+  },
+  {
+    "id": "17",
+    "name": "Equipment 45",
+    "type": "electronics",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt3" },
+    "acquisition_date": "2022-10-01"
+  },
+  {
+    "id": "18",
+    "name": "Equipment 17",
+    "type": "electronics",
+    "state": "active",
+    "department": { "id": "01", "name": "Dpt5" },
+    "acquisition_date": "2022-09-05"
+  }
+]

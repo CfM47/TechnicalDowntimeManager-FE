@@ -9,7 +9,8 @@ const navItems = [
   { name: 'Bajas', href: '/downtimes' },
   { name: 'Mantenimientos', href: '/maintenances' },
   { name: 'Valoraciones', href: '/rate' },
-  { name: 'Usuarios', href: '/user' }
+  { name: 'Usuarios', href: '/user' },
+  { name: 'Equipos', href: '/equipment' }
 ];
 
 export const Navbar = () => {
