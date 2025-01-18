@@ -1,47 +1,126 @@
 [
   {
-    "id_sender": "user1",
-    "id_receiver": "user2",
-    "id_equipment": "eq1",
+    "sender": {
+      "id": "user1",
+      "name": "User One"
+    },
+    "receiver": {
+      "id": "user2",
+      "name": "User Two"
+    },
+    "equipment": {
+      "id": "eq1",
+      "name": "Equipment One"
+    },
     "date": "2023-10-01",
-    "id_origin_dep": "dep1",
-    "id_receiver_dep": "dep2",
-    "downtime_status": "active"
+    "origin_dep": {
+      "id": "dep1",
+      "name": "Department One"
+    },
+    "receiver_dep": {
+      "id": "dep2",
+      "name": "Department Two"
+    },
+    "status": "inactive"
   },
   {
-    "id_sender": "user3",
-    "id_receiver": "user4",
-    "id_equipment": "eq2",
+    "sender": {
+      "id": "user3",
+      "name": "User Three"
+    },
+    "receiver": {
+      "id": "user4",
+      "name": "User Four"
+    },
+    "equipment": {
+      "id": "eq2",
+      "name": "Equipment Two"
+    },
     "date": "2023-10-02",
-    "id_origin_dep": "dep3",
-    "id_receiver_dep": "dep4",
-    "downtime_status": "inactive"
+    "origin_dep": {
+      "id": "dep3",
+      "name": "Department Three"
+    },
+    "receiver_dep": {
+      "id": "dep4",
+      "name": "Department Four"
+    },
+    "status": "inactive",
+    "cause": "repair"
   },
   {
-    "id_sender": "user5",
-    "id_receiver": "user6",
-    "id_equipment": "eq3",
+    "sender": {
+      "id": "user5",
+      "name": "User Five"
+    },
+    "receiver": {
+      "id": "user6",
+      "name": "User Six"
+    },
+    "equipment": {
+      "id": "eq3",
+      "name": "Equipment Three"
+    },
     "date": "2023-10-03",
-    "id_origin_dep": "dep5",
-    "id_receiver_dep": "dep6",
-    "downtime_status": "active"
+    "origin_dep": {
+      "id": "dep5",
+      "name": "Department Five"
+    },
+    "receiver_dep": {
+      "id": "dep6",
+      "name": "Department Six"
+    },
+    "status": "active",
+    "cause": "upgrade"
   },
   {
-    "id_sender": "user7",
-    "id_receiver": "user8",
-    "id_equipment": "eq4",
+    "sender": {
+      "id": "user7",
+      "name": "User Seven"
+    },
+    "receiver": {
+      "id": "user8",
+      "name": "User Eight"
+    },
+    "equipment": {
+      "id": "eq4",
+      "name": "Equipment Four"
+    },
     "date": "2023-10-04",
-    "id_origin_dep": "dep7",
-    "id_receiver_dep": "dep8",
-    "downtime_status": "inactive"
+    "origin_dep": {
+      "id": "dep7",
+      "name": "Department Seven"
+    },
+    "receiver_dep": {
+      "id": "dep8",
+      "name": "Department Eight"
+    },
+    "status": "inactive",
+    "cause": "inspection"
   },
   {
-    "id_sender": "user9",
-    "id_receiver": "user10",
-    "id_equipment": "eq5",
+    "sender": {
+      "id": "user9",
+      "name": "User Nine"
+    },
+    "receiver": {
+      "id": "user10",
+      "name": "User Ten"
+    },
+    "equipment": {
+      "id": "eq5",
+      "name": "Equipment Five"
+    },
     "date": "2023-10-05",
-    "id_origin_dep": "dep9",
-    "id_receiver_dep": "dep10",
-    "downtime_status": "active"
+    "origin_dep": {
+      "id": "dep9",
+      "name": "Department Nine"
+    },
+    "receiver_dep": {
+      "id": "dep10",
+      "name": "Department Ten"
+    },
+    "status": "active",
+    "cause": "maintenance"
   }
 ]

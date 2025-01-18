@@ -15,8 +15,8 @@ export const Body = ({ data = [], menuContent }: BodyProps) => {
     <>
       {data.map((item, index) => (
         <TableRow key={index}>
-          <TableCell>{item.id_technician}</TableCell>
-          <TableCell>{item.id_equipment}</TableCell>
+          <TableCell>{item.technician.name}</TableCell>
+          <TableCell>{item.equipment.name}</TableCell>
           <TableCell>{item.cost}</TableCell>
           <TableCell>{item.type}</TableCell>
           <TableCell>{item.date}</TableCell>

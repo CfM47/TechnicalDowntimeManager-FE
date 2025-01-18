@@ -1,6 +1,9 @@
+import { TechnicianInfo } from './technician';
+import { UserInfo } from './user';
+
 export interface Rate {
-  id_technician: string;
-  id_user: string;
+  technician: TechnicianInfo;
+  user: UserInfo;
   date: string;
   comment: string;
   score: number;

@@ -15,12 +15,12 @@ export const Body = ({ data = [], menuContent }: BodyProps) => {
     <>
       {data.map((item, index) => (
         <TableRow key={index}>
-          <TableCell>{item.id_sender}</TableCell>
-          <TableCell>{item.id_origin_dep}</TableCell>
-          <TableCell>{item.id_receiver_dep}</TableCell>
-          <TableCell>{item.id_receiver}</TableCell>
+          <TableCell>{item.sender.name}</TableCell>
+          <TableCell>{item.origin_dep.name}</TableCell>
+          <TableCell>{item.receiver_dep.name}</TableCell>
+          <TableCell>{item.receiver.name}</TableCell>
           <TableCell>{item.date}</TableCell>
-          <TableCell>{item.downtime_status}</TableCell>
+          <TableCell>{item.status}</TableCell>
           <TableCell>
             <RowDropdownMenu {...{ menuContent }} />
           </TableCell>

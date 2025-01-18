@@ -1,35 +1,65 @@
 [
   {
-    "id_technician": "tech1",
-    "id_equipment": "eq1",
+    "technician": {
+      "id": "tech1",
+      "name": "Technician 1"
+    },
+    "equipment": {
+      "id": "eq1",
+      "name": "Equipment 1"
+    },
     "date": "2023-10-01",
     "type": "preventive",
     "cost": 100
   },
   {
-    "id_technician": "tech2",
-    "id_equipment": "eq2",
+    "technician": {
+      "id": "tech2",
+      "name": "Technician 2"
+    },
+    "equipment": {
+      "id": "eq2",
+      "name": "Equipment 2"
+    },
     "date": "2023-10-02",
     "type": "corrective",
     "cost": 200
   },
   {
-    "id_technician": "tech3",
-    "id_equipment": "eq3",
+    "technician": {
+      "id": "tech3",
+      "name": "Technician 3"
+    },
+    "equipment": {
+      "id": "eq3",
+      "name": "Equipment 3"
+    },
     "date": "2023-10-03",
     "type": "predictive",
     "cost": 150
   },
   {
-    "id_technician": "tech4",
-    "id_equipment": "eq4",
+    "technician": {
+      "id": "tech4",
+      "name": "Technician 4"
+    },
+    "equipment": {
+      "id": "eq4",
+      "name": "Equipment 4"
+    },
     "date": "2023-10-04",
     "type": "preventive",
     "cost": 120
   },
   {
-    "id_technician": "tech5",
-    "id_equipment": "eq5",
+    "technician": {
+      "id": "tech5",
+      "name": "Technician 5"
+    },
+    "equipment": {
+      "id": "eq5",
+      "name": "Equipment 5"
+    },
     "date": "2023-10-05",
     "type": "corrective",
     "cost": 180
