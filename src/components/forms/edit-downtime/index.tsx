@@ -9,7 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import mockDepartments from '@/mock/mockDepartments.json';
-import mockEquipment from '@/mock/mockEquipment.json';
+import mockEquipments from '@/mock/mockEquipments.json';
 import mockUsers from '@/mock/mockUser.json';
 import { Department } from '@/types/department';
 import { Equipment } from '@/types/equipment';
@@ -40,7 +40,7 @@ export const EditDowntimeForm = ({ setOpen, downtimeData }: EditDowntimeFormProp
 
   //fetch from endpoints
   const departments = mockDepartments as Department[];
-  const equipment = mockEquipment as Equipment[];
+  const equipment = mockEquipments as Equipment[];
   const users = mockUsers as User[];
 
   return (

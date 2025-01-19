@@ -1,0 +1,26 @@
+[
+  {
+    "id": "01",
+    "name": "Pablo Gómez",
+    "department": { "id": "dep1", "name": "Dept1" },
+    "role": { "id": "1", "name": "technician" },
+    "exp_years": 5,
+    "specialty": "Electrical"
+  },
+  {
+    "id": "04",
+    "name": "Luis A. Arteaga",
+    "department": { "id": "dep4", "name": "Dept4" },
+    "role": { "id": "1", "name": "technician" },
+    "exp_years": 3,
+    "specialty": "Mechanical"
+  },
+  {
+    "id": "05",
+    "name": "Mauricio Sunde",
+    "department": { "id": "dep5", "name": "Dept5" },
+    "role": { "id": "1", "name": "technician" },
+    "exp_years": 7,
+    "specialty": "Software"
+  }
+]
