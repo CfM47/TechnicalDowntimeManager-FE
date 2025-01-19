@@ -1,5 +1,4 @@
-import { RowDropdownMenu } from '../../../common/row-dropdown-menu';
-import { MenuContent } from './MenuContent';
+import { RowActions } from './RowActions';
 
 import { TableCell, TableRow } from '@/components/ui/table';
 import { Equipment } from '@/types/equipment';
@@ -12,7 +11,6 @@ export const Body = ({ data = [] }: BodyProps) => {
   return (
     <>
       {data.map((item, index) => {
-        const menuContent = <MenuContent item={item} />;
         return (
           <TableRow key={index}>
             <TableCell>{item.name}</TableCell>
@@ -21,7 +19,7 @@ export const Body = ({ data = [] }: BodyProps) => {
             <TableCell>{item.department.name}</TableCell>
             <TableCell>{item.acquisition_date}</TableCell>
             <TableCell>
-              <RowDropdownMenu {...{ menuContent }} />
+              <RowActions {...{ item }} />
             </TableCell>
           </TableRow>
         );
