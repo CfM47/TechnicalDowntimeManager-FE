@@ -58,7 +58,7 @@ export const editModalButtonProps: ButtonProps = {
   size: 'icon',
   variant: 'outline',
   className:
-    'text-blue-500 border-blue-500 rounded-full hover:bg-blue-100 hover:text-blue-600 hover:border-blue-600 transition-colors',
+    'text--black border-transparent rounded-full hover:text-blue-600 hover:border-blue-600 transition-colors',
   children: (
     <>
       <Pencil className="h-2 w-2" />
