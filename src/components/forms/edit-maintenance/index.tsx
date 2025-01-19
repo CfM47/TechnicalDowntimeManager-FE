@@ -8,7 +8,7 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockEquipments from '@/mock/mockEquipments.json';
+import mockEquipments from '@/mock/mockEquipment.json';
 import mockUsers from '@/mock/mockUser.json';
 import { Equipment } from '@/types/equipment';
 import { User } from '@/types/user';

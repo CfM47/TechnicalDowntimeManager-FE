@@ -9,7 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import mockDepartments from '@/mock/mockDepartments.json';
-import mockEquipments from '@/mock/mockEquipments.json';
+import mockEquipments from '@/mock/mockEquipment.json';
 import mockUser from '@/mock/mockUser.json'; // Mock data for users
 import { Department } from '@/types/department';
 import { Equipment } from '@/types/equipment';
