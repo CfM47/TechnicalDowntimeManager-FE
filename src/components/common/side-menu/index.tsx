@@ -3,9 +3,9 @@
 import { Menu } from 'lucide-react';
 import { useState } from 'react';
 
+import { SigninModal } from '../../modals/sign-in-modal';
 import { HighlightLink } from '../highlight-link';
 
-import { AuthModal } from '@/components/modals/auth-modal';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
@@ -35,7 +35,7 @@ export const SideMenu = ({ items }: SideMenuProps) => {
                 onClick={() => setIsOpen(false)}
               />
             ))}
-            <AuthModal />
+            <SigninModal />
           </div>
         </SheetContent>
       </Sheet>

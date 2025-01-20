@@ -1,70 +1,56 @@
 'use client';
 
-import { Eye, EyeOff } from 'lucide-react';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
+import { signinDefaultValues, signinSchema } from './schema';
+
+import { RHFInput } from '@/components/rhf/rhf-input';
+import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import { Form } from '@/components/ui/form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 
-interface SignInFormProps {
-  onSuccess?: () => void;
+export type SigninFormValues = z.infer<typeof signinSchema>;
+
+export interface SigninFormProps {
+  setOpen: (value: boolean) => void;
 }
 
-export function SignInForm({ onSuccess }: SignInFormProps) {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+export const SigninForm = ({ setOpen }: SigninFormProps) => {
+  const form = useForm<SigninFormValues>({
+    resolver: zodResolver(signinSchema),
+    defaultValues: signinDefaultValues
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Sign in with:', username, password);
-    onSuccess?.();
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const onSubmit = (values: SigninFormValues) => {
+    //TODO: consumir del servicio de signin post
+    console.log('submiting');
+    setOpen(false);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-      <div className="space-y-2">
-        <Label htmlFor="username">Username</Label>
-        <Input
-          id="username"
-          type="text"
-          placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+        <RHFInput
+          name="name"
+          label="Nombre"
+          description="Nombre de usuario"
+          placeholder="John Doe"
         />
-      </div>
-      <div className="space-y-2">
-        <Label htmlFor="password">Password</Label>
-        <div className="relative">
-          <Input
-            id="password"
-            type={showPassword ? 'text' : 'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon"
-            className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
-            onClick={togglePasswordVisibility}
-            aria-label={showPassword ? 'Hide password' : 'Show password'}
-          >
-            {showPassword ? (
-              <EyeOff className="h-4 w-4 text-gray-500" />
-            ) : (
-              <Eye className="h-4 w-4 text-gray-500" />
-            )}
+        <RHFSecretInput
+          name="password"
+          label="contraseña"
+          description="Ingresa tu contraseña de usuario"
+        />
+
+        <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
+          <Button type="submit" variant="default">
+            Sign In
           </Button>
         </div>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
-}
+};
