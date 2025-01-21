@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { createRateDefaultValues, createRateSchema } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
+import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -58,9 +59,9 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
           name="comment"
           label="Comentario"
           description="Comentario"
-          placeholder="di algo"
+          placeholder="Di algo"
         />
-        <RHFInput
+        <RHFNumericInput
           name="score"
           label="Puntuación"
           description="Puntuación"

@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { editRateSchema, RateDefaultValues } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
+import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -35,13 +36,11 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
     mode: 'onBlur'
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditRateFormValues) => {
     await RateServices.update(item.technician.id, item.user.id, item.date, values);
     setOpen(false);
   };
 
-  //fetch from endpoints
   const { technicians, users } = useFetchOptions({ selectFrom: ['TECHNICIAN', 'USER'] });
 
   return (
@@ -70,7 +69,12 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
           description="Comentario"
           placeholder="di algo"
         />
-        <RHFInput name="score" label="Puntuación" description="Puntuación" placeholder="1-5" />
+        <RHFNumericInput
+          name="score"
+          label="Puntuación"
+          description="Puntuación"
+          placeholder="1-5"
+        />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <Button type="submit" variant="default">
             Guardar
