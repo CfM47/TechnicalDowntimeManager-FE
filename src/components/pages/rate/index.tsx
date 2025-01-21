@@ -2,16 +2,20 @@ import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { CreateRateModal } from '@/components/modals/create-rate-modal';
-import mockRate from '@/mock/mockRate.json';
+import { RateServices } from '@/services/features/rate';
+import { Rate } from '@/types/rate';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface RatePageProps {}
 
-export const RatePage = ({}: RatePageProps) => {
+export const RatePage = async ({}: RatePageProps) => {
   const heads = ['Valorador', 'Valorado', 'Fecha', 'Comentario', 'Puntuación'];
   const title = 'Valoraciones';
   const addButton = <CreateRateModal />;
-  const tableBody = <Body data={mockRate} />;
+  const { data } = await RateServices.getAll();
+  const entries = data as Rate[];
+
+  const tableBody = <Body data={entries} />;
 
   return <EntityPage {...{ title, heads, addButton, tableBody }} />;
 };

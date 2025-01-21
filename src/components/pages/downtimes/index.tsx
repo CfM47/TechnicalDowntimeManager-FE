@@ -2,16 +2,19 @@ import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { CreateDowntimeModal } from '@/components/modals/create-downtime-modal';
-import mockDowntimes from '@/mock/mockDowntimes.json';
+import { DowntimeServices } from '@/services/features/downtime';
+import { Downtime } from '@/types/downtime';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface DowntimesPageProps {}
 
-export const DowntimesPage = ({}: DowntimesPageProps) => {
+export const DowntimesPage = async ({}: DowntimesPageProps) => {
   const heads = ['Remitente', 'Equipo', 'Destino', 'Receptor', 'Fecha'];
   const title = 'Bajas';
   const addButton = <CreateDowntimeModal />;
-  const tableBody = <Body data={mockDowntimes} />;
+  const { data } = await DowntimeServices.getAll();
+  const entries = data as Downtime[];
+  const tableBody = <Body data={entries} />;
 
   return <EntityPage {...{ title, heads, addButton, tableBody }} />;
 };
