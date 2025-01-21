@@ -21,7 +21,7 @@ export type EditTransferFormValues = z.infer<typeof editTransferSchema>;
 
 export interface EditTransferFormProps {
   setOpen: (value: boolean) => void;
-  downtimeData: EditTransferFormValues;
+  transferData: EditTransferFormValues;
 }
 
 export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProps) => {
@@ -71,7 +71,7 @@ export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProp
           })}
         />
         <RHFSelect
-          name="id_dep_origin"
+          name="id_origin_dep"
           label="Departamento de Origen"
           description="Departamento que envía el equipo"
           options={departments.map(({ name, id }) => {
@@ -79,7 +79,7 @@ export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProp
           })}
         />
         <RHFSelect
-          name="id_dep_receiver"
+          name="id_receiver_dep"
           label="Departamento Receptor"
           description="Departamento que recibe el equipo"
           options={departments.map(({ name, id }) => {
@@ -87,7 +87,7 @@ export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProp
           })}
         />
         <RHFInput
-          name="status"
+          name="downtime_status"
           label="Estado"
           description="Estado del traslado"
           placeholder="estado"

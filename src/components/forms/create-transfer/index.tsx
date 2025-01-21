@@ -63,7 +63,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
           })}
         />
         <RHFSelect
-          name="id_dep_origin"
+          name="id_origin_dep"
           label="Departamento de Origen"
           description="Departamento que envía el equipo"
           options={departments.map(({ name, id }) => {
@@ -71,7 +71,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
           })}
         />
         <RHFSelect
-          name="id_dep_receiver"
+          name="id_receiver_dep"
           label="Departamento Receptor"
           description="Departamento que recibe el equipo"
           options={departments.map(({ name, id }) => {
@@ -79,7 +79,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
           })}
         />
         <RHFInput
-          name="status"
+          name="downtime_status"
           label="Estado"
           description="Estado del traslado"
           placeholder="estado"
