@@ -27,7 +27,11 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
   });
 
   const onSubmit = async (values: CreateUserFormValues) => {
-    await UserServices.create(values);
+    const data = {
+      ...values,
+      id_role: Number(values.id_role)
+    };
+    await UserServices.create(data);
     setOpen(false);
   };
 
@@ -60,7 +64,7 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
           label="Rol"
           description="El rol del usuario define el nivel de acceso que este tendrá al sistema"
           options={roles.map(({ name, id }) => {
-            return { label: name, value: id };
+            return { label: name, value: id.toString() };
           })}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
