@@ -4,12 +4,14 @@ import { useForm } from 'react-hook-form';
 
 import { editEquipmentSchema, EquipmentDefaultValues } from './schema';
 
+import { CreateEquipmentFormValues } from '@/components/forms/create-equipment';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import { Department } from '@/types/department';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { EquipmentServices } from '@/services/features/equipment';
+import { Equipment } from '@/types/equipment';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -17,23 +19,29 @@ export type EditEquipmentFormValues = z.infer<typeof editEquipmentSchema>;
 
 export interface EditEquipmentFormProps {
   setOpen: (value: boolean) => void;
+  item: Equipment;
 }
 
-export const EditEquipmentForm = ({ setOpen }: EditEquipmentFormProps) => {
+export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => {
+  const equipmentData = {
+    name: item.name,
+    type: item.type,
+    state: item.state,
+    id_department: item.department.id
+  };
+
   const form = useForm<EditEquipmentFormValues>({
     resolver: zodResolver(editEquipmentSchema),
-    defaultValues: EquipmentDefaultValues
+    defaultValues: { ...EquipmentDefaultValues, ...equipmentData }
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: EditEquipmentFormValues) => {
-    //TODO: consumir del servicio de Equipment post
-    console.log('submiting');
+  const onSubmit = async (values: CreateEquipmentFormValues) => {
+    await EquipmentServices.update(item.id, values);
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
+  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
 
   return (
     <Form {...form}>

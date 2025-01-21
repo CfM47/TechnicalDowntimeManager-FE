@@ -3,19 +3,20 @@
 import { useState } from 'react';
 
 import { editModalButtonProps, Modal } from '@/components/common/modal';
-import { EditUserForm, EditUserFormValues } from '@/components/forms/edit-user';
+import { EditUserForm } from '@/components/forms/edit-user';
+import { User } from '@/types/user';
 
 export interface EditUserModalProps {
-  userData: EditUserFormValues;
+  item: User;
 }
 
-export const EditUserModal = ({ userData }: EditUserModalProps) => {
+export const EditUserModal = ({ item }: EditUserModalProps) => {
   const [open, setOpen] = useState(false);
 
   const title = 'Editar usuario';
   const triggerProps = editModalButtonProps;
   const description = 'Edita la información del usuario';
-  const bodyContent = <EditUserForm {...{ setOpen, userData }} />;
+  const bodyContent = <EditUserForm {...{ setOpen, item }} />;
 
   return (
     <Modal

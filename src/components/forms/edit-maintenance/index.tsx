@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 
 import { editMaintenanceDefaultValues, editMaintenanceSchema } from './schema';
 
+import { EditMaintenanceFormValues } from '@/components/forms/edit-maintenance';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockEquipments from '@/mock/mockEquipment.json';
-import mockUsers from '@/mock/mockUser.json';
-import { Equipment } from '@/types/equipment';
-import { User } from '@/types/user';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { MaintenanceServices } from '@/services/features/maintenance';
+import { Maintenance } from '@/types/maitenance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -19,10 +19,17 @@ export type EditMaintenanceFormValues = z.infer<typeof editMaintenanceSchema>;
 
 export interface EditMaintenanceFormProps {
   setOpen: (value: boolean) => void;
-  maintenanceData: EditMaintenanceFormValues;
+  item: Maintenance;
 }
 
-export const EditMaintenanceForm = ({ setOpen, maintenanceData }: EditMaintenanceFormProps) => {
+export const EditMaintenanceForm = ({ setOpen, item }: EditMaintenanceFormProps) => {
+  const maintenanceData = {
+    id_technician: item.technician.id,
+    id_equipment: item.equipment.id,
+    type: item.type,
+    cost: item.cost
+  };
+
   const form = useForm<EditMaintenanceFormValues>({
     resolver: zodResolver(editMaintenanceSchema),
     defaultValues: { ...editMaintenanceDefaultValues, ...maintenanceData },
@@ -30,14 +37,11 @@ export const EditMaintenanceForm = ({ setOpen, maintenanceData }: EditMaintenanc
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: EditMaintenanceFormValues) => {
-    //TODO: consumir del servicio de mantenimientos put
-    console.log('submitting');
+  const onSubmit = async (values: EditMaintenanceFormValues) => {
+    await MaintenanceServices.update(item.technician.id, item.equipment.id, item.date, values);
     setOpen(false);
   };
-
-  const equipment = mockEquipments as Equipment[];
-  const users = mockUsers as User[];
+  const { equipments, technicians } = useFetchOptions({ selectFrom: ['EQUIPMENT', 'TECHNICIAN'] });
 
   return (
     <Form {...form}>
@@ -46,7 +50,7 @@ export const EditMaintenanceForm = ({ setOpen, maintenanceData }: EditMaintenanc
           name="id_technician"
           label="Técnico"
           description="Técnico encargado del mantenimiento"
-          options={users.map(({ name, id }) => {
+          options={technicians.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
@@ -54,7 +58,7 @@ export const EditMaintenanceForm = ({ setOpen, maintenanceData }: EditMaintenanc
           name="id_equipment"
           label="Equipo"
           description="Equipo que recibe el mantenimiento"
-          options={equipment.map(({ name, id }) => {
+          options={equipments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />

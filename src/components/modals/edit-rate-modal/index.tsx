@@ -1,19 +1,20 @@
 import { useState } from 'react';
 
 import { editModalButtonProps, Modal } from '@/components/common/modal';
-import { EditRateForm, EditRateFormValues } from '@/components/forms/edit-rate';
+import { EditRateForm } from '@/components/forms/edit-rate';
+import { Rate } from '@/types/rate';
 
 interface EditRateModalProps {
-  downtimeData: EditRateFormValues;
+  item: Rate;
 }
 
-export const EditRateModal = ({ rateData }: EditRateModalProps) => {
+export const EditRateModal = ({ item }: EditRateModalProps) => {
   const [open, setOpen] = useState(false);
 
   const title = 'Editar valoración';
   const triggerProps = editModalButtonProps;
   const description = 'Edita una valoración';
-  const bodyContent = <EditRateForm {...{ setOpen, rateData }} />;
+  const bodyContent = <EditRateForm {...{ setOpen, item }} />;
   return (
     <Modal
       {...{

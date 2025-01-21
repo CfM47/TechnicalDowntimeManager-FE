@@ -8,12 +8,9 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import mockEquipments from '@/mock/mockEquipment.json';
-import mockUsers from '@/mock/mockUser.json';
-import { Department } from '@/types/department';
-import { Equipment } from '@/types/equipment';
-import { User } from '@/types/user';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { DowntimeServices } from '@/services/features/downtime';
+import { Downtime } from '@/types/downtime';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -21,10 +18,19 @@ export type EditDowntimeFormValues = z.infer<typeof editDowntimeSchema>;
 
 export interface EditDowntimeFormProps {
   setOpen: (value: boolean) => void;
-  downtimeData: EditDowntimeFormValues;
+  item: Downtime;
 }
 
-export const EditDowntimeForm = ({ setOpen, downtimeData }: EditDowntimeFormProps) => {
+export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
+  const downtimeData = {
+    id_sender: item.sender.id,
+    id_receiver: item.receiver.id,
+    id_equipment: item.equipment.id,
+    id_dep_receiver: item.dep_receiver.id,
+    status: item.status,
+    cause: item.cause
+  };
+
   const form = useForm<EditDowntimeFormValues>({
     resolver: zodResolver(editDowntimeSchema),
     defaultValues: { ...DowntimeDefaultValues, ...downtimeData },
@@ -32,16 +38,21 @@ export const EditDowntimeForm = ({ setOpen, downtimeData }: EditDowntimeFormProp
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: EditDowntimeFormValues) => {
-    //TODO: consumir del servicio de downtimes put
-    console.log('submitting');
+  const onSubmit = async (values: EditDowntimeFormValues) => {
+    await DowntimeServices.update(
+      item.sender.id,
+      item.receiver.id,
+      item.equipment.id,
+      item.date,
+      item.dep_receiver.id,
+      values
+    );
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
-  const equipment = mockEquipments as Equipment[];
-  const users = mockUsers as User[];
+  const { departments, equipments, users } = useFetchOptions({
+    selectFrom: ['DEPARTMENT', 'EQUIPMENT', 'USER']
+  });
 
   return (
     <Form {...form}>
@@ -66,7 +77,7 @@ export const EditDowntimeForm = ({ setOpen, downtimeData }: EditDowntimeFormProp
           name="id_equipment"
           label="Equipo"
           description="Equipo dado de baja"
-          options={equipment.map(({ name, id }) => {
+          options={equipments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />

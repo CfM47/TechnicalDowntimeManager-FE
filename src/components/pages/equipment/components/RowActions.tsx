@@ -8,16 +8,9 @@ interface MenuContentProps {
 }
 
 export const RowActions = ({ item }: MenuContentProps) => {
-  const equipmentData = {
-    name: item.name,
-    type: item.type,
-    state: item.state,
-    id_department: item.department.id
-  };
-
   return (
     <div className="flex space-x-2">
-      <EditEquipmentModal {...{ equipmentData }} />
+      <EditEquipmentModal {...{ item }} />
     </div>
   );
 };
