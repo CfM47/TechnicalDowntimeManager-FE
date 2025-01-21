@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 
 import { editMaintenanceDefaultValues, editMaintenanceSchema } from './schema';
 
-import { EditMaintenanceFormValues } from '@/components/forms/edit-maintenance';
 import { RHFInput } from '@/components/rhf/rhf-input';
+import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -68,12 +68,11 @@ export const EditMaintenanceForm = ({ setOpen, item }: EditMaintenanceFormProps)
           description="Tipo de mantenimiento realizado"
           placeholder="Preventivo"
         />
-        <RHFInput
+        <RHFNumericInput
           name="cost"
           label="Costo"
           description="Costo del mantenimiento"
           placeholder="100"
-          type="number"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <Button type="submit" variant="default">

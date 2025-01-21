@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 import { createMaintenanceDefaultValues, createMaintenanceSchema } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
+import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { MaintenanceServices } from '@/services/features/maintenance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -25,10 +27,8 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
     mode: 'onBlur'
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: CreateMaintenanceFormValues) => {
-    //TODO: consumir del servicio de mantenimientos post
-    console.log('submiting');
+  const onSubmit = async (values: CreateMaintenanceFormValues) => {
+    await MaintenanceServices.create(values);
     setOpen(false);
   };
 
@@ -61,12 +61,11 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
           description="Tipo de mantenimiento realizado"
           placeholder="Preventivo"
         />
-        <RHFInput
+        <RHFNumericInput
           name="cost"
           label="Costo"
           description="Costo del mantenimiento"
           placeholder="100"
-          type="number"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <Button type="submit" variant="default">
