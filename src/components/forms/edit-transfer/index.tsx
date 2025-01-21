@@ -8,12 +8,9 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import mockEquipments from '@/mock/mockEquipment.json';
-import mockUsers from '@/mock/mockUser.json';
-import { Department } from '@/types/department';
-import { Equipment } from '@/types/equipment';
-import { User } from '@/types/user';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { TransferServices } from '@/services/features/transfer';
+import { Transfer } from '@/types/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -21,10 +18,19 @@ export type EditTransferFormValues = z.infer<typeof editTransferSchema>;
 
 export interface EditTransferFormProps {
   setOpen: (value: boolean) => void;
-  transferData: EditTransferFormValues;
+  item: Transfer;
 }
 
-export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProps) => {
+export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
+  const transferData = {
+    id_sender: item.sender.id,
+    id_receiver: item.receiver.id,
+    id_equipment: item.equipment.id,
+    id_dep_origin: item.origin_dep.id,
+    id_dep_receiver: item.receiver_dep.id,
+    status: item.status
+  };
+
   const form = useForm<EditTransferFormValues>({
     resolver: zodResolver(editTransferSchema),
     defaultValues: { ...TransferDefaultValues, ...transferData },
@@ -32,16 +38,22 @@ export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProp
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: EditTransferFormValues) => {
-    //TODO: consumir del servicio de Transfer put
-    console.log('submitting');
+  const onSubmit = async (values: EditTransferFormValues) => {
+    await TransferServices.update(
+      item.sender.id,
+      item.receiver.id,
+      item.equipment.id,
+      item.date,
+      item.origin_dep.id,
+      item.receiver_dep.id,
+      values
+    );
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
-  const equipment = mockEquipments as Equipment[];
-  const users = mockUsers as User[];
+  const { departments, equipments, users } = useFetchOptions({
+    selectFrom: ['DEPARTMENT', 'EQUIPMENT', 'USER']
+  });
 
   return (
     <Form {...form}>
@@ -66,7 +78,7 @@ export const EditTransferForm = ({ setOpen, transferData }: EditTransferFormProp
           name="id_equipment"
           label="Equipo"
           description="Equipo trasladado"
-          options={equipment.map(({ name, id }) => {
+          options={equipments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />

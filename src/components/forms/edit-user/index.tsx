@@ -4,14 +4,14 @@ import { useForm } from 'react-hook-form';
 
 import { editUserSchema, UserDefaultValues } from './schema';
 
+import { CreateUserFormValues } from '@/components/forms/create-user';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import mockRoles from '@/mock/mockRoles.json';
-import { Department } from '@/types/department';
-import { Role } from '@/types/role';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { UserServices } from '@/services/features/user';
+import { User } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -19,25 +19,27 @@ export type EditUserFormValues = z.infer<typeof editUserSchema>;
 
 export interface EditUserFormProps {
   setOpen: (value: boolean) => void;
-  userData: EditUserFormValues;
+  item: User;
 }
 
-export const EditUserForm = ({ setOpen, userData }: EditUserFormProps) => {
+export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
+  const userData = {
+    name: item.name,
+    id_department: item.department.id,
+    id_role: item.role.id
+  };
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),
     defaultValues: { ...UserDefaultValues, ...userData }
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: EditUserFormValues) => {
-    //TODO: consumir del servicio de users put
-    console.log('submitting');
+  const onSubmit = async (values: CreateUserFormValues) => {
+    await UserServices.update(item.id, values);
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
-  const roles = mockRoles as Role[];
+  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
 
   return (
     <Form {...form}>
