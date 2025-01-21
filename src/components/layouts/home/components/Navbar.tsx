@@ -1,10 +1,15 @@
+'use client';
+
 import { SigninModal } from '../../../modals/sign-in-modal';
 
 import { HighlightLink } from '@/components/common/highlight-link';
+import { InitialsAvatar } from '@/components/common/initials-avatar';
 import { SideMenu } from '@/components/common/side-menu';
 import { ResponsiveContainer } from '@/components/containers/responsive-container';
 import { ScrolledStyleContainer } from '@/components/containers/scrolled-style-container';
+import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
+
 const navItems = [
   { name: 'Traslados', href: '/transfers' },
   { name: 'Bajas', href: '/downtimes' },
@@ -15,6 +20,7 @@ const navItems = [
 ];
 
 export const Navbar = () => {
+  const { token } = useSessionStore();
   return (
     <ScrolledStyleContainer scrolledStyle="shadow-lg">
       <nav className="sticky top-0 z-50 bg-white transition-shadow duration-300">
@@ -28,7 +34,7 @@ export const Navbar = () => {
                 {navItems.map((item, index) => (
                   <HighlightLink key={index} {...item} className="text-gray-500 font-semibold" />
                 ))}
-                <SigninModal />
+                {token ? <InitialsAvatar name="John Doe" /> : <SigninModal />}
               </div>
             }
             mobileComponent={<SideMenu items={navItems} />}

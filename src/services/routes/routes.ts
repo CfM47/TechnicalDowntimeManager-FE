@@ -108,6 +108,10 @@ const equipmentRoutes: Router = {
   delete: { path: '/equipment/:id', method: 'DELETE' }
 };
 
+const authRoutes: Router = {
+  signin: { path: '/auth/signin', method: 'POST' }
+};
+
 export const routes: Record<string, Router> = {
   department: departmentRoutes,
   downtime: downtimeRoutes,
@@ -117,5 +121,6 @@ export const routes: Record<string, Router> = {
   technician: technicianRoutes,
   transfer: transferRoutes,
   user: userRoutes,
-  equipment: equipmentRoutes
+  equipment: equipmentRoutes,
+  auth: authRoutes
 };
