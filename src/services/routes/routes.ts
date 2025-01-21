@@ -60,11 +60,11 @@ const rateRoutes: Router = {
 };
 
 const roleRoutes: Router = {
-  create: { path: '/rate', method: 'POST' },
-  getAll: { path: '/rate', method: 'GET' },
-  getById: { path: '/rate/:id', method: 'GET' },
-  update: { path: '/rate/:id', method: 'PUT' },
-  delete: { path: '/rate/:id', method: 'DELETE' }
+  create: { path: '/role', method: 'POST' },
+  getAll: { path: '/role', method: 'GET' },
+  getById: { path: '/role/:id', method: 'GET' },
+  update: { path: '/role/:id', method: 'PUT' },
+  delete: { path: '/role/:id', method: 'DELETE' }
 };
 
 const technicianRoutes: Router = {
