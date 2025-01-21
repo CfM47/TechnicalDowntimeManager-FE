@@ -9,10 +9,8 @@ import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import mockRoles from '@/mock/mockRoles.json';
-import { Department } from '@/types/department';
-import { Role } from '@/types/role';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { UserServices } from '@/services/features/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -28,16 +26,12 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
     defaultValues: createUserDefaultValues
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: CreateUserFormValues) => {
-    //TODO: consumir del servicio de users post
-    console.log('submiting');
+  const onSubmit = async (values: CreateUserFormValues) => {
+    await UserServices.create(values);
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
-  const roles = mockRoles as Role[];
+  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
 
   return (
     <Form {...form}>

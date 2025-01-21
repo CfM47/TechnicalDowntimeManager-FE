@@ -8,10 +8,7 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockEquipments from '@/mock/mockEquipment.json';
-import mockTechnicians from '@/mock/mockTechnicians.json';
-import { Equipment } from '@/types/equipment';
-import { Technician } from '@/types/technician';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -35,9 +32,9 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const equipments = mockEquipments as Equipment[];
-  const technicians = mockTechnicians as Technician[]; // Mock users
+  const { equipments, technicians } = useFetchOptions({
+    selectFrom: ['EQUIPMENT', 'TECHNICIAN']
+  });
 
   return (
     <Form {...form}>

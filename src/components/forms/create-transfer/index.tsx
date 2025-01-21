@@ -8,12 +8,8 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import mockEquipments from '@/mock/mockEquipment.json';
-import mockUser from '@/mock/mockUser.json'; // Mock data for users
-import { Department } from '@/types/department';
-import { Equipment } from '@/types/equipment';
-import { User } from '@/types/user'; // User type
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { TransferServices } from '@/services/features/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -30,17 +26,14 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
     mode: 'onBlur'
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: CreateTransferFormValues) => {
-    //TODO: consumir del servicio de Transfer post
-    console.log('submiting');
+  const onSubmit = async (values: CreateTransferFormValues) => {
+    await TransferServices.create(values);
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
-  const equipments = mockEquipments as Equipment[];
-  const users = mockUser as User[];
+  const { departments, equipments, users } = useFetchOptions({
+    selectFrom: ['DEPARTMENT', 'EQUIPMENT', 'USER']
+  });
 
   return (
     <Form {...form}>
