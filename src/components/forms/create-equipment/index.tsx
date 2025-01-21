@@ -8,8 +8,8 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockDepartments from '@/mock/mockDepartments.json';
-import { Department } from '@/types/department';
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { EquipmentServices } from '@/services/features/equipment';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -26,14 +26,12 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: CreateEquipmentFormValues) => {
-    //TODO: consumir del servicio de Equipment post
-    console.log('submiting');
+  const onSubmit = async (values: CreateEquipmentFormValues) => {
+    await EquipmentServices.create(values);
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const departments = mockDepartments as Department[];
+  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
 
   return (
     <Form {...form}>

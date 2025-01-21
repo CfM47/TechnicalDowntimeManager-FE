@@ -8,10 +8,8 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import mockTechnician from '@/mock/mockTechnicians.json'; // Mock data for technicians
-import mockUser from '@/mock/mockUser.json'; // Mock data for users
-import { Technician } from '@/types/technician';
-import { User } from '@/types/user'; // User type
+import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { RateServices } from '@/services/features/rate';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -29,15 +27,12 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
   });
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: CreateRateFormValues) => {
-    //TODO: consumir del servicio de Rate post
-    console.log('submiting');
+  const onSubmit = async (values: CreateRateFormValues) => {
+    await RateServices.create(values);
     setOpen(false);
   };
 
-  //fetch from endpoints
-  const users = mockUser as User[]; // Mock users
-  const technicians = mockTechnician as Technician[]; // Mock technicians
+  const { users, technicians } = useFetchOptions({ selectFrom: ['USER', 'TECHNICIAN'] });
 
   return (
     <Form {...form}>

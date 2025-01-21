@@ -1,11 +1,11 @@
 import { Router } from './types';
 
 const departmentRoutes: Router = {
-  create: { path: '/departments', method: 'POST' },
-  getAll: { path: '/departments', method: 'GET' },
-  getById: { path: '/departments/:id', method: 'GET' },
-  update: { path: '/departments/:id', method: 'PUT' },
-  delete: { path: '/departments/:id', method: 'DELETE' }
+  create: { path: '/department', method: 'POST' },
+  getAll: { path: '/department', method: 'GET' },
+  getById: { path: '/department/:id', method: 'GET' },
+  update: { path: '/department/:id', method: 'PUT' },
+  delete: { path: '/department/:id', method: 'DELETE' }
 };
 
 const downtimeRoutes: Router = {
