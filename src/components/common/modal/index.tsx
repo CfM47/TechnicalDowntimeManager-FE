@@ -71,7 +71,7 @@ export const removeModalButtonProps: ButtonProps = {
   size: 'icon',
   variant: 'outline',
   className:
-    'text-red-500 border-red-500 rounded-full hover:bg-red-100 hover:text-red-600 hover:border-red-600 transition-colors',
+    'text-red-500 border-transparent rounded-full hover:text-red-600 hover:border-red-600 transition-colors',
   children: (
     <>
       <Trash2 className="h-2 w-2" />
