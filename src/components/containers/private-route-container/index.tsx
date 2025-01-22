@@ -8,22 +8,24 @@ import { useRouter } from 'next/navigation';
 interface PrivateRouteContainerProps {
   children: React.ReactNode;
   authorizedRoles: Array<number>;
+  redirect?: boolean;
 }
 
-export const PrivateRouteContainer: React.FC<PrivateRouteContainerProps> = ({
+export const PrivateRouteContainer = ({
   children,
-  authorizedRoles = []
-}) => {
+  authorizedRoles = [],
+  redirect = false
+}: PrivateRouteContainerProps) => {
   const { token, role } = useSessionStore();
   const router = useRouter();
 
   if (!token) {
-    router.push('/');
+    if (redirect) router.push('/');
     return <></>;
   }
 
   if (role && authorizedRoles.length && !authorizedRoles.includes(Number(role))) {
-    router.push('/');
+    if (redirect) router.push('/');
     return <></>;
   }
 
