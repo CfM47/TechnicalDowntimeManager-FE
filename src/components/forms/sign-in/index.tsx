@@ -25,14 +25,15 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
     resolver: zodResolver(signinSchema),
     defaultValues: signinDefaultValues
   });
-  const { setToken } = useSessionStore();
+  const { setToken, setName, setRole } = useSessionStore();
 
   const onSubmit = async (values: SigninFormValues) => {
     const { data } = await AuthServices.signin(values);
     const authInfo = data as AuthResponse;
     if (authInfo) {
-      localStorage.setItem('token', authInfo.token);
       setToken(authInfo.token);
+      setName(authInfo.name);
+      setRole(authInfo.id_role.toString());
     }
     setOpen(false);
   };
