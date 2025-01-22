@@ -3,7 +3,7 @@
 import React from 'react';
 
 import useSessionStore from '@/stores/sesionStore';
-import { useRouter } from 'next/navigation';
+import { redirect as redirectFunc } from 'next/navigation';
 
 interface PrivateRouteContainerProps {
   children: React.ReactNode;
@@ -17,15 +17,14 @@ export const PrivateRouteContainer = ({
   redirect = false
 }: PrivateRouteContainerProps) => {
   const { token, role } = useSessionStore();
-  const router = useRouter();
 
   if (!token) {
-    if (redirect) router.push('/');
+    if (redirect) redirectFunc('/');
     return <></>;
   }
 
   if (role && authorizedRoles.length && !authorizedRoles.includes(Number(role))) {
-    if (redirect) router.push('/');
+    if (redirect) redirectFunc('/');
     return <></>;
   }
 

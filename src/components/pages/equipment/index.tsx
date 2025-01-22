@@ -1,6 +1,7 @@
 import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateEquipmentModal } from '@/components/modals/create-equipment-modal';
 import { EquipmentServices } from '@/services/features/equipment';
 import { Equipment } from '@/types/equipment';
@@ -15,6 +16,11 @@ export const EquipmentPage = async ({}: EquipmentPageProps) => {
   const { data } = await EquipmentServices.getAll();
   const entries = data as Equipment[];
   const tableBody = <Body data={entries} />;
+  const authorizedRoles = [1, 2, 3];
 
-  return <EntityPage {...{ title, heads, addButton, tableBody }} />;
+  return (
+    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+      <EntityPage {...{ title, heads, addButton, tableBody }} />;
+    </PrivateRouteContainer>
+  );
 };

@@ -1,6 +1,7 @@
 import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateRateModal } from '@/components/modals/create-rate-modal';
 import { RateServices } from '@/services/features/rate';
 import { Rate } from '@/types/rate';
@@ -16,6 +17,11 @@ export const RatePage = async ({}: RatePageProps) => {
   const entries = data as Rate[];
 
   const tableBody = <Body data={entries} />;
+  const authorizedRoles = [1, 3];
 
-  return <EntityPage {...{ title, heads, addButton, tableBody }} />;
+  return (
+    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+      <EntityPage {...{ title, heads, addButton, tableBody }} />;
+    </PrivateRouteContainer>
+  );
 };

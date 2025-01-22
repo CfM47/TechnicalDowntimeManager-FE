@@ -1,6 +1,7 @@
 import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateMaintenanceModal } from '@/components/modals/create-maintenance-modal';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance } from '@/types/maitenance';
@@ -15,6 +16,11 @@ export const MaintenancesPage = async ({}: MaintenancesPageProps) => {
   const { data } = await MaintenanceServices.getAll();
   const entries = data as Maintenance[];
   const tableBody = <Body data={entries} />;
+  const authorizedRoles = [1, 2, 3];
 
-  return <EntityPage {...{ title, heads, addButton, tableBody }} />;
+  return (
+    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+      <EntityPage {...{ title, heads, addButton, tableBody }} />;
+    </PrivateRouteContainer>
+  );
 };
