@@ -7,8 +7,10 @@ import { InitialsAvatar } from '@/components/common/initials-avatar';
 import { SideMenu } from '@/components/common/side-menu';
 import { ResponsiveContainer } from '@/components/containers/responsive-container';
 import { ScrolledStyleContainer } from '@/components/containers/scrolled-style-container';
+import { Button } from '@/components/ui/button';
 import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const navItems = [
   { name: 'Traslados', href: '/transfers' },
@@ -20,7 +22,14 @@ const navItems = [
 ];
 
 export const Navbar = () => {
-  const { token } = useSessionStore();
+  const { clear, token, name } = useSessionStore();
+  const router = useRouter();
+
+  const handleLogout = () => {
+    clear();
+    router.push('/');
+  };
+
   return (
     <ScrolledStyleContainer scrolledStyle="shadow-lg">
       <nav className="sticky top-0 z-50 bg-white transition-shadow duration-300">
@@ -34,7 +43,14 @@ export const Navbar = () => {
                 {navItems.map((item, index) => (
                   <HighlightLink key={index} {...item} className="text-gray-500 font-semibold" />
                 ))}
-                {token ? <InitialsAvatar name="John Doe" /> : <SigninModal />}
+                {token ? (
+                  <div className="flex items-center space-x-4">
+                    <InitialsAvatar name={name ?? ': )'} />
+                    <Button onClick={handleLogout}>Logout</Button>
+                  </div>
+                ) : (
+                  <SigninModal />
+                )}
               </div>
             }
             mobileComponent={<SideMenu items={navItems} />}
