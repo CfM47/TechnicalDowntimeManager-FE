@@ -8,6 +8,9 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
+import { AuthServices } from '@/services/features/auth';
+import useSessionStore from '@/stores/sesionStore';
+import { AuthResponse } from '@/types/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
@@ -22,11 +25,15 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
     resolver: zodResolver(signinSchema),
     defaultValues: signinDefaultValues
   });
+  const { setToken } = useSessionStore();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = (values: SigninFormValues) => {
-    //TODO: consumir del servicio de signin post
-    console.log('submiting');
+  const onSubmit = async (values: SigninFormValues) => {
+    const { data } = await AuthServices.signin(values);
+    const authInfo = data as AuthResponse;
+    if (authInfo) {
+      localStorage.setItem('token', authInfo.token);
+      setToken(authInfo.token);
+    }
     setOpen(false);
   };
 
