@@ -1,5 +1,7 @@
 'use client';
 
+import { LogOut } from 'lucide-react';
+
 import { SigninModal } from '../../../modals/sign-in-modal';
 
 import { HighlightLink } from '@/components/common/highlight-link';
@@ -46,7 +48,12 @@ export const Navbar = () => {
                 {token ? (
                   <div className="flex items-center space-x-4">
                     <InitialsAvatar name={name ?? ': )'} />
-                    <Button onClick={handleLogout}>Logout</Button>
+                    <Button
+                      onClick={handleLogout}
+                      className=" bg-white text--black border-transparent rounded-full hover:text-red-600 hover:bg-white transition-colors"
+                    >
+                      <LogOut />
+                    </Button>
                   </div>
                 ) : (
                   <SigninModal />
