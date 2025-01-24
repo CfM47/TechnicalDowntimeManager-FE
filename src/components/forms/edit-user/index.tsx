@@ -9,7 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { toastRequest } from '@/lib/utils';
+import { useRefreshPage } from '@/hooks/useRefreshPage';
 import { UserServices } from '@/services/features/user';
 import { User } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -33,8 +33,9 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
     defaultValues: { ...UserDefaultValues, ...userData }
   });
 
+  const { submitRequest } = useRefreshPage();
   const onSubmit = async (values: EditUserFormValues) => {
-    toastRequest('success', 'Usuario actualizado correctamente', async () => {
+    submitRequest('success', 'Usuario actualizado correctamente', async () => {
       const data = {
         ...values,
         id_role: Number(values.id_role)
