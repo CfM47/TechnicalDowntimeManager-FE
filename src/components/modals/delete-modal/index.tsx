@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Modal, removeModalButtonProps } from '@/components/common/modal';
 import { showToast } from '@/components/common/toast-message';
 import { Button, ButtonProps } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 interface DeleteModalProps {
   handleDelete: () => Promise<void>;
@@ -12,6 +13,7 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
   const title = 'Eliminar';
   const triggerProps: ButtonProps = removeModalButtonProps;
+  const router = useRouter();
   const bodyContent = (
     <p>Está seguro que desea elminar esta entidad. Esta acción no puede deshacerse</p>
   );
@@ -21,6 +23,7 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
       .then(() => {
         showToast('success', 'Entidad eliminada correctamente');
         setOpen(false);
+        router.refresh();
       })
       .catch(() => {
         showToast('error', 'Ha ocurrido un error al eliminar la entidad');

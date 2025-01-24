@@ -10,7 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { toastRequest } from '@/lib/utils';
+import { useRefreshPage } from '@/hooks/useRefreshPage';
 import { UserServices } from '@/services/features/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,14 +27,15 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
     defaultValues: createUserDefaultValues
   });
 
+  const { submitRequest } = useRefreshPage();
   const onSubmit = async (values: CreateUserFormValues) => {
-    toastRequest('success', 'Usuario creado correctamente', async () => {
+    await submitRequest('Usuario creado correctamente', 'Error al crear el usuario', async () => {
       const data = {
         ...values,
         id_role: Number(values.id_role)
       };
       await UserServices.create(data);
-      setOpen(false);
+      setOpen(false); // Cierra el modal tras el éxito
     });
   };
 

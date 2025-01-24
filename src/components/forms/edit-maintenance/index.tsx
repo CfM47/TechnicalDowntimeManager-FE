@@ -10,7 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { toastRequest } from '@/lib/utils';
+import { useRefreshPage } from '@/hooks/useRefreshPage';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance } from '@/types/maitenance';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -37,8 +37,9 @@ export const EditMaintenanceForm = ({ setOpen, item }: EditMaintenanceFormProps)
     mode: 'onBlur'
   });
 
+  const { submitRequest } = useRefreshPage();
   const onSubmit = async (values: EditMaintenanceFormValues) => {
-    toastRequest('success', 'Mantenimiento actualizado correctamente', async () => {
+    submitRequest('success', 'Mantenimiento actualizado correctamente', async () => {
       await MaintenanceServices.update(item.technician.id, item.equipment.id, item.date, values);
       setOpen(false);
     });

@@ -9,7 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { toastRequest } from '@/lib/utils';
+import { useRefreshPage } from '@/hooks/useRefreshPage';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer } from '@/types/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -38,9 +38,10 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
     mode: 'onBlur'
   });
 
+  const { submitRequest } = useRefreshPage();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditTransferFormValues) => {
-    toastRequest('success', 'Traslado actualizado correctamente', async () => {
+    submitRequest('success', 'Traslado actualizado correctamente', async () => {
       await TransferServices.update(
         item.sender.id,
         item.receiver.id,

@@ -10,7 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { toastRequest } from '@/lib/utils';
+import { useRefreshPage } from '@/hooks/useRefreshPage';
 import { RateServices } from '@/services/features/rate';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -28,9 +28,10 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
     mode: 'onBlur'
   });
 
+  const { submitRequest } = useRefreshPage();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateRateFormValues) => {
-    toastRequest('success', 'Valoración creada correctamente', async () => {
+    submitRequest('success', 'Valoración creada correctamente', async () => {
       await RateServices.create(values);
       setOpen(false);
     });
