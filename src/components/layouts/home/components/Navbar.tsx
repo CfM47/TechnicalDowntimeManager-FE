@@ -1,19 +1,16 @@
 'use client';
 
-import { LogOut } from 'lucide-react';
-
 import { SigninModal } from '../../../modals/sign-in-modal';
 
 import { HighlightLink } from '@/components/common/highlight-link';
 import { InitialsAvatar } from '@/components/common/initials-avatar';
+import { LogOutButton } from '@/components/common/logout-button';
 import { SideMenu } from '@/components/common/side-menu';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { ResponsiveContainer } from '@/components/containers/responsive-container';
 import { ScrolledStyleContainer } from '@/components/containers/scrolled-style-container';
-import { Button } from '@/components/ui/button';
 import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 const navItems = [
   { name: 'Traslados', href: '/transfers', authorizedRoles: [1, 3] },
@@ -25,13 +22,7 @@ const navItems = [
 ];
 
 export const Navbar = () => {
-  const { clear, token, name } = useSessionStore();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    clear();
-    router.push('/');
-  };
+  const { token, name } = useSessionStore();
 
   return (
     <ScrolledStyleContainer scrolledStyle="shadow-lg">
@@ -51,12 +42,7 @@ export const Navbar = () => {
                 {token ? (
                   <div className="flex items-center space-x-4">
                     <InitialsAvatar name={name ?? ': )'} />
-                    <Button
-                      onClick={handleLogout}
-                      className=" bg-white text--black border-transparent rounded-full hover:text-red-600 hover:bg-white transition-colors"
-                    >
-                      <LogOut />
-                    </Button>
+                    <LogOutButton />
                   </div>
                 ) : (
                   <SigninModal />
