@@ -10,6 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { UserServices } from '@/services/features/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,12 +28,14 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
   });
 
   const onSubmit = async (values: CreateUserFormValues) => {
-    const data = {
-      ...values,
-      id_role: Number(values.id_role)
-    };
-    await UserServices.create(data);
-    setOpen(false);
+    toastRequest('success', 'Usuario creado correctamente', async () => {
+      const data = {
+        ...values,
+        id_role: Number(values.id_role)
+      };
+      await UserServices.create(data);
+      setOpen(false);
+    });
   };
 
   const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });

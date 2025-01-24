@@ -9,6 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer } from '@/types/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -39,16 +40,18 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditTransferFormValues) => {
-    await TransferServices.update(
-      item.sender.id,
-      item.receiver.id,
-      item.equipment.id,
-      item.date,
-      item.origin_dep.id,
-      item.receiver_dep.id,
-      values
-    );
-    setOpen(false);
+    toastRequest('success', 'Traslado actualizado correctamente', async () => {
+      await TransferServices.update(
+        item.sender.id,
+        item.receiver.id,
+        item.equipment.id,
+        item.date,
+        item.origin_dep.id,
+        item.receiver_dep.id,
+        values
+      );
+      setOpen(false);
+    });
   };
 
   const { departments, equipments, users } = useFetchOptions({

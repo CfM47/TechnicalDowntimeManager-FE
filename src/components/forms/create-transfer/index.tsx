@@ -9,6 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { TransferServices } from '@/services/features/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,8 +28,10 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
   });
 
   const onSubmit = async (values: CreateTransferFormValues) => {
-    await TransferServices.create(values);
-    setOpen(false);
+    toastRequest('success', 'Traslado creado correctamente', async () => {
+      await TransferServices.create(values);
+      setOpen(false);
+    });
   };
 
   const { departments, equipments, users } = useFetchOptions({

@@ -10,6 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { RateServices } from '@/services/features/rate';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -29,8 +30,10 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateRateFormValues) => {
-    await RateServices.create(values);
-    setOpen(false);
+    toastRequest('success', 'Valoración creada correctamente', async () => {
+      await RateServices.create(values);
+      setOpen(false);
+    });
   };
 
   const { users, technicians } = useFetchOptions({ selectFrom: ['USER', 'TECHNICIAN'] });

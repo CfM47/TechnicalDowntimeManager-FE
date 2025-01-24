@@ -9,6 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { UserServices } from '@/services/features/user';
 import { User } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -33,12 +34,14 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
   });
 
   const onSubmit = async (values: EditUserFormValues) => {
-    const data = {
-      ...values,
-      id_role: Number(values.id_role)
-    };
-    await UserServices.update(item.id, data);
-    setOpen(false);
+    toastRequest('success', 'Usuario actualizado correctamente', async () => {
+      const data = {
+        ...values,
+        id_role: Number(values.id_role)
+      };
+      await UserServices.update(item.id, data);
+      setOpen(false);
+    });
   };
 
   const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
