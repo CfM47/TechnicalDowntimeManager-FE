@@ -10,6 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -28,8 +29,10 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
   });
 
   const onSubmit = async (values: CreateMaintenanceFormValues) => {
-    await MaintenanceServices.create(values);
-    setOpen(false);
+    toastRequest('success', 'Mantenimiento creado correctamente', async () => {
+      await MaintenanceServices.create(values);
+      setOpen(false);
+    });
   };
 
   const { equipments, technicians } = useFetchOptions({

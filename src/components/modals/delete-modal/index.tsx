@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Modal, removeModalButtonProps } from '@/components/common/modal';
+import { showToast } from '@/components/common/toast-message';
 import { Button, ButtonProps } from '@/components/ui/button';
 
 interface DeleteModalProps {
@@ -16,7 +17,14 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
   );
 
   const onClick = () => {
-    handleDelete().then(() => setOpen(false));
+    handleDelete()
+      .then(() => {
+        showToast('success', 'Entidad eliminada correctamente');
+        setOpen(false);
+      })
+      .catch(() => {
+        showToast('error', 'Ha ocurrido un error al eliminar la entidad');
+      });
   };
 
   const footerContent = (

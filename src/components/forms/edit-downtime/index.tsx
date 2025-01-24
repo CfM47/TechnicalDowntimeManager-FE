@@ -9,6 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { DowntimeServices } from '@/services/features/downtime';
 import { Downtime } from '@/types/downtime';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -39,15 +40,17 @@ export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditDowntimeFormValues) => {
-    await DowntimeServices.update(
-      item.sender.id,
-      item.receiver.id,
-      item.equipment.id,
-      item.date,
-      item.dep_receiver.id,
-      values
-    );
-    setOpen(false);
+    toastRequest('success', 'Baja actualizada correctamente', async () => {
+      await DowntimeServices.update(
+        item.sender.id,
+        item.receiver.id,
+        item.equipment.id,
+        item.date,
+        item.dep_receiver.id,
+        values
+      );
+      setOpen(false);
+    });
   };
 
   const { departments, equipments, users } = useFetchOptions({

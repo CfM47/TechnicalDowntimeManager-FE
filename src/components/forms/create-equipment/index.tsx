@@ -9,6 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { EquipmentServices } from '@/services/features/equipment';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,8 +28,10 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateEquipmentFormValues) => {
-    await EquipmentServices.create(values);
-    setOpen(false);
+    toastRequest('success', 'Equipo creado correctamente', async () => {
+      await EquipmentServices.create(values);
+      setOpen(false);
+    });
   };
 
   const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });

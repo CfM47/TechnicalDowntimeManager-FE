@@ -9,6 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
+import { toastRequest } from '@/lib/utils';
 import { DowntimeServices } from '@/services/features/downtime';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -28,8 +29,10 @@ export const CreateDowntimeForm = ({ setOpen }: CreateDowntimeFormProps) => {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateDowntimeFormValues) => {
-    await DowntimeServices.create(values);
-    setOpen(false);
+    toastRequest('success', 'Baja creada correctamente', async () => {
+      await DowntimeServices.create(values);
+      setOpen(false);
+    });
   };
 
   const { departments, equipments, users } = useFetchOptions({
