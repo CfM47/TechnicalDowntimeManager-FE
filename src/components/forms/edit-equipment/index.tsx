@@ -27,7 +27,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
   const equipmentData = {
     name: item.name,
     type: item.type,
-    status: item.state,
+    status: item.status,
     id_department: item.department.id
   };
 

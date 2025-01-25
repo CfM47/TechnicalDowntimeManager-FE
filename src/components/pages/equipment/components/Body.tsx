@@ -16,7 +16,7 @@ export const Body = ({ data = [] }: BodyProps) => {
           <TableRow key={index}>
             <TableCell>{item.name}</TableCell>
             <TableCell>{item.type}</TableCell>
-            <TableCell>{item.state}</TableCell>
+            <TableCell>{item.status}</TableCell>
             <TableCell>{item.department.name}</TableCell>
             <TableCell>{formatDate(item.acquisition_date)}</TableCell>
             <TableCell>
