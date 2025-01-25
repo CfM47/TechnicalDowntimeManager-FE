@@ -1,6 +1,7 @@
 import { RowActions } from './RowActions';
 
 import { TableCell, TableRow } from '@/components/ui/table';
+import { formatDate } from '@/lib/utils';
 import { Equipment } from '@/types/equipment';
 
 interface BodyProps {
@@ -17,7 +18,7 @@ export const Body = ({ data = [] }: BodyProps) => {
             <TableCell>{item.type}</TableCell>
             <TableCell>{item.state}</TableCell>
             <TableCell>{item.department.name}</TableCell>
-            <TableCell>{item.acquisition_date}</TableCell>
+            <TableCell>{formatDate(item.acquisition_date)}</TableCell>
             <TableCell>
               <RowActions {...{ item }} />
             </TableCell>
