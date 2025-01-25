@@ -18,7 +18,8 @@ const navItems = [
   { name: 'Mantenimientos', href: '/maintenances', authorizedRoles: [1, 2, 3] },
   { name: 'Valoraciones', href: '/rate', authorizedRoles: [1, 3] },
   { name: 'Usuarios', href: '/user', authorizedRoles: [1] },
-  { name: 'Equipos', href: '/equipment', authorizedRoles: [1, 2, 3] }
+  { name: 'Equipos', href: '/equipment', authorizedRoles: [1, 2, 3] },
+  { name: 'Reportes', href: '/reports', authorizedRoles: [1] }
 ];
 
 export const Navbar = () => {
