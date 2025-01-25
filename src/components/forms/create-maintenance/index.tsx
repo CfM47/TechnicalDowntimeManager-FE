@@ -6,10 +6,10 @@ import { createMaintenanceDefaultValues, createMaintenanceSchema } from './schem
 
 import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,7 +27,7 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateMaintenanceFormValues) => {
     submitRequest('success', 'Mantenimiento creado correctamente', async () => {
       await MaintenanceServices.create(values);
@@ -75,9 +75,7 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
           placeholder="100"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Crear
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
         </div>
       </form>
     </Form>

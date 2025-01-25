@@ -6,10 +6,10 @@ import { createDowntimeDefaultValues, createDowntimeSchema } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { DowntimeServices } from '@/services/features/downtime';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,7 +27,7 @@ export const CreateDowntimeForm = ({ setOpen }: CreateDowntimeFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateDowntimeFormValues) => {
     submitRequest('success', 'Baja creada correctamente', async () => {
@@ -88,9 +88,7 @@ export const CreateDowntimeForm = ({ setOpen }: CreateDowntimeFormProps) => {
           placeholder="Falla técnica"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Crear
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
         </div>
       </form>
     </Form>

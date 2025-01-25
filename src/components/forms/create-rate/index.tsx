@@ -7,10 +7,10 @@ import { createRateDefaultValues, createRateSchema } from './schema';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { RateServices } from '@/services/features/rate';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -28,7 +28,7 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateRateFormValues) => {
     submitRequest('success', 'Valoración creada correctamente', async () => {
@@ -73,9 +73,7 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
           type="number"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Crear
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
         </div>
       </form>
     </Form>

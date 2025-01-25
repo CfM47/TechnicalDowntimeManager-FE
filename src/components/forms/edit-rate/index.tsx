@@ -7,10 +7,10 @@ import { editRateSchema, RateDefaultValues } from './schema';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { RateServices } from '@/services/features/rate';
 import { Rate } from '@/types/rate';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -37,7 +37,7 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: EditRateFormValues) => {
     submitRequest('success', 'Valoración actualizada correctamente', async () => {
       await RateServices.update(item.technician.id, item.user.id, item.date, values);
@@ -80,9 +80,7 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
           placeholder="1-5"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Guardar
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>
         </div>
       </form>
     </Form>

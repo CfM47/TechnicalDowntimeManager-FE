@@ -1,3 +1,4 @@
+import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 
 import { Modal, removeModalButtonProps } from '@/components/common/modal';
@@ -11,6 +12,7 @@ interface DeleteModalProps {
 
 export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const title = 'Eliminar';
   const triggerProps: ButtonProps = removeModalButtonProps;
   const router = useRouter();
@@ -19,6 +21,7 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
   );
 
   const onClick = () => {
+    setSubmitting(true);
     handleDelete()
       .then(() => {
         showToast('success', 'Entidad eliminada correctamente');
@@ -27,6 +30,9 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
       })
       .catch(() => {
         showToast('error', 'Ha ocurrido un error al eliminar la entidad');
+      })
+      .finally(() => {
+        setSubmitting(false);
       });
   };
 
@@ -36,7 +42,7 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
         Cancelar
       </Button>
       <Button className="bg-red-600 hover:bg-red-500" onClick={onClick}>
-        Confirmar
+        {submitting ? <Loader2 className="animate-spin" /> : 'Confirmar'}
       </Button>
     </>
   );

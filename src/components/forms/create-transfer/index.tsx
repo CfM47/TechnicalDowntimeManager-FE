@@ -5,10 +5,10 @@ import { useForm } from 'react-hook-form';
 import { createTransferDefaultValues, createTransferSchema } from './schema';
 
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { TransferServices } from '@/services/features/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -26,7 +26,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateTransferFormValues) => {
     submitRequest('success', 'Traslado creado correctamente', async () => {
       await TransferServices.create(values);
@@ -94,9 +94,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
         />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Crear
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
         </div>
       </form>
     </Form>
