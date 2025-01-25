@@ -1,6 +1,7 @@
 import { RowActions } from './RowActions';
 
 import { TableCell, TableRow } from '@/components/ui/table';
+import { formatDate } from '@/lib/utils';
 import { Transfer } from '@/types/transfer';
 
 interface BodyProps {
@@ -17,7 +18,7 @@ export const Body = ({ data = [] }: BodyProps) => {
             <TableCell>{item.origin_dep.name}</TableCell>
             <TableCell>{item.receiver_dep.name}</TableCell>
             <TableCell>{item.receiver.name}</TableCell>
-            <TableCell>{item.date}</TableCell>
+            <TableCell>{formatDate(item.date)}</TableCell>
             <TableCell>{item.status}</TableCell>
             <TableCell>
               <RowActions item={item} />
