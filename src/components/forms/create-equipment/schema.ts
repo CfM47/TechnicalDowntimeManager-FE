@@ -1,9 +1,17 @@
 import { z } from 'zod';
 
+const equipmentState = z.enum(['Operativo', 'Mantenimiento', 'Baja']);
+const equipmentType = z.enum([
+  'Informático',
+  'Comunicaciones',
+  'Electrónico',
+  'Seguridad',
+  'Oficina'
+]);
 export const createEquipmentSchema = z.object({
   name: z.string().min(1, { message: 'El nombre no puede ser vacío' }),
-  type: z.string().min(1, { message: 'El equipo debe tener un tipo asignado' }),
-  state: z.string().min(1, { message: 'Se debe especificar el estado del equipo' }),
+  type: equipmentType,
+  state: equipmentState,
   id_department: z.string().min(1, { message: 'El equipo debe pertenecer a un departamento' })
 });
 
