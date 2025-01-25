@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { editTransferSchema, TransferDefaultValues } from './schema';
 
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
@@ -37,7 +37,7 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useFormSubmit();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditTransferFormValues) => {
     submitRequest('success', 'Traslado actualizado correctamente', async () => {
@@ -114,9 +114,7 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
         />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Guardar
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>
         </div>
       </form>
     </Form>

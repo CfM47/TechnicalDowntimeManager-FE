@@ -6,7 +6,7 @@ import { DowntimeDefaultValues, editDowntimeSchema } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
@@ -38,7 +38,7 @@ export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useFormSubmit();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditDowntimeFormValues) => {
     submitRequest('success', 'Baja actualizada correctamente', async () => {
@@ -106,9 +106,7 @@ export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
           placeholder="Falla técnica"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Guardar
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>
         </div>
       </form>
     </Form>

@@ -6,7 +6,7 @@ import { signinDefaultValues, signinSchema } from './schema';
 
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { AuthServices } from '@/services/features/auth';
@@ -28,7 +28,7 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
   });
   const { setToken, setName, setRole } = useSessionStore();
 
-  const { submitRequest } = useFormSubmit();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: SigninFormValues) => {
     submitRequest('success', 'Inicio de sesión exitoso', async () => {
       const { data } = await AuthServices.signin(values);
@@ -58,9 +58,7 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
         />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Sign In
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Iniciar sesión</RHFSubmitButton>
         </div>
       </form>
     </Form>

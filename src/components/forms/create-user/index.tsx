@@ -7,7 +7,7 @@ import { createUserDefaultValues, createUserSchema } from './schema';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
-import { Button } from '@/components/ui/button';
+import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
@@ -27,7 +27,7 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
     defaultValues: createUserDefaultValues
   });
 
-  const { submitRequest } = useFormSubmit();
+  const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateUserFormValues) => {
     await submitRequest('Usuario creado correctamente', 'Error al crear el usuario', async () => {
       const data = {
@@ -72,9 +72,7 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
           })}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <Button type="submit" variant="default">
-            Crear
-          </Button>
+          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
         </div>
       </form>
     </Form>

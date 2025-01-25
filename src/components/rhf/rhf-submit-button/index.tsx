@@ -13,8 +13,6 @@ export const RHFSubmitButton = ({ children, isSubmitting }: RHFSubmitButtonProps
   const { formState } = useFormContext();
   const { isDirty, isValid } = formState;
 
-  console.log('state', { isDirty, isValid, isSubmitting });
-
   const disabled = !isDirty || !isValid || isSubmitting;
 
   return (
