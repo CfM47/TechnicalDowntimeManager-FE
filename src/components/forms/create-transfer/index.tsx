@@ -8,7 +8,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { TransferServices } from '@/services/features/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -26,7 +26,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest } = useFormSubmit();
   const onSubmit = async (values: CreateTransferFormValues) => {
     submitRequest('success', 'Traslado creado correctamente', async () => {
       await TransferServices.create(values);

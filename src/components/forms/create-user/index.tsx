@@ -10,7 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { UserServices } from '@/services/features/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -27,7 +27,7 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
     defaultValues: createUserDefaultValues
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest } = useFormSubmit();
   const onSubmit = async (values: CreateUserFormValues) => {
     await submitRequest('Usuario creado correctamente', 'Error al crear el usuario', async () => {
       const data = {

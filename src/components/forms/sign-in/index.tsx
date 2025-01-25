@@ -8,7 +8,7 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { AuthServices } from '@/services/features/auth';
 import useSessionStore from '@/stores/sesionStore';
 import { AuthResponse } from '@/types/auth';
@@ -28,7 +28,7 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
   });
   const { setToken, setName, setRole } = useSessionStore();
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest } = useFormSubmit();
   const onSubmit = async (values: SigninFormValues) => {
     submitRequest('success', 'Inicio de sesión exitoso', async () => {
       const { data } = await AuthServices.signin(values);

@@ -10,7 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { EquipmentServices } from '@/services/features/equipment';
 import { Equipment } from '@/types/equipment';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -36,7 +36,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
     defaultValues: { ...EquipmentDefaultValues, ...equipmentData }
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateEquipmentFormValues) => {
     submitRequest('success', 'Equipo actualizado correctamente', async () => {

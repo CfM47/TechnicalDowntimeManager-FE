@@ -10,7 +10,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { RateServices } from '@/services/features/rate';
 import { Rate } from '@/types/rate';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -37,7 +37,7 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest } = useFormSubmit();
   const onSubmit = async (values: EditRateFormValues) => {
     submitRequest('success', 'Valoración actualizada correctamente', async () => {
       await RateServices.update(item.technician.id, item.user.id, item.date, values);

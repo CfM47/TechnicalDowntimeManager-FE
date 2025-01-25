@@ -9,7 +9,7 @@ import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
-import { useRefreshPage } from '@/hooks/useRefreshPage';
+import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { DowntimeServices } from '@/services/features/downtime';
 import { Downtime } from '@/types/downtime';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -38,7 +38,7 @@ export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
     mode: 'onBlur'
   });
 
-  const { submitRequest } = useRefreshPage();
+  const { submitRequest } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditDowntimeFormValues) => {
     submitRequest('success', 'Baja actualizada correctamente', async () => {
