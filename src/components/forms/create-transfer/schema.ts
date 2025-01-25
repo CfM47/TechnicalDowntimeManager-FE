@@ -1,12 +1,13 @@
 import { z } from 'zod';
 
+const transferStatus = z.enum(['Pendiente', 'Completado', 'Aprobado', 'Cancelado']);
 export const createTransferSchema = z.object({
   id_sender: z.string().uuid({ message: 'Debe escoger un remitente válido' }),
   id_receiver: z.string().uuid({ message: 'Debe escoger un receptor válido' }),
   id_equipment: z.string().uuid({ message: 'Debe escoger un equipo válido' }),
   id_origin_dep: z.string().uuid({ message: 'Debe escoger un departamento de origen válido' }),
   id_receiver_dep: z.string().uuid({ message: 'Debe escoger un departamento receptor válido' }),
-  downtime_status: z.string().min(1, { message: 'El estado es obligatorio' })
+  downtime_status: transferStatus
 });
 
 export const createTransferDefaultValues = {

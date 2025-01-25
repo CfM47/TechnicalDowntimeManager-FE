@@ -1,9 +1,10 @@
 import { z } from 'zod';
 
+const maintenanceType = z.enum(['Preventivo', 'Correctivo', 'Predictivo']);
 export const createMaintenanceSchema = z.object({
   id_technician: z.string().uuid({ message: 'Se debe seleccionar un técnico' }),
   id_equipment: z.string().uuid({ message: 'Se debe seleccionar un equipo' }),
-  type: z.string().min(1, { message: 'Debe contener un tipo de mantenimiento' }),
+  type: maintenanceType,
   cost: z.number().min(0, { message: 'El costo debe ser mayor o igual a 0' })
 });
 

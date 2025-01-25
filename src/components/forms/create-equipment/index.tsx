@@ -42,13 +42,29 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFInput name="name" label="Nombre" description="Nombre de equipo" placeholder="equipo" />
-        <RHFInput name="type" label="tipo" description="Tipo de equipo" placeholder="tipo" />
 
-        <RHFInput
+        <RHFSelect
+          name="type"
+          label="tipo"
+          description="Tipo de equipo"
+          options={[
+            { label: 'Informático', value: 'Informático' },
+            { label: 'Comunicaciones', value: 'Comunicaciones' },
+            { label: 'Electrónico', value: 'Electrónico' },
+            { label: 'Seguridad', value: 'Seguridad' },
+            { label: 'Oficina', value: 'Oficina' }
+          ]}
+        />
+
+        <RHFSelect
           name="state"
           label="Estado"
           description="Estado del equipo"
-          placeholder="estado"
+          options={[
+            { label: 'Operativo', value: 'Operativo' },
+            { label: 'Mantenimiento', value: 'Mantenimiento' },
+            { label: 'Baja', value: 'Baja' }
+          ]}
         />
         <RHFSelect
           name="id_department"

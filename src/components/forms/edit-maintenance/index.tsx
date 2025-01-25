@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 
 import { editMaintenanceDefaultValues, editMaintenanceSchema } from './schema';
 
-import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFNumericInput } from '@/components/rhf/rhf-numeric-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
@@ -65,11 +64,15 @@ export const EditMaintenanceForm = ({ setOpen, item }: EditMaintenanceFormProps)
             return { label: name, value: id };
           })}
         />
-        <RHFInput
+        <RHFSelect
           name="type"
           label="Tipo de Mantenimiento"
           description="Tipo de mantenimiento realizado"
-          placeholder="Preventivo"
+          options={[
+            { label: 'Preventivo', value: 'Preventivo' },
+            { label: 'Correctivo', value: 'Correctivo' },
+            { label: 'Predictivo', value: 'Predictivo' }
+          ]}
         />
         <RHFNumericInput
           name="cost"

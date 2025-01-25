@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 
 import { editTransferSchema, TransferDefaultValues } from './schema';
 
-import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
@@ -102,11 +101,16 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
             return { label: name, value: id };
           })}
         />
-        <RHFInput
+        <RHFSelect
           name="downtime_status"
           label="Estado"
           description="Estado del traslado"
-          placeholder="estado"
+          options={[
+            { label: 'Pendiente', value: 'Pendiente' },
+            { label: 'Completado', value: 'Completado' },
+            { label: 'Aprobado', value: 'Aprobado' },
+            { label: 'Cancelado', value: 'Cancelado' }
+          ]}
         />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
