@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 
 import { editEquipmentSchema, EquipmentDefaultValues } from './schema';
 
-import { CreateEquipmentFormValues } from '@/components/forms/create-equipment';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
@@ -27,7 +26,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
   const equipmentData = {
     name: item.name,
     type: item.type,
-    state: item.state,
+    status: item.state,
     id_department: item.department.id
   };
 
@@ -38,7 +37,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = async (values: CreateEquipmentFormValues) => {
+  const onSubmit = async (values: EditEquipmentFormValues) => {
     submitRequest('success', 'Equipo actualizado correctamente', async () => {
       await EquipmentServices.update(item.id, values);
       setOpen(false);

@@ -23,6 +23,10 @@ dayjs.extend(localizedFormat);
  * @param {string} locale - El idioma (opcional, por defecto 'es')
  * @returns {string} - Fecha formateada
  */
-export function formatDate(dateString, format = 'DD/MM/YYYY', locale = 'es') {
+export function formatDate(
+  dateString: string | Date,
+  format: string = 'DD/MM/YYYY',
+  locale: string = 'es'
+): string {
   return dayjs(dateString).locale(locale).format(format);
 }

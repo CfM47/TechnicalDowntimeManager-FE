@@ -1,17 +1,13 @@
+import { EquipmentStatuses } from '@/lib/enums';
 import { z } from 'zod';
 
-const equipmentState = z.enum(['Operativo', 'Mantenimiento', 'Baja']);
-const equipmentType = z.enum([
-  'Informático',
-  'Comunicaciones',
-  'Electrónico',
-  'Seguridad',
-  'Oficina'
-]);
+const state = z.enum(EquipmentStatuses);
+const type = z.enum(EquipmentStatuses);
+
 export const editEquipmentSchema = z.object({
   name: z.string().min(1, { message: 'El nombre no puede ser vacío' }),
-  type: equipmentType,
-  state: equipmentState,
+  type: type,
+  state: state,
   id_department: z.string().min(1, { message: 'El equipo debe pertenecer a un departamento' })
 });
 
