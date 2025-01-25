@@ -10,6 +10,7 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { DowntimeStatuses } from '@/lib/enums';
 import { DowntimeServices } from '@/services/features/downtime';
 import { Downtime } from '@/types/downtime';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -97,12 +98,7 @@ export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
           name="status"
           label="Estado"
           description="Estado de la baja"
-          options={[
-            { label: 'Pendiente de evaluación', value: 'Pendiente de evaluación' },
-            { label: 'Retirado del servicio', value: 'Retirado del servicio' },
-            { label: 'Reutilizado', value: 'Reutilizado' },
-            { label: 'Baja Definitiva', value: 'Baja Definitiva' }
-          ]}
+          options={DowntimeStatuses.map((x) => ({ label: x, value: x }))}
         />
         <RHFInput
           name="cause"

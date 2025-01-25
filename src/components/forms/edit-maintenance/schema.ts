@@ -1,10 +1,11 @@
+import { MaintenanceTypes } from '@/lib/enums';
 import { z } from 'zod';
 
-const maintenanceType = z.enum(['Preventivo', 'Correctivo', 'Predictivo']);
+const type = z.enum(MaintenanceTypes);
 export const editMaintenanceSchema = z.object({
   id_technician: z.string().uuid({ message: 'Se debe seleccionar un técnico' }),
   id_equipment: z.string().uuid({ message: 'Se debe seleccionar un equipo' }),
-  type: maintenanceType,
+  type: type,
   cost: z.number().positive({ message: 'El costo debe ser mayor o igual a 0' })
 });
 

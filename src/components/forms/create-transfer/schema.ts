@@ -1,13 +1,15 @@
+import { TransferStatuses } from '@/lib/enums';
 import { z } from 'zod';
 
-const transferStatus = z.enum(['Pendiente', 'Completado', 'Aprobado', 'Cancelado']);
+const status = z.enum(TransferStatuses);
+
 export const createTransferSchema = z.object({
   id_sender: z.string().uuid({ message: 'Debe escoger un remitente válido' }),
   id_receiver: z.string().uuid({ message: 'Debe escoger un receptor válido' }),
   id_equipment: z.string().uuid({ message: 'Debe escoger un equipo válido' }),
   id_origin_dep: z.string().uuid({ message: 'Debe escoger un departamento de origen válido' }),
   id_receiver_dep: z.string().uuid({ message: 'Debe escoger un departamento receptor válido' }),
-  downtime_status: transferStatus
+  status: status
 });
 
 export const createTransferDefaultValues = {
@@ -16,5 +18,5 @@ export const createTransferDefaultValues = {
   id_equipment: '',
   id_origin_dep: '',
   id_receiver_dep: '',
-  downtime_status: ''
+  status: ''
 };

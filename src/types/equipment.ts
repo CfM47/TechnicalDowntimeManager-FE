@@ -4,7 +4,7 @@ export interface Equipment {
   id: string;
   name: string;
   type: string;
-  state: string;
+  status: string;
   department: Department;
   acquisition_date: string;
 }

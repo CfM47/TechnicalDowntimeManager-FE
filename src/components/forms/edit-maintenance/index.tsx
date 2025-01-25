@@ -10,6 +10,7 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { MaintenanceTypes } from '@/lib/enums';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance } from '@/types/maitenance';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -68,11 +69,7 @@ export const EditMaintenanceForm = ({ setOpen, item }: EditMaintenanceFormProps)
           name="type"
           label="Tipo de Mantenimiento"
           description="Tipo de mantenimiento realizado"
-          options={[
-            { label: 'Preventivo', value: 'Preventivo' },
-            { label: 'Correctivo', value: 'Correctivo' },
-            { label: 'Predictivo', value: 'Predictivo' }
-          ]}
+          options={MaintenanceTypes.map((x) => ({ label: x, value: x }))}
         />
         <RHFNumericInput
           name="cost"

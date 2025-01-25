@@ -4,13 +4,13 @@ import { useForm } from 'react-hook-form';
 
 import { editEquipmentSchema, EquipmentDefaultValues } from './schema';
 
-import { CreateEquipmentFormValues } from '@/components/forms/create-equipment';
 import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { EquipmentStatuses, EquipmentTypes } from '@/lib/enums';
 import { EquipmentServices } from '@/services/features/equipment';
 import { Equipment } from '@/types/equipment';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,7 +27,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
   const equipmentData = {
     name: item.name,
     type: item.type,
-    state: item.state,
+    status: item.status,
     id_department: item.department.id
   };
 
@@ -38,7 +38,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const onSubmit = async (values: CreateEquipmentFormValues) => {
+  const onSubmit = async (values: EditEquipmentFormValues) => {
     submitRequest('success', 'Equipo actualizado correctamente', async () => {
       await EquipmentServices.update(item.id, values);
       setOpen(false);
@@ -55,24 +55,14 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
           name="type"
           label="tipo"
           description="Tipo de equipo"
-          options={[
-            { label: 'Informático', value: 'Informático' },
-            { label: 'Comunicaciones', value: 'Comunicaciones' },
-            { label: 'Electrónico', value: 'Electrónico' },
-            { label: 'Seguridad', value: 'Seguridad' },
-            { label: 'Oficina', value: 'Oficina' }
-          ]}
+          options={EquipmentTypes.map((x) => ({ label: x, value: x }))}
         />
 
         <RHFSelect
           name="state"
           label="Estado"
           description="Estado del equipo"
-          options={[
-            { label: 'Operativo', value: 'Operativo' },
-            { label: 'Mantenimiento', value: 'Mantenimiento' },
-            { label: 'Baja', value: 'Baja' }
-          ]}
+          options={EquipmentStatuses.map((x) => ({ label: x, value: x }))}
         />
         <RHFSelect
           name="id_department"
