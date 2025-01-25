@@ -10,6 +10,7 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { EquipmentStatuses, EquipmentTypes } from '@/lib/enums';
 import { EquipmentServices } from '@/services/features/equipment';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -28,7 +29,6 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
 
   const { submitRequest, isSubmitting } = useFormSubmit();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateEquipmentFormValues) => {
     submitRequest('success', 'Equipo creado correctamente', async () => {
       await EquipmentServices.create(values);
@@ -47,32 +47,20 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
           name="type"
           label="tipo"
           description="Tipo de equipo"
-          options={[
-            { label: 'Informático', value: 'Informático' },
-            { label: 'Comunicaciones', value: 'Comunicaciones' },
-            { label: 'Electrónico', value: 'Electrónico' },
-            { label: 'Seguridad', value: 'Seguridad' },
-            { label: 'Oficina', value: 'Oficina' }
-          ]}
+          options={EquipmentTypes.map((x) => ({ label: x, value: x }))}
         />
 
         <RHFSelect
-          name="state"
+          name="status"
           label="Estado"
           description="Estado del equipo"
-          options={[
-            { label: 'Operativo', value: 'Operativo' },
-            { label: 'Mantenimiento', value: 'Mantenimiento' },
-            { label: 'Baja', value: 'Baja' }
-          ]}
+          options={EquipmentStatuses.map((x) => ({ label: x, value: x }))}
         />
         <RHFSelect
           name="id_department"
           label="Departamento"
           description="Departamento donde se encuentra el equipo"
-          options={departments.map(({ name, id }) => {
-            return { label: name, value: id };
-          })}
+          options={departments.map(({ name, id }) => ({ label: name, value: id }))}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>

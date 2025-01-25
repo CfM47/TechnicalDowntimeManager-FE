@@ -9,6 +9,7 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { TransferStatuses } from '@/lib/enums';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer } from '@/types/transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -102,15 +103,10 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
           })}
         />
         <RHFSelect
-          name="downtime_status"
+          name="status"
           label="Estado"
           description="Estado del traslado"
-          options={[
-            { label: 'Pendiente', value: 'Pendiente' },
-            { label: 'Completado', value: 'Completado' },
-            { label: 'Aprobado', value: 'Aprobado' },
-            { label: 'Cancelado', value: 'Cancelado' }
-          ]}
+          options={TransferStatuses.map((x) => ({ label: x, value: x }))}
         />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
