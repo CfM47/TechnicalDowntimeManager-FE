@@ -93,11 +93,16 @@ export const EditDowntimeForm = ({ setOpen, item }: EditDowntimeFormProps) => {
             return { label: name, value: id };
           })}
         />
-        <RHFInput
+        <RHFSelect
           name="status"
           label="Estado"
           description="Estado de la baja"
-          placeholder="Activo"
+          options={[
+            { label: 'Pendiente de evaluación', value: 'Pendiente de evaluación' },
+            { label: 'Retirado del servicio', value: 'Retirado del servicio' },
+            { label: 'Reutilizado', value: 'Reutilizado' },
+            { label: 'Baja Definitiva', value: 'Baja Definitiva' }
+          ]}
         />
         <RHFInput
           name="cause"
