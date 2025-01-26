@@ -10,6 +10,7 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { Roles } from '@/lib/enums';
 import { UserServices } from '@/services/features/user';
 import { User } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,7 +27,7 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
   const userData = {
     name: item.name,
     id_department: item.department.id,
-    id_role: item.role.id.toString()
+    role: item.role
   };
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),
@@ -38,14 +39,14 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
     submitRequest('success', 'Usuario actualizado correctamente', async () => {
       const data = {
         ...values,
-        id_role: Number(values.id_role)
+        role: values.role
       };
       await UserServices.update(item.id, data);
       setOpen(false);
     });
   };
 
-  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
+  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
 
   return (
     <Form {...form}>
@@ -65,12 +66,10 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
           })}
         />
         <RHFSelect
-          name="id_role"
+          name="role"
           label="Rol"
           description="El rol del usuario define el nivel de acceso que este tendrá al sistema"
-          options={roles.map(({ name, id }) => {
-            return { label: name, value: id.toString() };
-          })}
+          options={Roles.map((x) => ({ label: x, value: x }))}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>

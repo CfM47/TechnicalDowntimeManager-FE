@@ -24,4 +24,10 @@ export const TransferStatuses: [string, ...string[]] = [
 
 export const MaintenanceTypes: [string, ...string[]] = ['Preventivo', 'Correctivo', 'Predictivo'];
 
-export const Roles: [string, ...string[]] = ['Administrador', 'Técnico', 'Jefe de sección'];
+export enum Role {
+  admin = 'Administrador',
+  technician = 'Técnico',
+  sectionLeader = 'Jefe de sección'
+}
+
+export const Roles: [string, ...string[]] = [Role.admin, Role.technician, Role.sectionLeader];

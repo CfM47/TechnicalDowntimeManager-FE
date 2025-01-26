@@ -3,6 +3,7 @@ import { Body } from './components/Body';
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateTransferModal } from '@/components/modals/create-transfer-modal';
+import { authorizedRolesByRoute } from '@/lib/constants';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer } from '@/types/transfer';
 
@@ -17,10 +18,9 @@ export const TransfersPage = async ({}: TransfersPageProps) => {
   const entries = data as Transfer[];
 
   const tableBody = <Body data={entries} />;
-  const authorizedRoles = [1, 3];
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.transfers} redirect>
       <EntityPage {...{ title, heads, addButton, tableBody }} />;
     </PrivateRouteContainer>
   );

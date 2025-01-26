@@ -3,6 +3,7 @@ import { Body } from './components/Body';
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateDowntimeModal } from '@/components/modals/create-downtime-modal';
+import { authorizedRolesByRoute } from '@/lib/constants';
 import { DowntimeServices } from '@/services/features/downtime';
 import { Downtime } from '@/types/downtime';
 
@@ -16,10 +17,9 @@ export const DowntimesPage = async ({}: DowntimesPageProps) => {
   const { data } = await DowntimeServices.getAll();
   const entries = data as Downtime[];
   const tableBody = <Body data={entries} />;
-  const authorizedRoles = [1, 3];
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.downtimes} redirect>
       <EntityPage {...{ title, heads, addButton, tableBody }} />;
     </PrivateRouteContainer>
   );

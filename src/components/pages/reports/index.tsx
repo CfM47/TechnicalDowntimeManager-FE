@@ -1,5 +1,6 @@
 import { ReportCard } from '@/components/common/report-card';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
+import { authorizedRolesByRoute } from '@/lib/constants';
 import { reports } from '@/lib/reports';
 
 /**
@@ -11,9 +12,8 @@ import { reports } from '@/lib/reports';
  * @returns {JSX.Element} - El componente `ReportPage`.
  */
 export const ReportPage = () => {
-  const authorizedRoles = [1];
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.reports} redirect>
       <section className="container mx-auto min-h-screen">
         <h2 className="text-black text-3xl sm:text-4xl lg:text-5xl text-left mb-8 text-center">
           Reportes

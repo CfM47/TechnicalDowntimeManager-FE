@@ -3,6 +3,7 @@ import { Body } from './components/Body';
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateUserModal } from '@/components/modals/create-user-modal';
+import { authorizedRolesByRoute } from '@/lib/constants';
 import { UserServices } from '@/services/features/user';
 import { User } from '@/types/user';
 
@@ -16,10 +17,9 @@ export const UserPage = async ({}: UserPageProps) => {
   const { data } = await UserServices.getAll();
   const entries = data as User[];
   const tableBody = <Body data={entries} />;
-  const authorizedRoles = [1];
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.user} redirect>
       <EntityPage {...{ title, heads, addButton, tableBody }} />;
     </PrivateRouteContainer>
   );

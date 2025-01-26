@@ -9,17 +9,22 @@ import { SideMenu } from '@/components/common/side-menu';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { ResponsiveContainer } from '@/components/containers/responsive-container';
 import { ScrolledStyleContainer } from '@/components/containers/scrolled-style-container';
+import { authorizedRolesByRoute } from '@/lib/constants';
 import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
 
 const navItems = [
-  { name: 'Traslados', href: '/transfers', authorizedRoles: [1, 3] },
-  { name: 'Bajas', href: '/downtimes', authorizedRoles: [1, 3] },
-  { name: 'Mantenimientos', href: '/maintenances', authorizedRoles: [1, 2, 3] },
-  { name: 'Valoraciones', href: '/rate', authorizedRoles: [1, 3] },
-  { name: 'Usuarios', href: '/user', authorizedRoles: [1] },
-  { name: 'Equipos', href: '/equipment', authorizedRoles: [1, 2, 3] },
-  { name: 'Reportes', href: '/reports', authorizedRoles: [1] }
+  { name: 'Traslados', href: '/transfers', authorizedRoles: authorizedRolesByRoute.transfers },
+  { name: 'Bajas', href: '/downtimes', authorizedRoles: authorizedRolesByRoute.downtimes },
+  {
+    name: 'Mantenimientos',
+    href: '/maintenances',
+    authorizedRoles: authorizedRolesByRoute.maintenances
+  },
+  { name: 'Valoraciones', href: '/rate', authorizedRoles: authorizedRolesByRoute.rate },
+  { name: 'Usuarios', href: '/user', authorizedRoles: authorizedRolesByRoute.user },
+  { name: 'Equipos', href: '/equipment', authorizedRoles: authorizedRolesByRoute.equipment },
+  { name: 'Reportes', href: '/reports', authorizedRoles: authorizedRolesByRoute.reports }
 ];
 
 export const Navbar = () => {
