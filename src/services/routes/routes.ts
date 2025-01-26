@@ -59,14 +59,6 @@ const rateRoutes: Router = {
   }
 };
 
-const roleRoutes: Router = {
-  create: { path: '/role', method: 'POST' },
-  getAll: { path: '/role', method: 'GET' },
-  getById: { path: '/role/:id', method: 'GET' },
-  update: { path: '/role/:id', method: 'PUT' },
-  delete: { path: '/role/:id', method: 'DELETE' }
-};
-
 const technicianRoutes: Router = {
   create: { path: '/technician', method: 'POST' },
   getAll: { path: '/technician', method: 'GET' },
@@ -117,7 +109,6 @@ export const routes: Record<string, Router> = {
   downtime: downtimeRoutes,
   maintenance: maintenanceRoutes,
   rate: rateRoutes,
-  role: roleRoutes,
   technician: technicianRoutes,
   transfer: transferRoutes,
   user: userRoutes,

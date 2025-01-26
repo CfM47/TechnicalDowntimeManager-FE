@@ -30,13 +30,13 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: SigninFormValues) => {
-    submitRequest('success', 'Inicio de sesión exitoso', async () => {
+    submitRequest('Inicio de sesión exitoso', 'Ocurrió un error al autenticarse', async () => {
       const { data } = await AuthServices.signin(values);
       const authInfo = data as AuthResponse;
       if (authInfo) {
         setToken(authInfo.token);
         setName(authInfo.name);
-        setRole(authInfo.id_role.toString());
+        setRole(authInfo.role);
       }
       setOpen(false);
     });

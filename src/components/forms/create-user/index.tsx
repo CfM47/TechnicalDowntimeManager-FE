@@ -11,6 +11,7 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { Roles } from '@/lib/enums';
 import { UserServices } from '@/services/features/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -32,14 +33,14 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
     await submitRequest('Usuario creado correctamente', 'Error al crear el usuario', async () => {
       const data = {
         ...values,
-        id_role: Number(values.id_role)
+        role: values.role
       };
       await UserServices.create(data);
-      setOpen(false); // Cierra el modal tras el éxito
+      setOpen(false);
     });
   };
 
-  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
+  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
 
   return (
     <Form {...form}>
@@ -64,12 +65,10 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
           })}
         />
         <RHFSelect
-          name="id_role"
+          name="role"
           label="Rol"
           description="El rol del usuario define el nivel de acceso que este tendrá al sistema"
-          options={roles.map(({ name, id }) => {
-            return { label: name, value: id.toString() };
-          })}
+          options={Roles.map((x) => ({ label: x, value: x }))}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
