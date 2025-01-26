@@ -51,18 +51,19 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFSelect
-          name="id_technician"
+          name="id_user"
           label="Valorador"
-          description="Técnico que emite una valoración"
-          options={technicians.map(({ name, id }) => {
+          description="Usuario que emite la valoración"
+          options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
+
         <RHFSelect
-          name="id_user"
+          name="id_technician"
           label="Valorado"
-          description="Usuario que recibe la valoración"
-          options={users.map(({ name, id }) => {
+          description="Técnico que recibe una valoración"
+          options={technicians.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
