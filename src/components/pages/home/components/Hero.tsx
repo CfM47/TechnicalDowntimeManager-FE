@@ -1,17 +1,26 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-import { AnimatePresence, motion } from 'framer-motion';
+import { animate, AnimatePresence, motion, useMotionTemplate, useMotionValue } from 'framer-motion';
 
+const COLORS_TOP = ['#006c48', '#12399b', '#233767', '#026c13'];
 export default function Hero() {
   const texts = [
     'Simplifica tus procesos de trabajo',
     'Ahorra tiempo y reduce errores',
     'Realiza acciones de forma segura, eficiente y sencilla'
   ];
+  useEffect(() => {
+    animate(color, COLORS_TOP, {
+      ease: 'easeInOut',
+      duration: 10,
+      repeat: Infinity,
+      repeatType: 'mirror'
+    });
+  }, []);
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-
+  const color = useMotionValue(COLORS_TOP[0]);
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
@@ -25,11 +34,17 @@ export default function Hero() {
     center: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 }
   };
+  const border = useMotionTemplate`1px solid ${color}`;
+  const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
 
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
       <div className="container px-4 md:px-6">
         <motion.div
+          style={{
+            border,
+            boxShadow
+          }}
           className="bg-card rounded-3xl shadow-lg overflow-hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
