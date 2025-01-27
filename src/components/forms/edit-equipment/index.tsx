@@ -8,7 +8,6 @@ import { RHFInput } from '@/components/rhf/rhf-input';
 import { RHFSelect } from '@/components/rhf/rhf-select';
 import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
-import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
 import { EquipmentStatuses, EquipmentTypes } from '@/lib/enums';
 import { EquipmentServices } from '@/services/features/equipment';
@@ -27,8 +26,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
   const equipmentData = {
     name: item.name,
     type: item.type,
-    status: item.status,
-    id_department: item.department.id
+    status: item.status
   };
 
   const form = useForm<EditEquipmentFormValues>({
@@ -44,8 +42,6 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
       setOpen(false);
     });
   };
-
-  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
 
   return (
     <Form {...form}>
@@ -63,14 +59,6 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
           label="Estado"
           description="Estado del equipo"
           options={EquipmentStatuses.map((x) => ({ label: x, value: x }))}
-        />
-        <RHFSelect
-          name="id_department"
-          label="Departamento"
-          description="Departamento donde se encuentra el equipo"
-          options={departments.map(({ name, id }) => {
-            return { label: name, value: id };
-          })}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
           <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>
