@@ -24,7 +24,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
   const form = useForm<CreateTransferFormValues>({
     resolver: zodResolver(createTransferSchema),
     defaultValues: createTransferDefaultValues,
-    mode: 'onBlur'
+    mode: 'onTouched'
   });
 
   const { submitRequest, isSubmitting } = useFormSubmit();
@@ -63,14 +63,6 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
           label="Equipo"
           description="Equipo trasladado"
           options={equipments.map(({ name, id }) => {
-            return { label: name, value: id };
-          })}
-        />
-        <RHFSelect
-          name="id_origin_dep"
-          label="Departamento de Origen"
-          description="Departamento que envía el equipo"
-          options={departments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />

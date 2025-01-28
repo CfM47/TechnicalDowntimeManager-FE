@@ -27,7 +27,6 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
     id_sender: item.sender.id,
     id_receiver: item.receiver.id,
     id_equipment: item.equipment.id,
-    id_dep_origin: item.origin_dep.id,
     id_dep_receiver: item.receiver_dep.id,
     status: item.status
   };
@@ -35,7 +34,7 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
   const form = useForm<EditTransferFormValues>({
     resolver: zodResolver(editTransferSchema),
     defaultValues: { ...TransferDefaultValues, ...transferData },
-    mode: 'onBlur'
+    mode: 'onTouched'
   });
 
   const { submitRequest, isSubmitting } = useFormSubmit();
@@ -83,14 +82,6 @@ export const EditTransferForm = ({ setOpen, item }: EditTransferFormProps) => {
           label="Equipo"
           description="Equipo trasladado"
           options={equipments.map(({ name, id }) => {
-            return { label: name, value: id };
-          })}
-        />
-        <RHFSelect
-          name="id_origin_dep"
-          label="Departamento de Origen"
-          description="Departamento que envía el equipo"
-          options={departments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />

@@ -14,7 +14,6 @@ export const RHFSubmitButton = ({ children, isSubmitting }: RHFSubmitButtonProps
   const { isDirty, isValid } = formState;
 
   const disabled = !isDirty || !isValid || isSubmitting;
-
   return (
     <Button type="submit" variant="default" disabled={disabled} className="flex justify-center">
       {isSubmitting ? <Loader2 className="animate-spin" /> : children}
