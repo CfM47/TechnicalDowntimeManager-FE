@@ -5,9 +5,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 export default function Hero() {
   const texts = [
-    'Simplifica tus procesos de trabajo',
-    'Ahorra tiempo y reduce errores',
-    'Realiza acciones de forma segura, eficiente y sencilla'
+    'Simplify your work processes, work smarter, not harder',
+    'Turn complexity into simplicity, one step at a time, toward success',
+    'Transform your workflow, effortless, efficient, and effective'
   ];
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -58,7 +58,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
-                Bienvenido a TDM, la solución a todos tus problemas
+                Welcome to TDM, the solution to all your problems.
               </motion.p>
             </div>
           </div>

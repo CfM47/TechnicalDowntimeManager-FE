@@ -11,9 +11,9 @@ interface EditTransferModalProps {
 export const EditTransferModal = ({ item }: EditTransferModalProps) => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Editar traslado';
+  const title = 'Update transfer';
   const triggerProps = editModalButtonProps;
-  const description = 'Edita la información de un traslado';
+  const description = 'Update the transfer information below';
   const bodyContent = <EditTransferForm {...{ setOpen, item }} />;
   return (
     <Modal

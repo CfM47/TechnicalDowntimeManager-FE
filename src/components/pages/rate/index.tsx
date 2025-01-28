@@ -32,8 +32,8 @@ interface RatePageProps {
  * It uses the EntityPage component to display the rate data in a table format.
  */
 export const RatePage = async ({ query }: RatePageProps): Promise<JSX.Element> => {
-  const heads = ['Valorador', 'Valorado', 'Fecha', 'Comentario', 'Puntuación'];
-  const title = 'Valoraciones';
+  const heads = ['Evaluator', 'Evaluated', 'Date', 'Comment', 'Rate'];
+  const title = 'Evaluation';
   const addButton = <CreateRateModal />;
   const { data } = await RateServices.getAll(query);
   const entries = data as Rate[];

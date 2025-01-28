@@ -32,8 +32,8 @@ interface TransfersPageProps {
  * It uses the EntityPage component to display the transfer data in a table format.
  */
 export const TransfersPage = async ({ query }: TransfersPageProps): Promise<JSX.Element> => {
-  const heads = ['Remitente', 'Origen', 'Destino', 'Receptor', 'Fecha', 'Estado'];
-  const title = 'Traslados';
+  const heads = ['Sender', 'Origin', 'Destiny', 'Receiver', 'Date', 'Status'];
+  const title = 'Transfer';
   const addButton = <CreateTransferModal />;
   const { data } = await TransferServices.getAll(query);
   const entries = data as Transfer[];

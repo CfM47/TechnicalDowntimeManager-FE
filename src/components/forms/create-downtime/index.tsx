@@ -31,7 +31,7 @@ export const CreateDowntimeForm = ({ setOpen }: CreateDowntimeFormProps) => {
   const { submitRequest, isSubmitting } = useFormSubmit();
 
   const onSubmit = async (values: CreateDowntimeFormValues) => {
-    submitRequest('success', 'Baja creada correctamente', async () => {
+    submitRequest('Downtime completed successfully', 'Downtime wasn´t created', async () => {
       await DowntimeServices.create(values);
       setOpen(false);
     });
@@ -46,50 +46,50 @@ export const CreateDowntimeForm = ({ setOpen }: CreateDowntimeFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFSelect
           name="id_sender"
-          label="Remitente"
-          description="Usuario creador de la baja"
+          label="Sender"
+          description="User that create the downtime"
           options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_receiver"
-          label="Receptor"
-          description="Usuario que recibe el equipo dado de baja"
+          label="Receiver"
+          description="The user that receive the downtime"
           options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_equipment"
-          label="Equipo"
-          description="Equipo dado de baja"
+          label="Equipment"
+          description="The equipment to deactivate"
           options={equipments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_dep_receiver"
-          label="Departamento Receptor"
-          description="Departamento que recibe el equipo"
+          label="Receiver department"
+          description="Department that receive the equipment"
           options={departments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="status"
-          label="Estado"
-          description="Estado de la baja"
+          label="Status"
+          description="Downtime status"
           options={DowntimeStatuses.map((x) => ({ label: x, value: x }))}
         />
         <RHFInput
           name="cause"
-          label="Causa"
-          description="Causa de la baja"
-          placeholder="Falla técnica"
+          label="Cause"
+          description="Downtime cause"
+          placeholder="Technical failure"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Create</RHFSubmitButton>
         </div>
       </form>
     </Form>

@@ -30,7 +30,7 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: SigninFormValues) => {
-    submitRequest('Inicio de sesión exitoso', 'Ocurrió un error al autenticarse', async () => {
+    submitRequest('Successful login', 'An error occurred during authentication', async () => {
       const { data } = await AuthServices.signin(values);
       const authInfo = data as AuthResponse;
       if (authInfo) {
@@ -45,20 +45,11 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-        <RHFInput
-          name="name"
-          label="Nombre"
-          description="Nombre de usuario"
-          placeholder="John Doe"
-        />
-        <RHFSecretInput
-          name="password"
-          label="contraseña"
-          description="Ingresa tu contraseña de usuario"
-        />
+        <RHFInput name="name" label="Name" description="User´s name" placeholder="John Doe" />
+        <RHFSecretInput name="password" label="Password" description="Enter your user´s password" />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Iniciar sesión</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Log in</RHFSubmitButton>
         </div>
       </form>
     </Form>

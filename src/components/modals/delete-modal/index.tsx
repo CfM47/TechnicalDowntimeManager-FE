@@ -13,23 +13,23 @@ interface DeleteModalProps {
 export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
   const [open, setOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const title = 'Eliminar';
+  const title = 'Delete';
   const triggerProps: ButtonProps = removeModalButtonProps;
   const router = useRouter();
   const bodyContent = (
-    <p>Está seguro que desea elminar esta entidad. Esta acción no puede deshacerse</p>
+    <p>Are you sure you want to delete this entity? This action cannot be undone</p>
   );
 
   const onClick = () => {
     setSubmitting(true);
     handleDelete()
       .then(() => {
-        showToast('success', 'Entidad eliminada correctamente');
+        showToast('success', 'Entity deleted successfully');
         setOpen(false);
         router.refresh();
       })
       .catch(() => {
-        showToast('error', 'Ha ocurrido un error al eliminar la entidad');
+        showToast('error', 'An error occurred while deleting the entity');
       })
       .finally(() => {
         setSubmitting(false);
@@ -39,10 +39,10 @@ export const DeleteModal = ({ handleDelete }: DeleteModalProps) => {
   const footerContent = (
     <>
       <Button className="bg-gray-200 hover:bg-gray-100 text-black" onClick={() => setOpen(false)}>
-        Cancelar
+        Cancel
       </Button>
       <Button className="bg-red-600 hover:bg-red-500" onClick={onClick}>
-        {submitting ? <Loader2 className="animate-spin" /> : 'Confirmar'}
+        {submitting ? <Loader2 className="animate-spin" /> : 'Confirm'}
       </Button>
     </>
   );

@@ -30,7 +30,7 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
   const { submitRequest, isSubmitting } = useFormSubmit();
 
   const onSubmit = async (values: CreateEquipmentFormValues) => {
-    submitRequest('success', 'Equipo creado correctamente', async () => {
+    submitRequest('Equipment created successfully', 'Equipment wasn´t created', async () => {
       await EquipmentServices.create(values);
       setOpen(false);
     });
@@ -41,29 +41,29 @@ export const CreateEquipmentForm = ({ setOpen }: CreateEquipmentFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-        <RHFInput name="name" label="Nombre" description="Nombre de equipo" placeholder="equipo" />
+        <RHFInput name="name" label="Name" description="Equipment name" placeholder="equipment" />
 
         <RHFSelect
           name="type"
-          label="tipo"
-          description="Tipo de equipo"
+          label="Type"
+          description="Equipment type"
           options={EquipmentTypes.map((x) => ({ label: x, value: x }))}
         />
 
         <RHFSelect
           name="status"
-          label="Estado"
-          description="Estado del equipo"
+          label="Status"
+          description="Equipment status"
           options={EquipmentStatuses.map((x) => ({ label: x, value: x }))}
         />
         <RHFSelect
           name="id_department"
-          label="Departamento"
-          description="Departamento donde se encuentra el equipo"
+          label="Department"
+          description="Department where the equipment is located"
           options={departments.map(({ name, id }) => ({ label: name, value: id }))}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Create</RHFSubmitButton>
         </div>
       </form>
     </Form>

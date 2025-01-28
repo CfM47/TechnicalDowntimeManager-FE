@@ -11,9 +11,9 @@ interface EditRateModalProps {
 export const EditRateModal = ({ item }: EditRateModalProps) => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Editar valoración';
+  const title = 'Update Evaluation';
   const triggerProps = editModalButtonProps;
-  const description = 'Edita una valoración';
+  const description = 'Update the evaluation information below';
   const bodyContent = <EditRateForm {...{ setOpen, item }} />;
   return (
     <Modal

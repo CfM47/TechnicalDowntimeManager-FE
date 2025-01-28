@@ -9,9 +9,9 @@ import { ButtonProps } from '@/components/ui/button';
 export const CreateMaintenanceModal = () => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Crear nuevo mantenimiento';
-  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Añadir' };
-  const description = 'Registra un nuevo mantenimiento en el sistema';
+  const title = 'Create Maintenance';
+  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Add' };
+  const description = 'Register a new maintenance on the system';
   const bodyContent = <CreateMaintenanceForm {...{ setOpen }} />;
 
   return (

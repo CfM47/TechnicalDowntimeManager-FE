@@ -32,8 +32,8 @@ interface DowntimesPageProps {
  * It uses the EntityPage component to display the downtime data in a table format.
  */
 export const DowntimesPage = async ({ query }: DowntimesPageProps): Promise<JSX.Element> => {
-  const heads = ['Remitente', 'Equipo', 'Destino', 'Receptor', 'Fecha'];
-  const title = 'Bajas';
+  const heads = ['Sender', 'Equipment', 'Destiny', 'Receiver', 'Date'];
+  const title = 'Downtime';
   const addButton = <CreateDowntimeModal />;
   const { data } = await DowntimeServices.getAll(query);
   const entries = data as Downtime[];

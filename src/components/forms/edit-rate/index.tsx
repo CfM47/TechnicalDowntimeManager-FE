@@ -39,7 +39,7 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: EditRateFormValues) => {
-    submitRequest('success', 'Valoración actualizada correctamente', async () => {
+    submitRequest('Evaluation updated successfully', 'Evaluation wasn´t updated', async () => {
       await RateServices.update(item.technician.id, item.user.id, item.date, values);
       setOpen(false);
     });
@@ -52,8 +52,8 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFSelect
           name="id_user"
-          label="Valorador"
-          description="Usuario que emite la valoración"
+          label="Evaluator"
+          description="User who issues the evaluation"
           options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
@@ -61,8 +61,8 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
 
         <RHFSelect
           name="id_technician"
-          label="Valorado"
-          description="Técnico que recibe una valoración"
+          label="Rated"
+          description="Technician who receives an evaluation"
           options={technicians.map(({ name, id }) => {
             return { label: name, value: id };
           })}
@@ -70,18 +70,13 @@ export const EditRateForm = ({ setOpen, item }: EditRateFormProps) => {
 
         <RHFInput
           name="comment"
-          label="Comentario"
-          description="Comentario"
-          placeholder="di algo"
+          label="Comment"
+          description="Comment"
+          placeholder="Say something"
         />
-        <RHFNumericInput
-          name="score"
-          label="Puntuación"
-          description="Puntuación"
-          placeholder="1-5"
-        />
+        <RHFNumericInput name="score" label="Rate" description="Rate" placeholder="1-5" />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Save</RHFSubmitButton>
         </div>
       </form>
     </Form>

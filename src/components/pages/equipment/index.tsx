@@ -32,8 +32,8 @@ interface EquipmentPageProps {
  * It uses the EntityPage component to display the equipment data in a table format.
  */
 export const EquipmentPage = async ({ query }: EquipmentPageProps): Promise<JSX.Element> => {
-  const heads = ['Nombre', 'Tipo', 'Estado', 'Departamento', 'Fecha de adquisición'];
-  const title = 'Equipos';
+  const heads = ['Name', 'Type', 'Status', 'Department', 'Acquisition date'];
+  const title = 'Equipment';
   const addButton = <CreateEquipmentModal />;
   const { data } = await EquipmentServices.getAll(query);
   const entries = data as Equipment[];
