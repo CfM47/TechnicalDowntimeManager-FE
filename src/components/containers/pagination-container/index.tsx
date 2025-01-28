@@ -1,34 +1,51 @@
 'use client';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode } from 'react';
 
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationNext,
   PaginationPrevious
 } from '@/components/ui/pagination';
+import { useFilters } from '@/hooks/useFilters';
+import { PaginationQuery } from '@/services/routes/types';
 
+/**
+ * Props for the PaginationContainer component.
+ *
+ * @interface PaginationContainerProps
+ * @property {ReactNode} children - The child elements to be rendered within the pagination container.
+ */
 interface PaginationContainerProps {
   children: ReactNode;
-  totalItems: number;
-  onChangePage: (page: number) => void;
-  itemsPerPage: number;
 }
 
-export function PaginationContainer({
-  children,
-  totalItems,
-  onChangePage,
-  itemsPerPage
-}: PaginationContainerProps) {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+/**
+ * PaginationContainer component provides pagination functionality for its children components.
+ * It uses the `useFilters` hook to manage pagination state and updates the current page.
+ *
+ * @param {PaginationContainerProps} props - The props for the PaginationContainer component.
+ * @param {React.ReactNode} props.children - The child components to be rendered inside the PaginationContainer.
+ *
+ * @returns {JSX.Element} The rendered PaginationContainer component.
+ *
+ * @example
+ * <PaginationContainer>
+ *   <YourComponent />
+ * </PaginationContainer>
+ */
+export function PaginationContainer({ children }: PaginationContainerProps) {
+  const { hotUpdateFilterValue, query } = useFilters<PaginationQuery>({
+    initialValue: { page: 1, size: 10 }
+  });
+
+  const currentPage = query.page;
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-    onChangePage(page);
+    if (page < 1) return;
+    //if(page > totalPages) return;
+    hotUpdateFilterValue('page', page);
   };
 
   return (
@@ -38,19 +55,15 @@ export function PaginationContainer({
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious
-              onClick={(e) => {
-                e.preventDefault();
-                if (currentPage > 1) handlePageChange(currentPage - 1);
-              }}
+              className="rounded-full p-2.5"
+              onClick={() => handlePageChange(currentPage - 1)}
             />
           </PaginationItem>
-          <PaginationEllipsis />
+          {currentPage}
           <PaginationItem>
             <PaginationNext
-              onClick={(e) => {
-                e.preventDefault();
-                if (currentPage < totalPages) handlePageChange(currentPage + 1);
-              }}
+              className="rounded-full p-2.5"
+              onClick={() => handlePageChange(currentPage + 1)}
             />
           </PaginationItem>
         </PaginationContent>
