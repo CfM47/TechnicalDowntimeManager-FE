@@ -1,24 +1,54 @@
 import { httpRequest } from '@/services/api';
 import { routes } from '@/services/routes/routes';
-import { buildUrl } from '@/services/routes/utils';
+import { buildUrl, buildUrlWithQuery } from '@/services/routes/utils';
+import { TechnicianQuery } from '@/types/technician';
 
+/**
+ * This service is responsible for handling all the requests related to the technician feature.
+ */
 export const TechnicianServices = {
+  /**
+   * Creates a new technician record.
+   * @param data - The technician data to be created.
+   * @returns The technician data created.
+   */
   create: (data: any) => {
     const url = buildUrl(routes.technician.create);
     return httpRequest({ url, method: 'POST', data });
   },
-  getAll: () => {
-    const url = buildUrl(routes.technician.getAll);
+  /**
+   * Gets all technician records.
+   * @param query - The technician query parameters.
+   * @returns All technician records.
+   */
+  getAll: (query?: TechnicianQuery) => {
+    const url = buildUrlWithQuery({ route: routes.technician.getAll, queryParams: query });
     return httpRequest({ url, method: 'GET' });
   },
+  /**
+   * Gets a technician record by its ID.
+   * @param id - The technician ID.
+   * @returns The technician record.
+   */
   getById: (id: string) => {
     const url = buildUrl(routes.technician.getById, { id });
     return httpRequest({ url, method: 'GET' });
   },
+  /**
+   * Updates a technician record by its ID.
+   * @param id - The technician ID.
+   * @param data - The technician data to be updated.
+   * @returns The updated technician data.
+   */
   update: (id: string, data: any) => {
     const url = buildUrl(routes.technician.update, { id });
     return httpRequest({ url, method: 'PUT', data });
   },
+  /**
+   * Deletes a technician record by its ID.
+   * @param id - The technician ID.
+   * @returns The deleted technician data.
+   */
   delete: (id: string) => {
     const url = buildUrl(routes.technician.delete, { id });
     return httpRequest({ url, method: 'DELETE' });

@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 
 import { EntityTable } from '../entity-table';
 
+import { PaginationContainer } from '@/components/containers/pagination-container';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface EntityPageProps {
@@ -20,7 +21,9 @@ export const EntityPage = ({ title, heads, tableBody, addButton }: EntityPagePro
           <div className="self-end md:self-auto">{addButton}</div>
         </div>
         <CardContent>
-          <EntityTable {...{ heads, body: tableBody }} />
+          <PaginationContainer>
+            <EntityTable {...{ heads, body: tableBody }} />
+          </PaginationContainer>
         </CardContent>
       </Card>
     </div>

@@ -5,16 +5,37 @@ import { PrivateRouteContainer } from '@/components/containers/private-route-con
 import { CreateMaintenanceModal } from '@/components/modals/create-maintenance-modal';
 import { authorizedRolesByRoute } from '@/lib/constants';
 import { MaintenanceServices } from '@/services/features/maintenance';
-import { Maintenance } from '@/types/maitenance';
+import { Maintenance, MaintenanceQuery } from '@/types/maitenance';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface MaintenancesPageProps {}
+/**
+ * Props for the MaintenancesPage component.
+ *
+ * @interface MaintenancesPageProps
+ * @property {MaintenanceQuery} query - Optional query parameters for the maintenances page.
+ */
+interface MaintenancesPageProps {
+  query?: MaintenanceQuery;
+}
 
-export const MaintenancesPage = async ({}: MaintenancesPageProps) => {
+/**
+ * MaintenancesPage component fetches and displays a list of maintenances.
+ *
+ * @param {MaintenancesPageProps} props - The properties for the MaintenancesPage component.
+ * @param {object} props.query - The query parameters for fetching maintenances.
+ * @returns {Promise<JSX.Element>} The rendered MaintenancesPage component.
+ *
+ * @example
+ * <MaintenancesPage query={{ technician: 'John Doe' }} />
+ *
+ * @remarks
+ * This component is wrapped in a PrivateRouteContainer to ensure that only authorized users can access it.
+ * It uses the EntityPage component to display the maintenance data in a table format.
+ */
+export const MaintenancesPage = async ({ query }: MaintenancesPageProps): Promise<JSX.Element> => {
   const heads = ['Técnico', 'Equipo', 'Costo', 'Tipo', 'Fecha'];
   const title = 'Mantenimientos';
   const addButton = <CreateMaintenanceModal />;
-  const { data } = await MaintenanceServices.getAll();
+  const { data } = await MaintenanceServices.getAll(query);
   const entries = data as Maintenance[];
   const tableBody = <Body data={entries} />;
 

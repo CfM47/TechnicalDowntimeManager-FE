@@ -5,16 +5,37 @@ import { PrivateRouteContainer } from '@/components/containers/private-route-con
 import { CreateEquipmentModal } from '@/components/modals/create-equipment-modal';
 import { authorizedRolesByRoute } from '@/lib/constants';
 import { EquipmentServices } from '@/services/features/equipment';
-import { Equipment } from '@/types/equipment';
+import { Equipment, EquipmentQuery } from '@/types/equipment';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface EquipmentPageProps {}
+/**
+ * Props for the EquipmentPage component.
+ *
+ * @interface EquipmentPageProps
+ * @property {EquipmentQuery} query - Optional query parameters for the equipment page.
+ */
+interface EquipmentPageProps {
+  query?: EquipmentQuery;
+}
 
-export const EquipmentPage = async ({}: EquipmentPageProps) => {
+/**
+ * EquipmentPage component fetches and displays a list of equipment.
+ *
+ * @param {EquipmentPageProps} props - The properties for the EquipmentPage component.
+ * @param {object} props.query - The query parameters for fetching equipment.
+ * @returns {Promise<JSX.Element>} The rendered EquipmentPage component.
+ *
+ * @example
+ * <EquipmentPage query={{ type: 'Laptop' }} />
+ *
+ * @remarks
+ * This component is wrapped in a PrivateRouteContainer to ensure that only authorized users can access it.
+ * It uses the EntityPage component to display the equipment data in a table format.
+ */
+export const EquipmentPage = async ({ query }: EquipmentPageProps): Promise<JSX.Element> => {
   const heads = ['Nombre', 'Tipo', 'Estado', 'Departamento', 'Fecha de adquisición'];
   const title = 'Equipos';
   const addButton = <CreateEquipmentModal />;
-  const { data } = await EquipmentServices.getAll();
+  const { data } = await EquipmentServices.getAll(query);
   const entries = data as Equipment[];
   const tableBody = <Body data={entries} />;
 
