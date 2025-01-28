@@ -37,7 +37,7 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
   const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: EditEquipmentFormValues) => {
-    submitRequest('success', 'Equipo actualizado correctamente', async () => {
+    submitRequest('Equipment updated successfully', 'Equipment wasn´t updated', async () => {
       await EquipmentServices.update(item.id, values);
       setOpen(false);
     });
@@ -46,22 +46,22 @@ export const EditEquipmentForm = ({ setOpen, item }: EditEquipmentFormProps) => 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-        <RHFInput name="name" label="Nombre" description="Nombre de equipo" placeholder="equipo" />
+        <RHFInput name="name" label="Name" description="Equipment name" placeholder="equipment" />
         <RHFSelect
           name="type"
-          label="tipo"
-          description="Tipo de equipo"
+          label="Type"
+          description="Equipment type"
           options={EquipmentTypes.map((x) => ({ label: x, value: x }))}
         />
 
         <RHFSelect
           name="state"
-          label="Estado"
-          description="Estado del equipo"
+          label="Status"
+          description="Equipment status"
           options={EquipmentStatuses.map((x) => ({ label: x, value: x }))}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Guardar</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Save</RHFSubmitButton>
         </div>
       </form>
     </Form>

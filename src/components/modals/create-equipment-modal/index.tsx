@@ -9,9 +9,9 @@ import { ButtonProps } from '@/components/ui/button';
 export const CreateEquipmentModal = () => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Crear equipo';
-  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Añadir' };
-  const description = 'Registra un nuevo equipo en el sistema';
+  const title = 'Create equipment';
+  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Add' };
+  const description = 'Register a new equipment on the system';
   const bodyContent = <CreateEquipmentForm {...{ setOpen }} />;
 
   return (

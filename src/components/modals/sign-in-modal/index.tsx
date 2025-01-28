@@ -9,9 +9,9 @@ import { ButtonProps } from '@/components/ui/button';
 export const SigninModal = () => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Bienvenido';
+  const title = 'Welcome';
   const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Sign in' };
-  const description = 'Ingresa tus credenciales para acceder al sistema';
+  const description = 'Enter your credentials to access the system';
   const bodyContent = <SigninForm {...{ setOpen }} />;
 
   return (

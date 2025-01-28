@@ -31,7 +31,7 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
   const { submitRequest, isSubmitting } = useFormSubmit();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = async (values: CreateRateFormValues) => {
-    submitRequest('success', 'Valoración creada correctamente', async () => {
+    submitRequest('Evaluation created successfully', 'Evaluation wasn´t created', async () => {
       await RateServices.create(values);
       setOpen(false);
     });
@@ -44,8 +44,8 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFSelect
           name="id_user"
-          label="Valorador"
-          description="Usuario que emite la valoración"
+          label="Evaluator"
+          description="User who issues the evaluation"
           options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
@@ -53,8 +53,8 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
 
         <RHFSelect
           name="id_technician"
-          label="Valorado"
-          description="Técnico que recibe una valoración"
+          label="Rated"
+          description="Technician who receives an evaluation"
           options={technicians.map(({ name, id }) => {
             return { label: name, value: id };
           })}
@@ -62,19 +62,19 @@ export const CreateRateForm = ({ setOpen }: CreateRateFormProps) => {
 
         <RHFInput
           name="comment"
-          label="Comentario"
-          description="Comentario"
-          placeholder="Di algo"
+          label="Comment"
+          description="Comment"
+          placeholder="Say something"
         />
         <RHFNumericInput
           name="score"
-          label="Puntuación"
-          description="Puntuación"
+          label="Rate"
+          description="Rate"
           placeholder="1-5"
           type="number"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Create</RHFSubmitButton>
         </div>
       </form>
     </Form>

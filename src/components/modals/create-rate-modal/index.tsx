@@ -9,9 +9,9 @@ import { ButtonProps } from '@/components/ui/button';
 export const CreateRateModal = () => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Crear nueva valoración';
-  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Añadir' };
-  const description = 'Registra una nueva valoración en el sistema';
+  const title = 'Create Rate';
+  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Add' };
+  const description = 'Register a new rate on the system';
   const bodyContent = <CreateRateForm {...{ setOpen }} />;
 
   return (

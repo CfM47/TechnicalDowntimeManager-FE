@@ -29,7 +29,7 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateTransferFormValues) => {
-    submitRequest('success', 'Traslado creado correctamente', async () => {
+    submitRequest('Transfer created successfully', 'Transfer wasn´t created', async () => {
       await TransferServices.create(values);
       setOpen(false);
     });
@@ -44,45 +44,45 @@ export const CreateTransferForm = ({ setOpen }: CreateTransferFormProps) => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFSelect
           name="id_sender"
-          label="Remitente"
-          description="Usuario creador del traslado"
+          label="Sender"
+          description="User who created the transfer"
           options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_receiver"
-          label="Receptor"
-          description="Usuario que recibe el equipo del traslado"
+          label="Receiver"
+          description="User who receives the equipment from the transfer"
           options={users.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_equipment"
-          label="Equipo"
-          description="Equipo trasladado"
+          label="Equipment"
+          description="Transferred equipment"
           options={equipments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_receiver_dep"
-          label="Departamento Receptor"
-          description="Departamento que recibe el equipo"
+          label="Receiving Department"
+          description="Department that receives the equipment"
           options={departments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="status"
-          label="Estado"
-          description="Estado del traslado"
+          label="Status"
+          description="Transfer status"
           options={TransferStatuses.map((x) => ({ label: x, value: x }))}
         />
 
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Create</RHFSubmitButton>
         </div>
       </form>
     </Form>

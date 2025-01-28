@@ -30,7 +30,7 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateUserFormValues) => {
-    await submitRequest('Usuario creado correctamente', 'Error al crear el usuario', async () => {
+    await submitRequest('User created successfully', 'User wasn´t created', async () => {
       const data = {
         ...values,
         role: values.role
@@ -45,33 +45,28 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
-        <RHFInput
-          name="name"
-          label="Nombre"
-          description="Nombre de usuario"
-          placeholder="John Doe"
-        />
+        <RHFInput name="name" label="Name" description="User´s name" placeholder="John Doe" />
         <RHFSecretInput
           name="password"
-          label="contraseña"
-          description="!!! Esta contraseña no puede ser cambiada"
+          label="Password"
+          description="This password cannot be changed"
         />
         <RHFSelect
           name="id_department"
-          label="Departamento"
-          description="Departamento donde trabaja el usuario"
+          label="Department"
+          description="Department where the user works"
           options={departments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="role"
-          label="Rol"
-          description="El rol del usuario define el nivel de acceso que este tendrá al sistema"
+          label="Role"
+          description="The user's role defines the level of access they will have to the system"
           options={Roles.map((x) => ({ label: x, value: x }))}
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Create</RHFSubmitButton>
         </div>
       </form>
     </Form>

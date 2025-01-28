@@ -13,9 +13,9 @@ export interface EditUserModalProps {
 export const EditUserModal = ({ item }: EditUserModalProps) => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Editar usuario';
+  const title = 'Update user';
   const triggerProps = editModalButtonProps;
-  const description = 'Edita la información del usuario';
+  const description = 'Update the user information below';
   const bodyContent = <EditUserForm {...{ setOpen, item }} />;
 
   return (

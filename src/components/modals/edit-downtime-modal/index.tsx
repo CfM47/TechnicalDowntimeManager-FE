@@ -11,9 +11,9 @@ interface EditDowntimeModalProps {
 export const EditDowntimeModal = ({ item }: EditDowntimeModalProps) => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Editar baja técnica';
+  const title = 'Update Downtime';
   const triggerProps = editModalButtonProps;
-  const description = 'Edita la información de una baja técnica';
+  const description = 'Update the downtime information below';
   const bodyContent = <EditDowntimeForm {...{ setOpen, item }} />;
   return (
     <Modal

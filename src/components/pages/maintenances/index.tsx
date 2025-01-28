@@ -32,8 +32,8 @@ interface MaintenancesPageProps {
  * It uses the EntityPage component to display the maintenance data in a table format.
  */
 export const MaintenancesPage = async ({ query }: MaintenancesPageProps): Promise<JSX.Element> => {
-  const heads = ['Técnico', 'Equipo', 'Costo', 'Tipo', 'Fecha'];
-  const title = 'Mantenimientos';
+  const heads = ['Technician', 'Equipment', 'Cost', 'Type', 'Date'];
+  const title = 'Maintenance';
   const addButton = <CreateMaintenanceModal />;
   const { data } = await MaintenanceServices.getAll(query);
   const entries = data as Maintenance[];

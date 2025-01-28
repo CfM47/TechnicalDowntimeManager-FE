@@ -13,9 +13,9 @@ export interface EditMaintenanceModalProps {
 export const EditMaintenanceModal = ({ item }: EditMaintenanceModalProps) => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Editar mantenimiento';
+  const title = 'Update Maintenance';
   const triggerProps = editModalButtonProps;
-  const description = 'Edita la información del mantenimiento';
+  const description = 'Update the maintenance information below';
   const bodyContent = <EditMaintenanceForm {...{ setOpen, item }} />;
 
   return (

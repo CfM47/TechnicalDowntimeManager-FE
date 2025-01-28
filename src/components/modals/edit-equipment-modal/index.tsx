@@ -13,9 +13,9 @@ export interface EditEquipmentModalProps {
 export const EditEquipmentModal = ({ item }: EditEquipmentModalProps) => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Editar equipo';
+  const title = 'Update Equipment';
   const triggerProps = editModalButtonProps;
-  const description = 'Edita la información del equipo';
+  const description = 'Update the equipment information below';
   const bodyContent = <EditEquipmentForm {...{ setOpen, item }} />;
 
   return (

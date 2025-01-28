@@ -9,9 +9,9 @@ import { ButtonProps } from '@/components/ui/button';
 export const CreateDowntimeModal = () => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Crear nueva baja';
-  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Añadir' };
-  const description = 'Registra una nueva baja en el sistema';
+  const title = 'Create new downtime';
+  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Add' };
+  const description = 'Register a new downtime event on the system';
   const bodyContent = <CreateDowntimeForm {...{ setOpen }} />;
 
   return (

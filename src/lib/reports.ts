@@ -5,38 +5,38 @@ export interface Report {
 
 export const reports: Report[] = [
   {
-    title: 'Reporte 1',
+    title: '1st Report',
     description:
-      'Listado de los equipos dados de baja en el último año, incluyendo la causa de la baja, el destino final y el nombre de la persona que recibió el equipo.'
+      'List of equipment decommissioned in the last year, including the reason for decommissioning, the final destination, and the name of the person who received the equipment.'
   },
   {
-    title: 'Reporte 2',
+    title: '2nd Report',
     description:
-      'Historial de los mantenimientos de un equipo específico, clasificando los mantenimientos por tipo y fecha, junto con los técnicos que realizaron las intervenciones.'
+      'Maintenance history of a specific equipment, classifying the maintenance by type and date, along with the technicians who performed the interventions.'
   },
   {
-    title: 'Reporte 3',
+    title: '3rd Report',
     description:
-      'Equipos que han sido trasladados entre diferentes secciones, indicando las fechas, el origen, el destino, los nombres de la persona que envía y de la persona que recibe el equipo.'
+      'Equipment that has been transferred between different sections, indicating the dates, origin, destination, and the names of the person sending and the person receiving the equipment.'
   },
   {
-    title: 'Reporte 4',
+    title: '4th Report',
     description:
-      'Dado un técnico dado, obtener su historial de intervenciones (mantenimientos o bajas) y las valoraciones recibidas por su trabajo.'
+      'Given a specific technician, retrieve their history of interventions (maintenance or deactivations) and the ratings received for their work.'
   },
   {
-    title: 'Reporte 5',
+    title: '5th Report',
     description:
-      'Equipos que han recibido más de tres mantenimientos en el último año y que, por normativa, deben ser reemplazados.'
+      'Equipment that has undergone more than three maintenance interventions in the last year and, according to regulations, must be replaced.'
   },
   {
-    title: 'Reporte 6',
+    title: '6th Report',
     description:
-      'Comparación del rendimiento de los técnicos, basándose en las valoraciones recibidas y la cantidad de intervenciones realizadas, para determinar bonificaciones o penalizaciones en su salario.'
+      'Comparison of technicians performance, based on the ratings received and the number of interventions performed, to determine bonuses or penalties in their salary.'
   },
   {
-    title: 'Reporte 7',
+    title: '7th Report',
     description:
-      'Equipos que han sido enviados a un departamento específico, indicando los nombres de la persona quien envía y quien recibe.'
+      'Equipment that has been sent to a specific department, indicating the names of the sender and the recipient.'
   }
 ];

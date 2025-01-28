@@ -32,8 +32,8 @@ interface UserPageProps {
  * It uses the EntityPage component to display the user data in a table format.
  */
 export const UserPage = async ({ query }: UserPageProps): Promise<JSX.Element> => {
-  const heads = ['Nombre', 'Departamento', 'Rol'];
-  const title = 'Usuarios';
+  const heads = ['Name', 'Department', 'Role'];
+  const title = 'Users';
   const addButton = <CreateUserModal />;
   const { data } = await UserServices.getAll(query);
   const entries = data as User[];

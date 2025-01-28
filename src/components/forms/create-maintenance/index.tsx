@@ -30,7 +30,7 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateMaintenanceFormValues) => {
-    submitRequest('success', 'Mantenimiento creado correctamente', async () => {
+    submitRequest('Maintenance created successfully', 'Maintenance wasn´t created', async () => {
       await MaintenanceServices.create(values);
       setOpen(false);
     });
@@ -45,34 +45,34 @@ export const CreateMaintenanceForm = ({ setOpen }: CreateMaintenanceFormProps) =
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
         <RHFSelect
           name="id_technician"
-          label="Técnico"
-          description="Técnico encargado del mantenimiento"
+          label="Technician"
+          description="Technician in charge of maintenance"
           options={technicians.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="id_equipment"
-          label="Equipo"
-          description="Equipo que recibe el mantenimiento"
+          label="Equipment"
+          description="Equipment receiving maintenance"
           options={equipments.map(({ name, id }) => {
             return { label: name, value: id };
           })}
         />
         <RHFSelect
           name="type"
-          label="Tipo de Mantenimiento"
-          description="Tipo de mantenimiento realizado"
+          label="Maintenance type"
+          description="Type of maintenance performed"
           options={MaintenanceTypes.map((x) => ({ label: x, value: x }))}
         />
         <RHFNumericInput
           name="cost"
-          label="Costo"
-          description="Costo del mantenimiento"
+          label="Cost"
+          description="Maintenance cost"
           placeholder="100"
         />
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">
-          <RHFSubmitButton {...{ isSubmitting }}>Crear</RHFSubmitButton>
+          <RHFSubmitButton {...{ isSubmitting }}>Create</RHFSubmitButton>
         </div>
       </form>
     </Form>

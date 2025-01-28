@@ -14,17 +14,17 @@ import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
 
 const navItems = [
-  { name: 'Traslados', href: '/transfers', authorizedRoles: authorizedRolesByRoute.transfers },
-  { name: 'Bajas', href: '/downtimes', authorizedRoles: authorizedRolesByRoute.downtimes },
+  { name: 'Transfer', href: '/transfers', authorizedRoles: authorizedRolesByRoute.transfers },
+  { name: 'Downtime', href: '/downtimes', authorizedRoles: authorizedRolesByRoute.downtimes },
   {
-    name: 'Mantenimientos',
+    name: 'Maintenances',
     href: '/maintenances',
     authorizedRoles: authorizedRolesByRoute.maintenances
   },
-  { name: 'Valoraciones', href: '/rate', authorizedRoles: authorizedRolesByRoute.rate },
-  { name: 'Usuarios', href: '/user', authorizedRoles: authorizedRolesByRoute.user },
-  { name: 'Equipos', href: '/equipment', authorizedRoles: authorizedRolesByRoute.equipment },
-  { name: 'Reportes', href: '/reports', authorizedRoles: authorizedRolesByRoute.reports }
+  { name: 'Evaluation', href: '/rate', authorizedRoles: authorizedRolesByRoute.rate },
+  { name: 'Users', href: '/user', authorizedRoles: authorizedRolesByRoute.user },
+  { name: 'Equipments', href: '/equipment', authorizedRoles: authorizedRolesByRoute.equipment },
+  { name: 'Reports', href: '/reports', authorizedRoles: authorizedRolesByRoute.reports }
 ];
 
 export const Navbar = () => {
@@ -35,7 +35,7 @@ export const Navbar = () => {
       <nav className="sticky top-0 z-50 bg-white transition-shadow duration-300">
         <div className="max-w-6xl mx-auto px-4 flex justify-between items-center h-16">
           <Link href="/" className="font-semibold text-gray-500 text-lg">
-            Logo
+            TDM
           </Link>
           <ResponsiveContainer
             desktopComponent={

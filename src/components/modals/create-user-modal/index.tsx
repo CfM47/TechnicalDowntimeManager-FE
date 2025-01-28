@@ -9,9 +9,9 @@ import { ButtonProps } from '@/components/ui/button';
 export const CreateUserModal = () => {
   const [open, setOpen] = useState(false);
 
-  const title = 'Crear usuario';
-  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Añadir' };
-  const description = 'Registra un nuevo usuario en el sistema';
+  const title = 'Create user';
+  const triggerProps: ButtonProps = { ...regularModalButtonProps, children: 'Add' };
+  const description = 'Register a new user.';
   const bodyContent = <CreateUserForm {...{ setOpen }} />;
 
   return (
