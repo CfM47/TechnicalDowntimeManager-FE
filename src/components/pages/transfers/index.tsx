@@ -5,16 +5,37 @@ import { PrivateRouteContainer } from '@/components/containers/private-route-con
 import { CreateTransferModal } from '@/components/modals/create-transfer-modal';
 import { authorizedRolesByRoute } from '@/lib/constants';
 import { TransferServices } from '@/services/features/transfer';
-import { Transfer } from '@/types/transfer';
+import { Transfer, TransferQuery } from '@/types/transfer';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface TransfersPageProps {}
+/**
+ * Props for the TransfersPage component.
+ *
+ * @interface TransfersPageProps
+ * @property {TransferQuery} query - Optional query parameters for the transfers page.
+ */
+interface TransfersPageProps {
+  query?: TransferQuery;
+}
 
-export const TransfersPage = async ({}: TransfersPageProps) => {
+/**
+ * TransfersPage component fetches and displays a list of transfers.
+ *
+ * @param {TransfersPageProps} props - The properties for the TransfersPage component.
+ * @param {object} props.query - The query parameters for fetching transfers.
+ * @returns {Promise<JSX.Element>} The rendered TransfersPage component.
+ *
+ * @example
+ * <TransfersPage query={{ status: 'Pending' }} />
+ *
+ * @remarks
+ * This component is wrapped in a PrivateRouteContainer to ensure that only authorized users can access it.
+ * It uses the EntityPage component to display the transfer data in a table format.
+ */
+export const TransfersPage = async ({ query }: TransfersPageProps): Promise<JSX.Element> => {
   const heads = ['Remitente', 'Origen', 'Destino', 'Receptor', 'Fecha', 'Estado'];
   const title = 'Traslados';
   const addButton = <CreateTransferModal />;
-  const { data } = await TransferServices.getAll();
+  const { data } = await TransferServices.getAll(query);
   const entries = data as Transfer[];
 
   const tableBody = <Body data={entries} />;
