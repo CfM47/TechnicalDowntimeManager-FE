@@ -1,5 +1,7 @@
 import { User } from './user';
 
+import { PaginationQuery, QueryParams } from '@/services/routes/types';
+
 /**
  * Represents a technician with additional properties extending from the User interface.
  *
@@ -20,11 +22,11 @@ export interface Technician extends User {
  * @property {number} [exp_years] - The number of years of experience the technician has.
  * @property {string} [specialty] - The specialty or area of expertise of the technician.
  */
-export type TechnicianQuery = {
+export interface TechnicianQuery extends QueryParams, PaginationQuery {
   id_user?: string;
   exp_years?: number;
   specialty?: string;
-};
+}
 
 /**
  * Represents a subset of the Technician type containing only the 'id' and 'name' properties.
