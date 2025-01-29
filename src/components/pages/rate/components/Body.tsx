@@ -13,8 +13,8 @@ export const Body = ({ data = [] }: BodyProps) => {
       {data.map((item, index) => {
         return (
           <TableRow key={index}>
-            <TableCell>{item.technician.name}</TableCell>
             <TableCell>{item.user.name}</TableCell>
+            <TableCell>{item.technician.name}</TableCell>
             <TableCell>{formatDate(item.date)}</TableCell>
             <TableCell>{item.comment}</TableCell>
             <TableCell>{item.score}</TableCell>

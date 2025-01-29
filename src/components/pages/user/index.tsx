@@ -1,4 +1,5 @@
 import { Body } from './components/Body';
+import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
@@ -39,11 +40,12 @@ export const UserPage = async ({ query }: UserPageProps): Promise<JSX.Element> =
   const { data } = await UserServices.getAll(query);
   const entries = data as PaginatedResponse<User>;
   const tableBody = <Body data={entries.items} />;
+  const filters = <Filters />;
   const totalItems = entries.total;
 
   return (
     <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.user} redirect>
-      <EntityPage {...{ title, heads, addButton, tableBody, totalItems }} />;
+      <EntityPage {...{ title, heads, addButton, tableBody, filters, totalItems }} />;
     </PrivateRouteContainer>
   );
 };

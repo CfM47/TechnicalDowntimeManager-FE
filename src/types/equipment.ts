@@ -41,7 +41,7 @@ export interface Equipment {
  * @property {string} [id] - The unique identifier of the equipment.
  * @property {string} [name] - The name of the equipment.
  * @property {string} [type] - The type or category of the equipment.
- * @property {string} [state] - The current state or condition of the equipment.
+ * @property {string} [status] - The current state or condition of the equipment.
  * @property {string} [id_department] - The identifier of the department to which the equipment belongs.
  * @property {string} [acquisition_date] - The date when the equipment was acquired.
  */
@@ -49,7 +49,7 @@ export type EquipmentQuery = {
   id?: string;
   name?: string;
   type?: string;
-  state?: string;
+  status?: string;
   id_department?: string;
   acquisition_date?: string;
 };
