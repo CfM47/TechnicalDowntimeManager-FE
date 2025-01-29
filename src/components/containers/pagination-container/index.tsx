@@ -42,8 +42,6 @@ export function PaginationContainer({ children, totalItems }: PaginationContaine
     initialValue: { page: 1, size: 10 }
   });
 
-  console.log(totalItems);
-
   const currentPage = query.page;
   const totalPages = totalItems / query.size + 1;
 
