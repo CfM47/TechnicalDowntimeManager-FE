@@ -2,6 +2,8 @@ import { Department } from './department';
 import { EquipmentInfo } from './equipment';
 import { UserInfo } from './user';
 
+import { PaginationQuery, QueryParams } from '@/services/routes/types';
+
 /**
  * Represents a transfer of equipment from one user to another.
  *
@@ -35,12 +37,13 @@ export interface Transfer {
  * @property {string} [id_receiver_dep] - The ID of the receiver department.
  * @property {string} [status] - The status of the transfer.
  */
-export type TransferQuery = {
-  id_sender?: string;
-  id_receiver?: string;
-  id_equipment?: string;
-  date?: string;
-  id_origin_dep?: string;
-  id_receiver_dep?: string;
-  status?: string;
-};
+export type TransferQuery = QueryParams &
+  PaginationQuery & {
+    id_sender?: string;
+    id_receiver?: string;
+    id_equipment?: string;
+    date?: string;
+    id_origin_dep?: string;
+    id_receiver_dep?: string;
+    status?: string;
+  };
