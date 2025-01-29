@@ -29,8 +29,8 @@ export const EntityPage = ({
           <h1 className="text-3xl font-bold mb-4 md:mb-0 break-words whitespace-normal">{title}</h1>
           <div className="self-end md:self-auto">{addButton}</div>
         </div>
-        {filters}
         <CardContent>
+          {filters}
           <PaginationContainer {...{ totalItems }}>
             <EntityTable {...{ heads, body: tableBody }} />
           </PaginationContainer>

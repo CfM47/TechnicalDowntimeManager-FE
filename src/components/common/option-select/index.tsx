@@ -12,6 +12,7 @@ interface OptionsSelectProps {
   placeholder?: string;
   onValueChange?: (value: string) => void;
   defaultValue?: string;
+  label?: string;
   className?: string;
 }
 
@@ -20,13 +21,17 @@ export const OptionsSelect = ({
   placeholder,
   onValueChange,
   defaultValue,
+  label,
   className
 }: OptionsSelectProps) => {
   return (
     <Select {...{ onValueChange, defaultValue }}>
-      <SelectTrigger className={cn('w-[180px]', className)}>
-        <SelectValue {...{ placeholder }} />
-      </SelectTrigger>
+      <div className="flex items-center space-x-2 w-full">
+        {label && <p className="w-[100px]">{label}</p>}
+        <SelectTrigger className={cn('w-[180px]', className)}>
+          <SelectValue {...{ placeholder }} />
+        </SelectTrigger>
+      </div>
       <SelectContent>
         {options.map(({ label, value }, index) => (
           <SelectItem value={value} key={index}>
