@@ -3,12 +3,12 @@ import { z } from 'zod';
 
 const status = z.enum(DowntimeStatuses);
 export const editDowntimeSchema = z.object({
-  id_sender: z.string().uuid({ message: 'Debe escoger un remitente válido' }),
-  id_receiver: z.string().uuid({ message: 'Debe escoger un receptor válido' }),
-  id_equipment: z.string().uuid({ message: 'Debe escoger un equipo válido' }),
-  id_dep_receiver: z.string().uuid({ message: 'Debe escoger un departamento receptor válido' }),
+  id_sender: z.string().uuid({ message: 'Choose a valid sender' }),
+  id_receiver: z.string().uuid({ message: 'Choose a valid receiver' }),
+  id_equipment: z.string().uuid({ message: 'Choose a valid equipment' }),
+  id_dep_receiver: z.string().uuid({ message: 'Choose a valid receiver department' }),
   status: status,
-  cause: z.string().min(1, { message: 'La causa es obligatoria' })
+  cause: z.string().min(1, { message: 'Cause it is necessary' })
 });
 
 export const DowntimeDefaultValues = {

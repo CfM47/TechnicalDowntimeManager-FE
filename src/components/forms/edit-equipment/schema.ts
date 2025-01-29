@@ -5,7 +5,7 @@ const state = z.enum(EquipmentStatuses);
 const type = z.enum(EquipmentStatuses);
 
 export const editEquipmentSchema = z.object({
-  name: z.string().min(1, { message: 'El nombre no puede ser vacío' }),
+  name: z.string().min(1, { message: 'Name cannot be empty' }),
   type: type,
   state: state
 });
