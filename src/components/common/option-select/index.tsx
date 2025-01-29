@@ -27,7 +27,7 @@ export const OptionsSelect = ({
   return (
     <Select {...{ onValueChange, defaultValue }}>
       <div className="flex items-center space-x-2 w-full">
-        {label && <p className="w-[100px]">{label}</p>}
+        {label && <p className="min-w-[100px]">{label}</p>}
         <SelectTrigger className={cn('w-[180px]', className)}>
           <SelectValue {...{ placeholder }} />
         </SelectTrigger>

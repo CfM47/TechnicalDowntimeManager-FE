@@ -9,7 +9,7 @@ interface EntityPageProps {
   title: string;
   heads: Array<string>;
   tableBody: ReactNode;
-  addButton: ReactNode;
+  addButton?: ReactNode;
   filters?: ReactNode;
   totalItems: number;
 }

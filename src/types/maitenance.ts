@@ -1,6 +1,8 @@
 import { EquipmentInfo } from './equipment';
 import { TechnicianInfo } from './technician';
 
+import { PaginationQuery, QueryParams } from '@/services/routes/types';
+
 /**
  * Represents a maintenance record.
  *
@@ -28,10 +30,10 @@ export interface Maintenance {
  * @property {string} [type] - The type of maintenance performed.
  * @property {number} [cost] - The cost of the maintenance.
  */
-export type MaintenanceQuery = {
+export interface MaintenanceQuery extends QueryParams, PaginationQuery {
   id_technician?: string;
   id_equipment?: string;
   date?: string;
   type?: string;
   cost?: number;
-};
+}
