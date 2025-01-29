@@ -28,9 +28,10 @@ export const reports: Report[] = [
       'Given a specific technician, retrieve their history of interventions (maintenance or deactivations) and the ratings received for their work.'
   },
   {
-    title: '5th Report',
+    title: 'Defective Equipments Report',
     description:
-      'Equipment that has undergone more than three maintenance interventions in the last year and, according to regulations, must be replaced.'
+      'Equipment that has undergone more than three maintenance interventions in the last year and, according to regulations, must be replaced.',
+    route: '/reports/defectiveEquipments'
   },
   {
     title: '6th Report',

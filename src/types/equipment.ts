@@ -38,6 +38,13 @@ export interface Equipment {
 }
 
 /**
+ * Represents and equipment with the total maintenances performed on it
+ */
+export interface EquipmentMaintenancesCount extends Equipment {
+  totalMaintenances: number;
+}
+
+/**
  * Represents a query for equipment.
  *
  * @property {string} [id] - The unique identifier of the equipment.

@@ -101,7 +101,8 @@ const equipmentRoutes: Router = {
   getAll: { path: '/equipment', method: 'GET' },
   getById: { path: '/equipment/:id', method: 'GET' },
   update: { path: '/equipment/:id', method: 'PUT' },
-  delete: { path: '/equipment/:id', method: 'DELETE' }
+  delete: { path: '/equipment/:id', method: 'DELETE' },
+  maintenancesLastYear: { path: '/equipment/maintenances-last-year', method: 'GET' }
 };
 
 const authRoutes: Router = {

@@ -3,7 +3,7 @@ import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { authorizedRolesByRoute } from '@/lib/constants';
+import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance, MaintenanceQuery } from '@/types/maitenance';
@@ -19,14 +19,14 @@ interface MaintenancesHistoryPage {
 }
 
 /**
- * MaintenancesPage component fetches and displays a list of maintenances of a given equipment.
+ * MaintenancesHistoryPage component fetches and displays a list of maintenances of a given equipment.
  *
- * @param {MaintenancesHistoryPage} props - The properties for the MaintenancesPage component.
+ * @param {MaintenancesHistoryPage} props - The properties for the MaintenancesHistoryPage component.
  * @param {object} props.query - The query parameters for fetching maintenances.
- * @returns {Promise<JSX.Element>} The rendered MaintenancesPage component.
+ * @returns {Promise<JSX.Element>} The rendered MaintenancesHistoryPage component.
  *
  * @example
- * <MaintenancesPage query={{ technician: 'John Doe' }} />
+ * <MaintenancesHistoryPage query={{page:1, size: 10}} />
  *
  * @remarks
  * This component is wrapped in a PrivateRouteContainer to ensure that only authorized users can access it.
@@ -46,7 +46,7 @@ export const MaintenanceHistoryPage = async ({
   const filters = <Filters />;
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.maintenances} redirect>
+    <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
       <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />;
     </PrivateRouteContainer>
   );
