@@ -31,7 +31,7 @@ export const ReportCard = ({ title, description, route }: ReportCardProps) => {
         <p className="text-gray-600 text-base mb-6">{description}</p>
         <div className="flex justify-end ">
           <Button className="bg-black text-white px-4 py-2 rounded-lg hover:bg-gray-600">
-            <Link href={route ?? '/'}>Generar</Link>
+            <Link href={route ?? '/'}>Generate</Link>
           </Button>
         </div>
       </CardContent>

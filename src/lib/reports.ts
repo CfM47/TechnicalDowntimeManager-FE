@@ -18,9 +18,10 @@ export const reports: Report[] = [
     route: '/reports/maintenanceHistory'
   },
   {
-    title: '3rd Report',
+    title: 'Equipment Transfer Record',
     description:
-      'Equipment that has been transferred between different sections, indicating the dates, origin, destination, and the names of the person sending and the person receiving the equipment.'
+      'Equipment that has been transferred between different sections, indicating the dates, origin, destination, and the names of the person sending and the person receiving the equipment.',
+    route: '/reports/transferHistory'
   },
   {
     title: '4th Report',
@@ -39,8 +40,9 @@ export const reports: Report[] = [
       'Comparison of technicians performance, based on the ratings received and the number of interventions performed, to determine bonuses or penalties in their salary.'
   },
   {
-    title: '7th Report',
+    title: 'Department Transfer Record',
     description:
-      'Equipment that has been sent to a specific department, indicating the names of the sender and the recipient.'
+      'Equipments that has been sent to a specific department, indicating the names of the sender and the recipient.',
+    route: '/reports/deptTransferHistory'
   }
 ];
