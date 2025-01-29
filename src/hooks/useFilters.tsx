@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { QueryParams } from '@/services/routes/types';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { DebouncedState, useDebouncedCallback } from 'use-debounce';
 
 /**
  * Interface for the properties of the useFilters hook.
@@ -25,12 +26,14 @@ interface UseFilterReturn<TQuery extends QueryParams> {
   query: TQuery;
 
   /**
-   * Updates the value of a specific filter and immediately applies the change.
+   * Updates the value of a specific filter and immediately applies the change. Note: this function is wrapped in a debouncer function
    *
    * @param filter - The key of the filter to update.
    * @param value - The new value for the filter, which can be a string, number, or undefined.
    */
-  hotUpdateFilterValue: (filter: keyof TQuery, value: string | number | undefined) => void;
+  hotUpdateFilterValue: DebouncedState<
+    (filter: keyof TQuery, value: string | number | undefined) => void
+  >;
 
   /**
    * Applies all the current filters.
@@ -76,10 +79,13 @@ export const useFilters = <TQuery extends QueryParams>({
     replace(`${pathname}?${params.toString()}`);
   };
 
-  const hotUpdateFilterValue = (filter: keyof TQuery, value: string | number | undefined) => {
-    setQuery((prev) => ({ ...prev, [filter]: value }));
-    updateSearchParams({ [filter]: value });
-  };
+  const hotUpdateFilterValue = useDebouncedCallback(
+    (filter: keyof TQuery, value: string | number | undefined) => {
+      setQuery((prev) => ({ ...prev, [filter]: value }));
+      updateSearchParams({ [filter]: value });
+    },
+    300
+  );
 
   const applyFilters = () => updateSearchParams(query);
 
