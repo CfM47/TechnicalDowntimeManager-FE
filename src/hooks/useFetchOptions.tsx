@@ -23,25 +23,25 @@ export const useFetchOptions = ({ selectFrom }: UseFetchOptionsProps) => {
 
   useEffect(() => {
     const fetchDepartments = async () => {
-      const { data } = await DepartmentServices.getAll();
+      const { data } = await DepartmentServices.getAll({ page: 1, size: 1000 });
       const options = data as PaginatedResponse<Department>;
       setDepartments(options.items);
     };
 
     const fetchEquipments = async () => {
-      const { data } = await EquipmentServices.getAll();
+      const { data } = await EquipmentServices.getAll({ page: 1, size: 1000 });
       const options = data as PaginatedResponse<Equipment>;
       setEquipments(options.items);
     };
 
     const fetchUsers = async () => {
-      const { data } = await UserServices.getAll();
+      const { data } = await UserServices.getAll({ page: 1, size: 1000 });
       const options = data as PaginatedResponse<User>;
       setUsers(options.items);
     };
 
     const fetchTechnicians = async () => {
-      const { data } = await TechnicianServices.getAll();
+      const { data } = await TechnicianServices.getAll({ page: 1, size: 1000 });
       const options = data as PaginatedResponse<Technician>;
       setTechnicians(options.items);
     };

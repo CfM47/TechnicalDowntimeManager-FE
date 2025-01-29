@@ -1,5 +1,7 @@
 import { Department } from './department';
 
+import { PaginationQuery, QueryParams } from '@/services/routes/types';
+
 /**
  * Represents an equipment item.
  */
@@ -45,14 +47,14 @@ export interface Equipment {
  * @property {string} [id_department] - The identifier of the department to which the equipment belongs.
  * @property {string} [acquisition_date] - The date when the equipment was acquired.
  */
-export type EquipmentQuery = {
+export interface EquipmentQuery extends QueryParams, PaginationQuery {
   id?: string;
   name?: string;
   type?: string;
   status?: string;
   id_department?: string;
   acquisition_date?: string;
-};
+}
 
 /**
  * Represents a subset of the Equipment type containing only the 'id' and 'name' properties.

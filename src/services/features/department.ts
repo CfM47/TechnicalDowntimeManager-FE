@@ -1,6 +1,8 @@
 import { httpRequest } from '../api';
 import { routes } from '../routes/routes';
-import { buildUrl } from '../routes/utils';
+import { buildUrl, buildUrlWithQuery } from '../routes/utils';
+
+import { DepartmentQuery } from '@/types/department';
 
 /**
  * This service is responsible for handling all the requests related to the department feature.
@@ -17,10 +19,11 @@ export const DepartmentServices = {
   },
   /**
    * Gets all department records.
+   * @param query - The query filters applied to the departments
    * @returns All department records.
    */
-  getAll: () => {
-    const url = buildUrl(routes.department.getAll);
+  getAll: (query?: DepartmentQuery) => {
+    const url = buildUrlWithQuery({ route: routes.department.getAll, queryParams: query });
     return httpRequest({ url, method: 'GET' });
   },
   /**
