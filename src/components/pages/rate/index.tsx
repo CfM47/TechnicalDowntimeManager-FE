@@ -4,6 +4,7 @@ import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateRateModal } from '@/components/modals/create-rate-modal';
 import { authorizedRolesByRoute } from '@/lib/constants';
+import { PaginatedResponse } from '@/services/api/api';
 import { RateServices } from '@/services/features/rate';
 import { Rate, RateQuery } from '@/types/rate';
 
@@ -36,13 +37,13 @@ export const RatePage = async ({ query }: RatePageProps): Promise<JSX.Element> =
   const title = 'Evaluation';
   const addButton = <CreateRateModal />;
   const { data } = await RateServices.getAll(query);
-  const entries = data as Rate[];
-
-  const tableBody = <Body data={entries} />;
+  const entries = data as PaginatedResponse<Rate>;
+  const tableBody = <Body data={entries.items} />;
+  const totalItems = entries.total;
 
   return (
     <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.rate} redirect>
-      <EntityPage {...{ title, heads, addButton, tableBody }} />;
+      <EntityPage {...{ title, heads, addButton, tableBody, totalItems }} />;
     </PrivateRouteContainer>
   );
 };

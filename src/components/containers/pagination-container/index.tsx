@@ -16,9 +16,11 @@ import { PaginationQuery } from '@/services/routes/types';
  *
  * @interface PaginationContainerProps
  * @property {ReactNode} children - The child elements to be rendered within the pagination container.
+ * @property {number} totalItems - The total of items of the data
  */
 interface PaginationContainerProps {
   children: ReactNode;
+  totalItems: number;
 }
 
 /**
@@ -35,16 +37,19 @@ interface PaginationContainerProps {
  *   <YourComponent />
  * </PaginationContainer>
  */
-export function PaginationContainer({ children }: PaginationContainerProps) {
+export function PaginationContainer({ children, totalItems }: PaginationContainerProps) {
   const { hotUpdateFilterValue, query } = useFilters<PaginationQuery>({
     initialValue: { page: 1, size: 10 }
   });
 
+  console.log(totalItems);
+
   const currentPage = query.page;
+  const totalPages = totalItems / query.size + 1;
 
   const handlePageChange = (page: number) => {
     if (page < 1) return;
-    //if(page > totalPages) return;
+    if (page > totalPages) return;
     hotUpdateFilterValue('page', page);
   };
 

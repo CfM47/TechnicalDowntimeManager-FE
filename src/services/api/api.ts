@@ -6,6 +6,13 @@ export interface ApiResponse<T> {
   statusText: string;
 }
 
+export interface PaginatedResponse<T> {
+  items: T[];
+  page: number;
+  size: number;
+  total: number;
+}
+
 export interface ApiError {
   message: string;
   status: number;
