@@ -4,6 +4,7 @@ import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateUserModal } from '@/components/modals/create-user-modal';
 import { authorizedRolesByRoute } from '@/lib/constants';
+import { PaginatedResponse } from '@/services/api/api';
 import { UserServices } from '@/services/features/user';
 import { User, UserQuery } from '@/types/user';
 
@@ -36,12 +37,13 @@ export const UserPage = async ({ query }: UserPageProps): Promise<JSX.Element> =
   const title = 'Users';
   const addButton = <CreateUserModal />;
   const { data } = await UserServices.getAll(query);
-  const entries = data as User[];
-  const tableBody = <Body data={entries} />;
+  const entries = data as PaginatedResponse<User>;
+  const tableBody = <Body data={entries.items} />;
+  const totalItems = entries.total;
 
   return (
     <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.user} redirect>
-      <EntityPage {...{ title, heads, addButton, tableBody }} />;
+      <EntityPage {...{ title, heads, addButton, tableBody, totalItems }} />;
     </PrivateRouteContainer>
   );
 };
