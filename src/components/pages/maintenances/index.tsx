@@ -4,6 +4,7 @@ import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateMaintenanceModal } from '@/components/modals/create-maintenance-modal';
 import { authorizedRolesByRoute } from '@/lib/constants';
+import { PaginatedResponse } from '@/services/api/api';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance, MaintenanceQuery } from '@/types/maitenance';
 
@@ -36,12 +37,13 @@ export const MaintenancesPage = async ({ query }: MaintenancesPageProps): Promis
   const title = 'Maintenance';
   const addButton = <CreateMaintenanceModal />;
   const { data } = await MaintenanceServices.getAll(query);
-  const entries = data as Maintenance[];
-  const tableBody = <Body data={entries} />;
+  const entries = data as PaginatedResponse<Maintenance>;
+  const tableBody = <Body data={entries.items} />;
+  const totalItems = entries.total;
 
   return (
     <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.maintenances} redirect>
-      <EntityPage {...{ title, heads, addButton, tableBody }} />;
+      <EntityPage {...{ title, heads, addButton, tableBody, totalItems }} />;
     </PrivateRouteContainer>
   );
 };

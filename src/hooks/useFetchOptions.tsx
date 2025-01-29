@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { PaginatedResponse } from '@/services/api/api';
 import { DepartmentServices } from '@/services/features/department';
 import { EquipmentServices } from '@/services/features/equipment';
 import { TechnicianServices } from '@/services/features/technician';
@@ -23,26 +24,26 @@ export const useFetchOptions = ({ selectFrom }: UseFetchOptionsProps) => {
   useEffect(() => {
     const fetchDepartments = async () => {
       const { data } = await DepartmentServices.getAll();
-      const options = data as Department[];
-      setDepartments(options);
+      const options = data as PaginatedResponse<Department>;
+      setDepartments(options.items);
     };
 
     const fetchEquipments = async () => {
       const { data } = await EquipmentServices.getAll();
-      const options = data as Equipment[];
-      setEquipments(options);
+      const options = data as PaginatedResponse<Equipment>;
+      setEquipments(options.items);
     };
 
     const fetchUsers = async () => {
       const { data } = await UserServices.getAll();
-      const options = data as User[];
-      setUsers(options);
+      const options = data as PaginatedResponse<User>;
+      setUsers(options.items);
     };
 
     const fetchTechnicians = async () => {
       const { data } = await TechnicianServices.getAll();
-      const options = data as Technician[];
-      setTechnicians(options);
+      const options = data as PaginatedResponse<Technician>;
+      setTechnicians(options.items);
     };
 
     const fetchFunctions = {
