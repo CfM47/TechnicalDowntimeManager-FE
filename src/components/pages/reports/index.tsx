@@ -14,13 +14,18 @@ import { reports } from '@/lib/reports';
 export const ReportPage = () => {
   return (
     <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.reports} redirect>
-      <section className="container mx-auto min-h-screen">
-        <h2 className="text-black text-3xl sm:text-4xl lg:text-5xl text-left mb-8 text-center">
+      <section className="container mx-auto min-h-screen p-1">
+        <h2 className="text-black text-3xl font-semibold sm:text-4xl lg:text-5xl text-left mb-8">
           Reports
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {reports.map((data, index) => (
-            <ReportCard key={index} title={data.title} description={data.description} />
+            <ReportCard
+              key={index}
+              title={data.title}
+              description={data.description}
+              route={data.route}
+            />
           ))}
         </div>
       </section>

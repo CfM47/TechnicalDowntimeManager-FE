@@ -1,6 +1,7 @@
 export interface Report {
   title: string;
   description: string;
+  route?: string;
 }
 
 export const reports: Report[] = [
@@ -10,9 +11,10 @@ export const reports: Report[] = [
       'List of equipment decommissioned in the last year, including the reason for decommissioning, the final destination, and the name of the person who received the equipment.'
   },
   {
-    title: '2nd Report',
+    title: 'Maintenance history report',
     description:
-      'Maintenance history of a specific equipment, classifying the maintenance by type and date, along with the technicians who performed the interventions.'
+      'Maintenance history of a specific equipment, classifying the maintenance by type and date, along with the technicians who performed the interventions.',
+    route: '/reports/maintenanceHistory'
   },
   {
     title: '3rd Report',
