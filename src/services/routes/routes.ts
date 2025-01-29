@@ -22,6 +22,10 @@ const downtimeRoutes: Router = {
   delete: {
     path: '/downtime/:id_sender/:id_receiver/:id_equipment/:date/:id_dep_receiver',
     method: 'DELETE'
+  },
+  lastYear: {
+    path: '/downtime/last-year',
+    method: 'GET'
   }
 };
 
@@ -97,7 +101,8 @@ const equipmentRoutes: Router = {
   getAll: { path: '/equipment', method: 'GET' },
   getById: { path: '/equipment/:id', method: 'GET' },
   update: { path: '/equipment/:id', method: 'PUT' },
-  delete: { path: '/equipment/:id', method: 'DELETE' }
+  delete: { path: '/equipment/:id', method: 'DELETE' },
+  maintenancesLastYear: { path: '/equipment/maintenances-last-year', method: 'GET' }
 };
 
 const authRoutes: Router = {

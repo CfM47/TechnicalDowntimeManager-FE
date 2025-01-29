@@ -6,9 +6,10 @@ export interface Report {
 
 export const reports: Report[] = [
   {
-    title: '1st Report',
+    title: 'Last Year Downtimes',
     description:
-      'List of equipment decommissioned in the last year, including the reason for decommissioning, the final destination, and the name of the person who received the equipment.'
+      'List of equipment decommissioned in the last year, including the reason for decommissioning, the final destination, and the name of the person who received the equipment.',
+    route: '/reports/lastYearDowntimes'
   },
   {
     title: 'Maintenance history report',
@@ -27,9 +28,10 @@ export const reports: Report[] = [
       'Given a specific technician, retrieve their history of interventions (maintenance or deactivations) and the ratings received for their work.'
   },
   {
-    title: '5th Report',
+    title: 'Defective Equipments Report',
     description:
-      'Equipment that has undergone more than three maintenance interventions in the last year and, according to regulations, must be replaced.'
+      'Equipment that has undergone more than three maintenance interventions in the last year and, according to regulations, must be replaced.',
+    route: '/reports/defectiveEquipments'
   },
   {
     title: '6th Report',

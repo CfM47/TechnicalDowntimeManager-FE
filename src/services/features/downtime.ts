@@ -1,5 +1,6 @@
 import { httpRequest } from '../api';
 import { routes } from '../routes/routes';
+import { PaginationQuery } from '../routes/types';
 import { buildUrl, buildUrlWithQuery } from '../routes/utils';
 
 import { DowntimeQuery } from '@/types/downtime';
@@ -102,5 +103,15 @@ export const DowntimeServices = {
       id_dep_receiver
     });
     return httpRequest({ url, method: 'DELETE' });
+  },
+
+  /**
+   * Gets all the downtimes of the las year
+   * @param query Query for response pagination
+   * @returns A Paginated reponse of all the downtimes
+   */
+  lastYear: (query?: PaginationQuery) => {
+    const url = buildUrlWithQuery({ route: routes.downtime.lastYear, queryParams: query });
+    return httpRequest({ url, method: 'GET' });
   }
 };

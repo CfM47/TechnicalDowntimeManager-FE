@@ -1,3 +1,5 @@
+import { PaginationQuery } from '../routes/types';
+
 import { httpRequest } from '@/services/api';
 import { routes } from '@/services/routes/routes';
 import { buildUrl, buildUrlWithQuery } from '@/services/routes/utils';
@@ -52,5 +54,12 @@ export const EquipmentServices = {
   delete: (id: string) => {
     const url = buildUrl(routes.equipment.delete, { id });
     return httpRequest({ url, method: 'DELETE' });
+  },
+  maintenancesLastYear: (query?: PaginationQuery) => {
+    const url = buildUrlWithQuery({
+      route: routes.equipment.maintenancesLastYear,
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
   }
 };
