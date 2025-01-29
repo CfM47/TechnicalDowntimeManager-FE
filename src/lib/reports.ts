@@ -6,9 +6,10 @@ export interface Report {
 
 export const reports: Report[] = [
   {
-    title: '1st Report',
+    title: 'Last Year Downtimes',
     description:
-      'List of equipment decommissioned in the last year, including the reason for decommissioning, the final destination, and the name of the person who received the equipment.'
+      'List of equipment decommissioned in the last year, including the reason for decommissioning, the final destination, and the name of the person who received the equipment.',
+    route: '/reports/lastYearDowntimes'
   },
   {
     title: 'Maintenance history report',

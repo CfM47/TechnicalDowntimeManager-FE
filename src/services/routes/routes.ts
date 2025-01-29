@@ -22,6 +22,10 @@ const downtimeRoutes: Router = {
   delete: {
     path: '/downtime/:id_sender/:id_receiver/:id_equipment/:date/:id_dep_receiver',
     method: 'DELETE'
+  },
+  lastYear: {
+    path: '/downtime/last-year',
+    method: 'GET'
   }
 };
 
