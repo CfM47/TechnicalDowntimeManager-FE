@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export const createRateSchema = z.object({
-  id_technician: z.string().uuid({ message: 'Seleccione quién emite la valoración' }),
-  id_user: z.string().uuid({ message: 'Debe escoger a quién valorar' }),
-  comment: z.string().min(1, { message: 'Escriba una descripción de la valoración' }),
-  score: z.number().int().min(1).max(5, { message: 'La puntuación debe ser un número entre 1 y 5' })
+  id_technician: z.string().uuid({ message: 'Choose an evaluator' }),
+  id_user: z.string().uuid({ message: 'Choose a technician to evaluate' }),
+  comment: z.string().min(1, { message: 'Write a description' }),
+  score: z.number().int().min(1).max(5, { message: 'Rate must be between 1-5' })
 });
 
 export const createRateDefaultValues = {
