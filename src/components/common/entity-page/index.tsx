@@ -10,10 +10,18 @@ interface EntityPageProps {
   heads: Array<string>;
   tableBody: ReactNode;
   addButton: ReactNode;
+  filters?: ReactNode;
   totalItems: number;
 }
 
-export const EntityPage = ({ title, heads, tableBody, addButton, totalItems }: EntityPageProps) => {
+export const EntityPage = ({
+  title,
+  heads,
+  tableBody,
+  addButton,
+  filters,
+  totalItems
+}: EntityPageProps) => {
   return (
     <div className="flex flex-col items-center p-1 pt-10 md:p-10 min-h-screen">
       <Card className="bg-card h-full container mx-auto md:p-10">
@@ -21,6 +29,7 @@ export const EntityPage = ({ title, heads, tableBody, addButton, totalItems }: E
           <h1 className="text-3xl font-bold mb-4 md:mb-0 break-words whitespace-normal">{title}</h1>
           <div className="self-end md:self-auto">{addButton}</div>
         </div>
+        {filters}
         <CardContent>
           <PaginationContainer {...{ totalItems }}>
             <EntityTable {...{ heads, body: tableBody }} />
