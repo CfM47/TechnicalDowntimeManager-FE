@@ -36,7 +36,7 @@ export const MaintenanceHistoryPage = async ({
   query
 }: MaintenancesHistoryPage): Promise<JSX.Element> => {
   const heads = ['Technician', 'Type', 'Date'];
-  const title = 'Maintenance';
+  const title = 'Maintenance History';
   const { data } = query?.id_equipment
     ? await MaintenanceServices.getAll(query)
     : { data: { items: [], page: 1, size: 10, totalItems: 0 } };
