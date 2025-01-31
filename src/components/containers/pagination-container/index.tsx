@@ -4,6 +4,7 @@ import React, { ReactNode } from 'react';
 import {
   Pagination,
   PaginationContent,
+  PaginationEllipsis,
   PaginationItem,
   PaginationNext,
   PaginationPrevious
@@ -43,7 +44,7 @@ export function PaginationContainer({ children, totalItems }: PaginationContaine
   });
 
   const currentPage = query.page;
-  const totalPages = totalItems / query.size + 1;
+  const totalPages = Math.ceil(totalItems / query.size);
 
   const handlePageChange = (page: number) => {
     if (page < 1) return;
@@ -62,7 +63,15 @@ export function PaginationContainer({ children, totalItems }: PaginationContaine
               onClick={() => handlePageChange(currentPage - 1)}
             />
           </PaginationItem>
-          {currentPage}
+          {currentPage === totalPages ? (
+            <p>{currentPage}</p>
+          ) : (
+            <>
+              <p>{currentPage}</p>
+              <PaginationEllipsis />
+              <p>{totalPages}</p>
+            </>
+          )}
           <PaginationItem>
             <PaginationNext
               className="rounded-full p-2.5"
