@@ -18,8 +18,8 @@ export const TechnicianInterventionsPage = async ({
   const heads = ['Date', 'Type', 'Aditional Information'];
   const title = 'Technician Interventions';
   const { data } = query?.id_user
-    ? await TechnicianServices.Interventions(query)
-    : { data: { items: [], page: 1, size: 10, totalItems: 0 } };
+    ? await TechnicianServices.Interventions(query.id_user, { page: query.page, size: query.size })
+    : { data: { items: [], page: 1, size: 10, total: 0 } };
   const entries = data as PaginatedResponse<TechnicianInterventionType>;
   const tableBody = <Body data={entries.items} />;
   const totalItems = entries.total;

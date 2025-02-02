@@ -46,6 +46,10 @@ export function PaginationContainer({ children, totalItems }: PaginationContaine
   const currentPage = query.page;
   const totalPages = Math.ceil(totalItems / query.size);
 
+  console.log('page', currentPage);
+  console.log('total Items', totalItems);
+  console.log('total', totalPages);
+
   const handlePageChange = (page: number) => {
     if (page < 1) return;
     if (page > totalPages) return;

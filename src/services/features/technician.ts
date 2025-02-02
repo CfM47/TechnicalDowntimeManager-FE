@@ -75,9 +75,12 @@ export const TechnicianServices = {
    * @param {PaginationQuery} [query] - Optional query parameters for pagination.
    * @returns {Promise<any>} The interventions data of the technician.
    */
-  Interventions: (query?: PaginationQuery) => {
+  Interventions: (id: string, query?: PaginationQuery) => {
     const url = buildUrlWithQuery({
       route: routes.technician.interventions,
+      urlParams: {
+        id
+      },
       queryParams: query
     });
     return httpRequest({ url, method: 'GET' });

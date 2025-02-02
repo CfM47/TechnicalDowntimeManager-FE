@@ -39,7 +39,7 @@ export const MaintenanceHistoryPage = async ({
   const title = 'Maintenance History';
   const { data } = query?.id_equipment
     ? await MaintenanceServices.getAll(query)
-    : { data: { items: [], page: 1, size: 10, totalItems: 0 } };
+    : { data: { items: [], page: 1, size: 10, total: 0 } };
   const entries = data as PaginatedResponse<Maintenance>;
   const tableBody = <Body data={entries.items} />;
   const totalItems = entries.total;
