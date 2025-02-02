@@ -1,5 +1,6 @@
 import { httpRequest } from '@/services/api';
 import { routes } from '@/services/routes/routes';
+import { PaginationQuery } from '@/services/routes/types';
 import { buildUrl, buildUrlWithQuery } from '@/services/routes/utils';
 import { TechnicianQuery } from '@/types/technician';
 
@@ -52,5 +53,19 @@ export const TechnicianServices = {
   delete: (id: string) => {
     const url = buildUrl(routes.technician.delete, { id });
     return httpRequest({ url, method: 'DELETE' });
+  },
+
+  /**
+   * Fetches the performance data of technicians.
+   *
+   * @param {PaginationQuery} [query] - Optional query parameters for pagination.
+   * @returns {Promise<any>} The performance data of technicians.
+   */
+  Performance: (query?: PaginationQuery) => {
+    const url = buildUrlWithQuery({
+      route: routes.technician.performance,
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
   }
 };

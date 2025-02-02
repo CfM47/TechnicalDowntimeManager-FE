@@ -35,9 +35,10 @@ export const reports: Report[] = [
     route: '/reports/defectiveEquipments'
   },
   {
-    title: '6th Report',
+    title: 'Technicians Performance',
     description:
-      'Comparison of technicians performance, based on the ratings received and the number of interventions performed, to determine bonuses or penalties in their salary.'
+      'Comparison of technicians performance, based on the ratings received and the number of interventions performed, to determine bonuses or penalties in their salary.',
+    route: '/reports/techniciansPerformance'
   },
   {
     title: 'Department Transfer Record',
