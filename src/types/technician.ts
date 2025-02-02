@@ -49,3 +49,16 @@ export interface TechnicianPerformanceType {
   total_rates: number;
   total_maintenances: number;
 }
+
+/**
+ * Represents an intervention performed by a technician.
+ *
+ * @property {string} date - The date of the intervention.
+ * @property {string} type - The type of intervention performed.
+ * @property {string} aditional_info - Additional information about the intervention.
+ */
+export type TechnicianInterventionType = {
+  date: string;
+  type: string;
+  aditional_info: string;
+};

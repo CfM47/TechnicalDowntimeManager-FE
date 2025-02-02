@@ -38,7 +38,7 @@ export const TransferHistoryPage = async ({ query }: TransferHistoryPage): Promi
   // Fetch transfer data if an equipment ID is provided, otherwise return an empty list.
   const { data } = query?.id_equipment
     ? await TransferServices.getAll(query)
-    : { data: { items: [], page: 1, size: 10, totalItems: 0 } };
+    : { data: { items: [], page: 1, size: 10, total: 0 } };
 
   const entries = data as PaginatedResponse<Transfer>;
   const tableBody = <Body data={entries.items} />;

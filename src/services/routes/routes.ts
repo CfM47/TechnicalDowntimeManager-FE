@@ -69,7 +69,8 @@ const technicianRoutes: Router = {
   getById: { path: '/technician/:id', method: 'GET' },
   update: { path: '/technician/:id', method: 'PUT' },
   delete: { path: '/technician/:id', method: 'DELETE' },
-  performance: { path: '/technician/performance', method: 'GET' }
+  performance: { path: '/technician/performance', method: 'GET' },
+  interventions: { path: '/technician/:id/interventions', method: 'GET' }
 };
 
 const transferRoutes: Router = {

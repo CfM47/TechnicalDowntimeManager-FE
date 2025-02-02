@@ -40,7 +40,7 @@ export const DeptTransferHistoryPage = async ({
   // Fetch transfer data if an equipment ID is provided, otherwise return an empty list.
   const { data } = query?.id_receiver_dep
     ? await TransferServices.getAll(query)
-    : { data: { items: [], page: 1, size: 10, totalItems: 0 } };
+    : { data: { items: [], page: 1, size: 10, total: 0 } };
 
   const entries = data as PaginatedResponse<Transfer>;
   const tableBody = <Body data={entries.items} />;

@@ -24,9 +24,10 @@ export const reports: Report[] = [
     route: '/reports/transferHistory'
   },
   {
-    title: '4th Report',
+    title: 'Technician Interventions',
     description:
-      'Given a specific technician, retrieve their history of interventions (maintenance or deactivations) and the ratings received for their work.'
+      'Given a specific technician, retrieve their history of interventions (maintenance or deactivations) and the ratings received for their work.',
+    route: '/reports/technicianInterventions'
   },
   {
     title: 'Defective Equipments Report',
