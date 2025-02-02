@@ -4,7 +4,6 @@ import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateDowntimeModal } from '@/components/modals/create-downtime-modal';
 import { Filters } from '@/components/pages/downtimes/components/Filters';
-import { authorizedRolesByRoute } from '@/lib/constants';
 import { PaginatedResponse } from '@/services/api/api';
 import { DowntimeServices } from '@/services/features/downtime';
 import { Downtime, DowntimeQuery } from '@/types/downtime';
@@ -42,9 +41,10 @@ export const DowntimesPage = async ({ query }: DowntimesPageProps): Promise<JSX.
   const tableBody = <Body data={entries.items} />;
   const filters = <Filters />;
   const totalItems = entries.total;
+  const authorizedRoles = [1, 3];
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.downtimes} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
       <EntityPage {...{ title, heads, addButton, tableBody, filters, totalItems }} />;
     </PrivateRouteContainer>
   );

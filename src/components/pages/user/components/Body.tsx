@@ -15,7 +15,7 @@ export const Body = ({ data = [] }: BodyProps) => {
           <TableRow key={index}>
             <TableCell>{item.name}</TableCell>
             <TableCell>{item.department.name}</TableCell>
-            <TableCell>{item.role}</TableCell>
+            <TableCell>{item.role.name}</TableCell>
             <TableCell>
               <RowActions {...{ item }} />
             </TableCell>

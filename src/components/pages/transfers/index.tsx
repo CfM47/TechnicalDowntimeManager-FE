@@ -4,7 +4,6 @@ import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateTransferModal } from '@/components/modals/create-transfer-modal';
 import { Filters } from '@/components/pages/transfers/components/Filters';
-import { authorizedRolesByRoute } from '@/lib/constants';
 import { PaginatedResponse } from '@/services/api/api';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer, TransferQuery } from '@/types/transfer';
@@ -42,9 +41,10 @@ export const TransfersPage = async ({ query }: TransfersPageProps): Promise<JSX.
   const tableBody = <Body data={entries.items} />;
   const filters = <Filters />;
   const totalItems = entries.total;
+  const authorizedRoles = [1, 3];
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.transfers} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
       <EntityPage {...{ title, heads, addButton, tableBody, filters, totalItems }} />;
     </PrivateRouteContainer>
   );

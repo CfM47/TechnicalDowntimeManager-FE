@@ -10,7 +10,6 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
-// import { Roles } from '@/lib/enums';
 import { UserServices } from '@/services/features/user';
 import { User } from '@/types/user';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,7 +26,7 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
   const userData = {
     name: item.name,
     id_department: item.department.id,
-    role: item.role
+    id_role: item.role.id.toString()
   };
   const form = useForm<EditUserFormValues>({
     resolver: zodResolver(editUserSchema),
@@ -39,14 +38,14 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
     submitRequest('User updated successfully', 'User wasn´t updated', async () => {
       const data = {
         ...values,
-        role: values.role
+        id_role: Number(values.id_role)
       };
       await UserServices.update(item.id, data);
       setOpen(false);
     });
   };
 
-  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
+  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
 
   return (
     <Form {...form}>

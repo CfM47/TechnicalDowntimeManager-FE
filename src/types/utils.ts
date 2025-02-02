@@ -1,1 +1,1 @@
-export type SelectableOption = 'DEPARTMENT' | 'EQUIPMENT' | 'USER' | 'TECHNICIAN';
+export type SelectableOption = 'DEPARTMENT' | 'EQUIPMENT' | 'USER' | 'TECHNICIAN' | 'ROLE';

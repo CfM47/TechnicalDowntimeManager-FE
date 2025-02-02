@@ -36,7 +36,7 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
       if (authInfo) {
         setToken(authInfo.token);
         setName(authInfo.name);
-        setRole(authInfo.role);
+        setRole(authInfo.id_role.toString());
       }
       setOpen(false);
     });

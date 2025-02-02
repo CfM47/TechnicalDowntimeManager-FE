@@ -4,7 +4,6 @@ import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { CreateEquipmentModal } from '@/components/modals/create-equipment-modal';
 import { Filters } from '@/components/pages/equipment/components/Filters';
-import { authorizedRolesByRoute } from '@/lib/constants';
 import { PaginatedResponse } from '@/services/api/api';
 import { EquipmentServices } from '@/services/features/equipment';
 import { Equipment, EquipmentQuery } from '@/types/equipment';
@@ -40,11 +39,12 @@ export const EquipmentPage = async ({ query }: EquipmentPageProps): Promise<JSX.
   const { data } = await EquipmentServices.getAll(query);
   const entries = data as PaginatedResponse<Equipment>;
   const tableBody = <Body data={entries.items} />;
+  const authorizedRoles = [1, 2, 3];
   const filters = <Filters />;
   const totalItems = entries.total;
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.equipment} redirect>
+    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
       <EntityPage {...{ title, heads, addButton, tableBody, filters, totalItems }} />;
     </PrivateRouteContainer>
   );

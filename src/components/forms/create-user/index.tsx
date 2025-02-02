@@ -13,7 +13,6 @@ import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFetchOptions } from '@/hooks/useFetchOptions';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
-import { Role, Roles } from '@/lib/enums';
 import { UserServices } from '@/services/features/user';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -32,20 +31,21 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
   });
 
   const { watch } = form;
+  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
   const isTechnician = watch('isTechnician');
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: CreateUserFormValues) => {
     await submitRequest('User created successfully', 'User wasn´t created', async () => {
       const data = {
         ...values,
-        role: values.isTechnician ? Role.technician : values.role
+        role: values.isTechnician
+          ? (roles.find((x) => x.name === 'Technician') ?? values.role)
+          : values.role
       };
       await UserServices.create(data);
-      setOpen(false);
+      setOpen(false); // Cierra el modal tras el éxito
     });
   };
-
-  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT'] });
 
   return (
     <Form {...form}>
@@ -84,13 +84,15 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
           </>
         ) : (
           <RHFSelect
-            name="role"
+            name="id_role"
             label="Role"
             description="The user's role defines the level of access they will have to the system"
-            options={Roles.filter((x) => x !== Role.technician).map((x) => ({
-              label: x,
-              value: x
-            }))}
+            options={roles
+              .filter((x) => x.name !== 'Technician')
+              .map(({ name, id }) => ({
+                label: name,
+                value: id.toString()
+              }))}
           />
         )}
         <div className="flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2">

@@ -1,16 +1,13 @@
-import { Roles } from '@/lib/enums';
 import { z } from 'zod';
 
-const role = z.enum(Roles, { message: 'Users must have a role' });
-
 export const editUserSchema = z.object({
-  name: z.string().min(1, { message: 'Name cannot be empty' }),
-  id_department: z.string().min(1, { message: 'User must belong to a department' }),
-  role
+  name: z.string().min(1, { message: 'El nombre no puede ser vacío' }),
+  id_department: z.string().min(1, { message: 'El usuario debe pertenecer a un departamento' }),
+  id_role: z.string().min(1, { message: 'Los usuarios deben tener alguno de los roles' })
 });
 
 export const UserDefaultValues = {
   name: '',
   id_department: '',
-  role: ''
+  id_role: ''
 };

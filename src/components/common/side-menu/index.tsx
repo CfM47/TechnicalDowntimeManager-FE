@@ -11,11 +11,10 @@ import { InitialsAvatar } from '@/components/common/initials-avatar';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Role } from '@/lib/enums';
 import useSessionStore from '@/stores/sesionStore';
 
 interface SideMenuProps {
-  items: Array<{ name: string; href: string; authorizedRoles: Role[] }>;
+  items: Array<{ name: string; href: string; authorizedRoles: number[] }>;
 }
 
 export const SideMenu = ({ items }: SideMenuProps) => {

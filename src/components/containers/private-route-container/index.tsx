@@ -2,13 +2,12 @@
 
 import React from 'react';
 
-import { Role } from '@/lib/enums';
 import useSessionStore from '@/stores/sesionStore';
 import { redirect as redirectFunc } from 'next/navigation';
 
 interface PrivateRouteContainerProps {
   children: React.ReactNode;
-  authorizedRoles: Array<Role>;
+  authorizedRoles: Array<number>;
   redirect?: boolean;
 }
 
@@ -24,7 +23,7 @@ export const PrivateRouteContainer = ({
     return <></>;
   }
 
-  if (role && authorizedRoles.length && !authorizedRoles.includes(role as Role)) {
+  if (role && authorizedRoles.length && !authorizedRoles.includes(Number(role))) {
     if (redirect) redirectFunc('/');
     return <></>;
   }
