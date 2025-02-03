@@ -39,8 +39,8 @@ export const CreateUserForm = ({ setOpen }: CreateUserFormProps) => {
       const data = {
         ...values,
         role: values.isTechnician
-          ? (roles.find((x) => x.name === 'Technician') ?? values.role)
-          : values.role
+          ? (roles.find((x) => x.name === 'Technician') ?? values.id_role)
+          : values.id_role
       };
       await UserServices.create(data);
       setOpen(false); // Cierra el modal tras el éxito

@@ -45,7 +45,7 @@ export const EditUserForm = ({ setOpen, item }: EditUserFormProps) => {
     });
   };
 
-  const { departments, roles } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
+  const { departments } = useFetchOptions({ selectFrom: ['DEPARTMENT', 'ROLE'] });
 
   return (
     <Form {...form}>
