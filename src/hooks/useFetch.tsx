@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useState } from 'react';
 
 import { ApiResponse } from '@/services/api/api';
@@ -5,9 +6,10 @@ import { ApiResponse } from '@/services/api/api';
 interface UseFetchProps<T> {
   promise: Promise<ApiResponse<T>>;
   defaultData: T;
+  dependencies: any[];
 }
 
-export const useFetch = <T,>({ promise, defaultData }: UseFetchProps<T>) => {
+export const useFetch = <T,>({ promise, defaultData, dependencies }: UseFetchProps<T>) => {
   const [data, setData] = useState<T>(defaultData);
   const [isFetching, setIsFetching] = useState<boolean>(false);
 
@@ -19,7 +21,7 @@ export const useFetch = <T,>({ promise, defaultData }: UseFetchProps<T>) => {
       setData(response.data);
     };
     fetchData();
-  }, []);
+  }, dependencies);
 
   return { data, isFetching };
 };

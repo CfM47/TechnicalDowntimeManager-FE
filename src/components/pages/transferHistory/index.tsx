@@ -1,8 +1,10 @@
+'use client';
 import { Body } from './components/Body';
 import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
+import { useFetch } from '@/hooks/useFetch';
 import { PaginatedResponse } from '@/services/api/api';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer, TransferQuery } from '@/types/transfer';
@@ -30,17 +32,24 @@ interface TransferHistoryPage {
  *
  * @returns {Promise<JSX.Element>} The rendered Transfer History Page component.
  */
-export const TransferHistoryPage = async ({ query }: TransferHistoryPage): Promise<JSX.Element> => {
+export const TransferHistoryPage = ({ query }: TransferHistoryPage): JSX.Element => {
   const heads = ['Sender', 'Origin Department', 'Destiny Department', 'Receiver', 'Date'];
   const title = 'Equipment Transfer Record';
 
-  // Fetch transfer data if an equipment ID is provided, otherwise return an empty list.
-  const { data } = query?.id_equipment
-    ? await TransferServices.getAll(query)
-    : { data: { items: [], page: 1, size: 10, total: 0 } };
+  const { data, isFetching } = useFetch({
+    promise: query?.id_equipment
+      ? TransferServices.getAll(query)
+      : Promise.resolve({
+          data: { items: [], page: 1, size: 10, total: 0 },
+          status: 200,
+          statusText: 'OK'
+        }),
+    defaultData: { items: [], page: 1, size: 10, total: 0 },
+    dependencies: query ? [query] : []
+  });
 
   const entries = data as PaginatedResponse<Transfer>;
-  const tableBody = <Body data={entries.items} />;
+  const tableBody = <Body data={isFetching ? [] : entries.items} />;
   const totalItems = entries.total;
   const filters = <Filters />;
 
