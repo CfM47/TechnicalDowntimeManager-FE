@@ -1,9 +1,10 @@
+'use client';
 import { Body } from './components/Body';
 import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { Role } from '@/lib/enums';
+import { useFetch } from '@/hooks/useFetch';
 import { PaginatedResponse } from '@/services/api/api';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance, MaintenanceQuery } from '@/types/maitenance';
@@ -23,7 +24,7 @@ interface MaintenancesHistoryPage {
  *
  * @param {MaintenancesHistoryPage} props - The properties for the MaintenancesHistoryPage component.
  * @param {object} props.query - The query parameters for fetching maintenances.
- * @returns {Promise<JSX.Element>} The rendered MaintenancesHistoryPage component.
+ * @returns {JSX.Element} The rendered MaintenancesHistoryPage component.
  *
  * @example
  * <MaintenancesHistoryPage query={{page:1, size: 10}} />
@@ -32,22 +33,30 @@ interface MaintenancesHistoryPage {
  * This component is wrapped in a PrivateRouteContainer to ensure that only authorized users can access it.
  * It uses the EntityPage component to display the maintenance data in a table format.
  */
-export const MaintenanceHistoryPage = async ({
-  query
-}: MaintenancesHistoryPage): Promise<JSX.Element> => {
+export const MaintenanceHistoryPage = ({ query }: MaintenancesHistoryPage): JSX.Element => {
   const heads = ['Technician', 'Type', 'Date'];
   const title = 'Maintenance History';
-  const { data } = query?.id_equipment
-    ? await MaintenanceServices.getAll(query)
-    : { data: { items: [], page: 1, size: 10, total: 0 } };
+
+  const { data, isFetching } = useFetch({
+    promise: query?.id_equipment
+      ? MaintenanceServices.getAll(query)
+      : Promise.resolve({
+          data: { items: [], page: 1, size: 10, total: 0 },
+          status: 200,
+          statusText: 'OK'
+        }),
+    defaultData: { items: [], total: 0, page: 1, size: 10 },
+    dependencies: query ? [query] : []
+  });
+
   const entries = data as PaginatedResponse<Maintenance>;
-  const tableBody = <Body data={entries.items} />;
+  const tableBody = <Body data={isFetching ? [] : entries.items} />;
   const totalItems = entries.total;
   const filters = <Filters />;
 
   return (
-    <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
-      <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />;
+    <PrivateRouteContainer redirect>
+      <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />
     </PrivateRouteContainer>
   );
 };

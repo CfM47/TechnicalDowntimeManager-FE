@@ -11,11 +11,10 @@ import { InitialsAvatar } from '@/components/common/initials-avatar';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Role } from '@/lib/enums';
 import useSessionStore from '@/stores/sesionStore';
 
 interface SideMenuProps {
-  items: Array<{ name: string; href: string; authorizedRoles: Role[] }>;
+  items: Array<{ name: string; href: string }>;
 }
 
 export const SideMenu = ({ items }: SideMenuProps) => {
@@ -34,7 +33,7 @@ export const SideMenu = ({ items }: SideMenuProps) => {
         <SheetContent side="right">
           <div className="flex flex-col space-y-4 mt-4">
             {items.map((item, index) => (
-              <PrivateRouteContainer key={index} authorizedRoles={item.authorizedRoles}>
+              <PrivateRouteContainer key={index}>
                 <HighlightLink
                   {...item}
                   className="text-gray-500 font-semibold"

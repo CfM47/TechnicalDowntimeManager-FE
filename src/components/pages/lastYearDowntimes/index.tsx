@@ -1,8 +1,9 @@
+'use client';
 import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { Role } from '@/lib/enums';
+import { useFetch } from '@/hooks/useFetch';
 import { PaginatedResponse } from '@/services/api/api';
 import { DowntimeServices } from '@/services/features/downtime';
 import { PaginationQuery } from '@/services/routes/types';
@@ -23,27 +24,29 @@ interface LastYearDowntimesPageProps {
  *
  * @param {LastYearDowntimesPageProps} props - The properties for the LastYearDowntimesPage component.
  * @param {object} props.query - The query parameters for fetching downtimes.
- * @returns {Promise<JSX.Element>} The rendered LastYearDowntimesPage component.
+ * @returns {JSX.Element} The rendered LastYearDowntimesPage component.
  *
  * @example
- * <LastYearDowntimesPageage query={{ page: 1, size: 10 }} />
+ * <LastYearDowntimesPage query={{ page: 1, size: 10 }} />
  *
  * @remarks
  * This component is wrapped in a PrivateRouteContainer to ensure that only authorized users can access it.
  * It uses the EntityPage component to display the downtime data in a table format.
  */
-export const LastYearDowntimesPage = async ({
-  query
-}: LastYearDowntimesPageProps): Promise<JSX.Element> => {
+export const LastYearDowntimesPage = ({ query }: LastYearDowntimesPageProps): JSX.Element => {
   const heads = ['Equipment', 'Sender', 'Destiny', 'Receiver'];
   const title = 'Last Year Downtimes';
-  const { data } = await DowntimeServices.lastYear(query);
+  const { data, isFetching } = useFetch({
+    promise: DowntimeServices.lastYear(query),
+    defaultData: { items: [], total: 0, page: 1, limit: 10 },
+    dependencies: query ? [query] : []
+  });
   const entries = data as PaginatedResponse<Downtime>;
-  const tableBody = <Body data={entries.items} />;
+  const tableBody = <Body data={isFetching ? [] : entries.items} />;
   const totalItems = entries.total;
 
   return (
-    <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
+    <PrivateRouteContainer redirect>
       <EntityPage {...{ title, heads, tableBody, totalItems }} />;
     </PrivateRouteContainer>
   );

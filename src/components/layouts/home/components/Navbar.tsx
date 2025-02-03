@@ -9,26 +9,21 @@ import { SideMenu } from '@/components/common/side-menu';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { ResponsiveContainer } from '@/components/containers/responsive-container';
 import { ScrolledStyleContainer } from '@/components/containers/scrolled-style-container';
-import { authorizedRolesByRoute } from '@/lib/constants';
 import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
 
 const navItems = [
-  { name: 'Transfer', href: '/transfers', authorizedRoles: authorizedRolesByRoute.transfers },
-  { name: 'Downtime', href: '/downtimes', authorizedRoles: authorizedRolesByRoute.downtimes },
-  {
-    name: 'Maintenances',
-    href: '/maintenances',
-    authorizedRoles: authorizedRolesByRoute.maintenances
-  },
-  { name: 'Evaluation', href: '/rate', authorizedRoles: authorizedRolesByRoute.rate },
-  { name: 'Users', href: '/user', authorizedRoles: authorizedRolesByRoute.user },
-  { name: 'Equipments', href: '/equipment', authorizedRoles: authorizedRolesByRoute.equipment },
-  { name: 'Reports', href: '/reports', authorizedRoles: authorizedRolesByRoute.reports }
+  { name: 'Transfers', href: '/transfers' },
+  { name: 'Downtimes', href: '/downtimes' },
+  { name: 'Maintenances', href: '/maintenances' },
+  { name: 'Ratings', href: '/rate' },
+  { name: 'Users', href: '/user' },
+  { name: 'Equipment', href: '/equipment' },
+  { name: 'Reports', href: '/reports' }
 ];
 
 export const Navbar = () => {
-  const { token, name } = useSessionStore();
+  const { name, token } = useSessionStore();
 
   return (
     <ScrolledStyleContainer scrolledStyle="shadow-lg">
@@ -41,7 +36,7 @@ export const Navbar = () => {
             desktopComponent={
               <div className="hidden md:flex flex-grow justify-end items-center space-x-8">
                 {navItems.map((item, index) => (
-                  <PrivateRouteContainer key={index} authorizedRoles={item.authorizedRoles}>
+                  <PrivateRouteContainer key={index}>
                     <HighlightLink {...item} className="text-gray-500 font-semibold" />
                   </PrivateRouteContainer>
                 ))}

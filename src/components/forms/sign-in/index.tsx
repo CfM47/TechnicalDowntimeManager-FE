@@ -9,6 +9,7 @@ import { RHFSecretInput } from '@/components/rhf/rhf-secret-input';
 import { RHFSubmitButton } from '@/components/rhf/rhf-submit-button';
 import { Form } from '@/components/ui/form';
 import { useFormSubmit } from '@/hooks/useFormSubmit';
+import { setToken as setCookieToken } from '@/lib/cookies';
 import { AuthServices } from '@/services/features/auth';
 import useSessionStore from '@/stores/sesionStore';
 import { AuthResponse } from '@/types/auth';
@@ -26,17 +27,18 @@ export const SigninForm = ({ setOpen }: SigninFormProps) => {
     resolver: zodResolver(signinSchema),
     defaultValues: signinDefaultValues
   });
-  const { setToken, setName, setRole } = useSessionStore();
+  const { setName, setToken } = useSessionStore();
 
   const { submitRequest, isSubmitting } = useFormSubmit();
   const onSubmit = async (values: SigninFormValues) => {
     submitRequest('Successful login', 'An error occurred during authentication', async () => {
       const { data } = await AuthServices.signin(values);
+
       const authInfo = data as AuthResponse;
       if (authInfo) {
         setToken(authInfo.token);
+        setCookieToken(authInfo.token);
         setName(authInfo.name);
-        setRole(authInfo.role);
       }
       setOpen(false);
     });

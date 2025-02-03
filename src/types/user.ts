@@ -1,4 +1,5 @@
 import { Department } from './department';
+import { Role } from './role';
 
 import { QueryParams } from '@/services/routes/types';
 
@@ -24,7 +25,7 @@ export interface User {
   /**
    * The role of the user within the department.
    */
-  role: string;
+  role: Role;
 }
 
 /**
@@ -42,7 +43,7 @@ export interface UserQuery extends QueryParams {
   id?: string;
   name?: string;
   id_department?: string;
-  role?: string;
+  id_role?: number;
 }
 
 /**
