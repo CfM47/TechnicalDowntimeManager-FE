@@ -2,10 +2,12 @@ import { Body } from './components/Body';
 import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { ExportButton } from '@/components/common/export-button';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { authorizedRolesByRoute } from '@/lib/constants';
 import { PaginatedResponse } from '@/services/api/api';
 import { TransferServices } from '@/services/features/transfer';
+import { routes } from '@/services/routes/routes';
 import { Transfer, TransferQuery } from '@/types/transfer';
 
 /**
@@ -43,13 +45,19 @@ export const DeptTransferHistoryPage = async ({
     : { data: { items: [], page: 1, size: 10, total: 0 } };
 
   const entries = data as PaginatedResponse<Transfer>;
+  const addButton = query?.id_receiver_dep ? (
+    <ExportButton
+      query={{ id_receiver_dep: query.id_receiver_dep, page: 1, size: 1000000 }}
+      route={routes.transfer.departmentRecordReport}
+    />
+  ) : null;
   const tableBody = <Body data={entries.items} />;
   const totalItems = entries.total;
   const filters = <Filters />;
 
   return (
     <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.maintenances} redirect>
-      <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />
+      <EntityPage {...{ title, heads, tableBody, totalItems, addButton, filters }} />
     </PrivateRouteContainer>
   );
 };

@@ -2,10 +2,12 @@ import { Body } from './components/Body';
 import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { ExportButton } from '@/components/common/export-button';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { MaintenanceServices } from '@/services/features/maintenance';
+import { routes } from '@/services/routes/routes';
 import { Maintenance, MaintenanceQuery } from '@/types/maitenance';
 
 /**
@@ -41,13 +43,19 @@ export const MaintenanceHistoryPage = async ({
     ? await MaintenanceServices.getAll(query)
     : { data: { items: [], page: 1, size: 10, total: 0 } };
   const entries = data as PaginatedResponse<Maintenance>;
+  const addButton = query?.id_equipment ? (
+    <ExportButton
+      query={{ id_equipment: query.id_equipment, page: 1, size: 1000000 }}
+      route={routes.maintenance.equipmentHistoryReport}
+    />
+  ) : null;
   const tableBody = <Body data={entries.items} />;
   const totalItems = entries.total;
   const filters = <Filters />;
 
   return (
     <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
-      <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />;
+      <EntityPage {...{ title, heads, tableBody, totalItems, filters, addButton }} />;
     </PrivateRouteContainer>
   );
 };

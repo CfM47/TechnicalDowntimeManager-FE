@@ -61,5 +61,16 @@ export const EquipmentServices = {
       queryParams: query
     });
     return httpRequest({ url, method: 'GET' });
+  },
+
+  /**
+   * Gets the maintenance report for the last year.
+   */
+  maintenancesLastYearReport: (query?: { format?: string }) => {
+    const url = buildUrlWithQuery({
+      route: routes.equipment.maintenancesLastYearReport,
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
   }
 };

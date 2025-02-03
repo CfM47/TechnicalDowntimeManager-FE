@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 
+import { httpRequest } from '@/services/api';
 import { PaginatedResponse } from '@/services/api/api';
 import { DepartmentServices } from '@/services/features/department';
 import { EquipmentServices } from '@/services/features/equipment';
 import { TechnicianServices } from '@/services/features/technician';
 import { UserServices } from '@/services/features/user';
+import { routes } from '@/services/routes/routes';
+import { buildUrl } from '@/services/routes/utils';
 import { Department } from '@/types/department';
 import { Equipment } from '@/types/equipment';
 import { Technician } from '@/types/technician';
@@ -20,6 +23,7 @@ export const useFetchOptions = ({ selectFrom }: UseFetchOptionsProps) => {
   const [equipments, setEquipments] = useState<Equipment[]>([]);
   const [users, setUsers] = useState<User[]>([]);
   const [technicians, setTechnicians] = useState<Technician[]>([]);
+  const [formats, setFormats] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -46,14 +50,21 @@ export const useFetchOptions = ({ selectFrom }: UseFetchOptionsProps) => {
       setTechnicians(options.items);
     };
 
+    const fetchFormats = async () => {
+      const url = buildUrl(routes.format.availableFormats);
+      const { data } = await httpRequest<string[]>({ url, method: 'GET' });
+      setFormats(data);
+    };
+
     const fetchFunctions = {
       DEPARTMENT: fetchDepartments,
       EQUIPMENT: fetchEquipments,
       USER: fetchUsers,
-      TECHNICIAN: fetchTechnicians
+      TECHNICIAN: fetchTechnicians,
+      FORMAT: fetchFormats
     };
     selectFrom.forEach((select) => fetchFunctions[select]());
   }, []);
 
-  return { departments, equipments, users, technicians };
+  return { departments, equipments, users, technicians, formats };
 };

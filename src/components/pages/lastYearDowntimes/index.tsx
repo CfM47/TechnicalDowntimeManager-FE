@@ -1,10 +1,12 @@
 import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { ExportButton } from '@/components/common/export-button';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { DowntimeServices } from '@/services/features/downtime';
+import { routes } from '@/services/routes/routes';
 import { PaginationQuery } from '@/services/routes/types';
 import { Downtime } from '@/types/downtime';
 
@@ -39,12 +41,15 @@ export const LastYearDowntimesPage = async ({
   const title = 'Last Year Downtimes';
   const { data } = await DowntimeServices.lastYear(query);
   const entries = data as PaginatedResponse<Downtime>;
+  const addButton = (
+    <ExportButton query={{ page: 1, size: 1000000 }} route={routes.downtime.lastYearReport} />
+  );
   const tableBody = <Body data={entries.items} />;
   const totalItems = entries.total;
 
   return (
     <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
-      <EntityPage {...{ title, heads, tableBody, totalItems }} />;
+      <EntityPage {...{ title, heads, tableBody, totalItems, addButton }} />;
     </PrivateRouteContainer>
   );
 };

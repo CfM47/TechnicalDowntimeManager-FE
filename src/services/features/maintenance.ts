@@ -58,5 +58,17 @@ export const MaintenanceServices = {
   delete: (id_technician: string, id_equipment: string, date: string) => {
     const url = buildUrl(routes.maintenance.delete, { id_technician, id_equipment, date });
     return httpRequest({ url, method: 'DELETE' });
+  },
+
+  /**
+   * Generates a report of the equipment history.
+   * @returns The equipment history report.
+   */
+  equipmentHistoryReport: (query?: { id_equipment?: string; format?: string }) => {
+    const url = buildUrlWithQuery({
+      route: routes.maintenance.equipmentHistoryReport,
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
   }
 };

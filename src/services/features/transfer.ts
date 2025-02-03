@@ -111,5 +111,31 @@ export const TransferServices = {
       id_receiver_dep
     });
     return httpRequest({ url, method: 'DELETE' });
+  },
+
+  /**
+   * Gets the equipment transfer record report.
+   * @param query - The query parameters, including the format.
+   * @returns The equipment transfer record report.
+   */
+  equipmentRecordReport: (query?: { format?: string }) => {
+    const url = buildUrlWithQuery({
+      route: routes.transfer.equipmentRecordReport,
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
+  },
+
+  /**
+   * Gets the department transfer record report.
+   * @param query - The query parameters, including the format.
+   * @returns The department transfer record report.
+   */
+  departmentRecordReport: (query?: { format?: string }) => {
+    const url = buildUrlWithQuery({
+      route: routes.transfer.departmentRecordReport,
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
   }
 };

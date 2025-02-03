@@ -26,6 +26,10 @@ const downtimeRoutes: Router = {
   lastYear: {
     path: '/downtime/last-year',
     method: 'GET'
+  },
+  lastYearReport: {
+    path: '/downtime/last-year/report',
+    method: 'GET'
   }
 };
 
@@ -43,6 +47,10 @@ const maintenanceRoutes: Router = {
   delete: {
     path: '/maintenance/:id_technician/:id_equipment/:date',
     method: 'DELETE'
+  },
+  equipmentHistoryReport: {
+    path: '/maintenance/equipment-history/report',
+    method: 'GET'
   }
 };
 
@@ -70,7 +78,15 @@ const technicianRoutes: Router = {
   update: { path: '/technician/:id', method: 'PUT' },
   delete: { path: '/technician/:id', method: 'DELETE' },
   performance: { path: '/technician/performance', method: 'GET' },
-  interventions: { path: '/technician/:id/interventions', method: 'GET' }
+  interventions: { path: '/technician/:id/interventions', method: 'GET' },
+  interventionsReport: {
+    path: '/technician/:id/interventions/report',
+    method: 'GET'
+  },
+  performanceReport: {
+    path: '/technician/performance/report',
+    method: 'GET'
+  }
 };
 
 const transferRoutes: Router = {
@@ -87,6 +103,14 @@ const transferRoutes: Router = {
   delete: {
     path: '/transfer/:id_sender/:id_receiver/:id_equipment/:date/:id_origin_dep/:id_receiver_dep',
     method: 'DELETE'
+  },
+  equipmentRecordReport: {
+    path: '/transfer/equipment-record/report',
+    method: 'GET'
+  },
+  departmentRecordReport: {
+    path: '/transfer/department-record/report',
+    method: 'GET'
   }
 };
 
@@ -104,11 +128,19 @@ const equipmentRoutes: Router = {
   getById: { path: '/equipment/:id', method: 'GET' },
   update: { path: '/equipment/:id', method: 'PUT' },
   delete: { path: '/equipment/:id', method: 'DELETE' },
-  maintenancesLastYear: { path: '/equipment/maintenances-last-year', method: 'GET' }
+  maintenancesLastYear: { path: '/equipment/maintenances-last-year', method: 'GET' },
+  maintenancesLastYearReport: {
+    path: '/equipment/maintenances-last-year/report',
+    method: 'GET'
+  }
 };
 
 const authRoutes: Router = {
   signin: { path: '/auth/signin', method: 'POST' }
+};
+
+const formatRoutes: Router = {
+  availableFormats: { path: '/available-export-formats', method: 'GET' }
 };
 
 export const routes: Record<string, Router> = {
@@ -120,5 +152,6 @@ export const routes: Record<string, Router> = {
   transfer: transferRoutes,
   user: userRoutes,
   equipment: equipmentRoutes,
-  auth: authRoutes
+  auth: authRoutes,
+  format: formatRoutes
 };
