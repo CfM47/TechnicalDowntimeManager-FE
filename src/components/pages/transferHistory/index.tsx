@@ -3,7 +3,6 @@ import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { authorizedRolesByRoute } from '@/lib/constants';
 import { PaginatedResponse } from '@/services/api/api';
 import { TransferServices } from '@/services/features/transfer';
 import { Transfer, TransferQuery } from '@/types/transfer';
@@ -46,7 +45,7 @@ export const TransferHistoryPage = async ({ query }: TransferHistoryPage): Promi
   const filters = <Filters />;
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRolesByRoute.maintenances} redirect>
+    <PrivateRouteContainer redirect>
       <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />
     </PrivateRouteContainer>
   );

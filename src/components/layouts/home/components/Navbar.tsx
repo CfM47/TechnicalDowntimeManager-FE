@@ -13,13 +13,13 @@ import useSessionStore from '@/stores/sesionStore';
 import Link from 'next/link';
 
 const navItems = [
-  { name: 'Traslados', href: '/transfers', authorizedRoles: [1, 3] },
-  { name: 'Bajas', href: '/downtimes', authorizedRoles: [1, 3] },
-  { name: 'Mantenimientos', href: '/maintenances', authorizedRoles: [1, 2, 3] },
-  { name: 'Valoraciones', href: '/rate', authorizedRoles: [1, 3] },
-  { name: 'Usuarios', href: '/user', authorizedRoles: [1] },
-  { name: 'Equipos', href: '/equipment', authorizedRoles: [1, 2, 3] },
-  { name: 'Reportes', href: '/reports', authorizedRoles: [1] }
+  { name: 'Transfers', href: '/transfers' },
+  { name: 'Downtimes', href: '/downtimes' },
+  { name: 'Maintenances', href: '/maintenances' },
+  { name: 'Ratings', href: '/rate' },
+  { name: 'Users', href: '/user' },
+  { name: 'Equipment', href: '/equipment' },
+  { name: 'Reports', href: '/reports' }
 ];
 
 export const Navbar = () => {
@@ -36,7 +36,7 @@ export const Navbar = () => {
             desktopComponent={
               <div className="hidden md:flex flex-grow justify-end items-center space-x-8">
                 {navItems.map((item, index) => (
-                  <PrivateRouteContainer key={index} authorizedRoles={item.authorizedRoles}>
+                  <PrivateRouteContainer key={index}>
                     <HighlightLink {...item} className="text-gray-500 font-semibold" />
                   </PrivateRouteContainer>
                 ))}

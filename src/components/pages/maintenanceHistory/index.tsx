@@ -3,7 +3,6 @@ import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { MaintenanceServices } from '@/services/features/maintenance';
 import { Maintenance, MaintenanceQuery } from '@/types/maitenance';
@@ -46,7 +45,7 @@ export const MaintenanceHistoryPage = async ({
   const filters = <Filters />;
 
   return (
-    <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
+    <PrivateRouteContainer redirect>
       <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />;
     </PrivateRouteContainer>
   );

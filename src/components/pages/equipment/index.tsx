@@ -39,12 +39,11 @@ export const EquipmentPage = async ({ query }: EquipmentPageProps): Promise<JSX.
   const { data } = await EquipmentServices.getAll(query);
   const entries = data as PaginatedResponse<Equipment>;
   const tableBody = <Body data={entries.items} />;
-  const authorizedRoles = [1, 2, 3];
   const filters = <Filters />;
   const totalItems = entries.total;
 
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+    <PrivateRouteContainer redirect>
       <EntityPage {...{ title, heads, addButton, tableBody, filters, totalItems }} />;
     </PrivateRouteContainer>
   );

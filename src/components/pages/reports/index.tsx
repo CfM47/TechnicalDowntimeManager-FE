@@ -11,9 +11,8 @@ import { reports } from '@/lib/reports';
  * @returns {JSX.Element} - El componente `ReportPage`.
  */
 export const ReportPage = () => {
-  const authorizedRoles = [1];
   return (
-    <PrivateRouteContainer authorizedRoles={authorizedRoles} redirect>
+    <PrivateRouteContainer redirect>
       <section className="container mx-auto min-h-screen p-1">
         <h2 className="text-black text-3xl font-semibold sm:text-4xl lg:text-5xl text-left mb-8">
           Reports

@@ -2,7 +2,6 @@ import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { TechnicianServices } from '@/services/features/technician';
 import { PaginationQuery } from '@/services/routes/types';
@@ -43,7 +42,7 @@ export const TechniciansPerformancePage = async ({
   const totalItems = entries.total;
 
   return (
-    <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
+    <PrivateRouteContainer redirect>
       <EntityPage {...{ title, heads, tableBody, totalItems }} />;
     </PrivateRouteContainer>
   );

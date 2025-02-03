@@ -3,7 +3,6 @@ import { Filters } from './components/Filters';
 
 import { EntityPage } from '@/components/common/entity-page';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
-import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { TechnicianServices } from '@/services/features/technician';
 import { TechnicianInterventionType, TechnicianQuery } from '@/types/technician';
@@ -26,7 +25,7 @@ export const TechnicianInterventionsPage = async ({
   const filters = <Filters />;
 
   return (
-    <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
+    <PrivateRouteContainer redirect>
       <EntityPage {...{ title, heads, tableBody, totalItems, filters }} />;
     </PrivateRouteContainer>
   );

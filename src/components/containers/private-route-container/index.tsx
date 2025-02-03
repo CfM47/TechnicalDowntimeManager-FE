@@ -8,7 +8,6 @@ import { redirect as redirectFunc } from 'next/navigation';
 
 interface PrivateRouteContainerProps {
   children: React.ReactNode;
-  authorizedRoles: Array<number>;
   redirect?: boolean;
 }
 
