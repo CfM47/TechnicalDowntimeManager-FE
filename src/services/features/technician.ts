@@ -72,15 +72,42 @@ export const TechnicianServices = {
   /**
    * Fetches the interventions data of a technician.
    *
+   * @param {string} id - The technician ID.
    * @param {PaginationQuery} [query] - Optional query parameters for pagination.
    * @returns {Promise<any>} The interventions data of the technician.
    */
   Interventions: (id: string, query?: PaginationQuery) => {
     const url = buildUrlWithQuery({
       route: routes.technician.interventions,
-      urlParams: {
-        id
-      },
+      urlParams: { id },
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
+  },
+
+  /**
+   * Fetches the interventions report of a technician in PDF format.
+   *
+   * @param {string} id - The technician ID.
+   * @param {object} query - The query parameters including format.
+   */
+  interventionsReport: (id: string, query: { format: string } = { format: 'pdf' }) => {
+    const url = buildUrlWithQuery({
+      route: routes.technician.interventionsReport,
+      urlParams: { id },
+      queryParams: query
+    });
+    return httpRequest({ url, method: 'GET' });
+  },
+
+  /**
+   * Fetches the performance report of technicians in PDF format.
+   *
+   * @param {object} query - The query parameters including format.
+   */
+  performanceReport: (query: { format: string } = { format: 'pdf' }) => {
+    const url = buildUrlWithQuery({
+      route: routes.technician.performanceReport,
       queryParams: query
     });
     return httpRequest({ url, method: 'GET' });

@@ -106,12 +106,21 @@ export const DowntimeServices = {
   },
 
   /**
-   * Gets all the downtimes of the las year
+   * Gets all the downtimes of the last year
    * @param query Query for response pagination
    * @returns A Paginated reponse of all the downtimes
    */
   lastYear: (query?: PaginationQuery) => {
     const url = buildUrlWithQuery({ route: routes.downtime.lastYear, queryParams: query });
+    return httpRequest({ url, method: 'GET' });
+  },
+
+  /**
+   * Gets the report of all the downtimes of the last year
+   * @returns A report of all the downtimes
+   */
+  lastYearReport: (query?: { format?: string }) => {
+    const url = buildUrlWithQuery({ route: routes.downtime.lastYearReport, queryParams: query });
     return httpRequest({ url, method: 'GET' });
   }
 };
