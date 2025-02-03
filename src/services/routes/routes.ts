@@ -116,7 +116,8 @@ const equipmentRoutes: Router = {
 };
 
 const authRoutes: Router = {
-  signin: { path: '/auth/signin', method: 'POST' }
+  signin: { path: '/auth/signin', method: 'POST' },
+  authorize: { path: '/auth/authorize', method: 'POST' }
 };
 
 export const routes: Record<string, Router> = {

@@ -6,5 +6,9 @@ export const AuthServices = {
   signin(data: any) {
     const url = buildUrl(routes.auth.signin);
     return httpRequest({ url, method: 'POST', data });
+  },
+  authorize() {
+    const url = buildUrl(routes.auth.authorize);
+    return httpRequest({ url, method: 'POST' });
   }
 };

@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { AuthServices } from '@/services/features/auth';
 import useSessionStore from '@/stores/sesionStore';
 import { redirect as redirectFunc } from 'next/navigation';
 
@@ -13,19 +14,33 @@ interface PrivateRouteContainerProps {
 
 export const PrivateRouteContainer = ({
   children,
-  authorizedRoles = [],
   redirect = false
 }: PrivateRouteContainerProps) => {
-  const { token, role } = useSessionStore();
+  const { token } = useSessionStore();
+  const [isAuthorized, setIsAuthorized] = React.useState<boolean>(false);
 
-  if (!token) {
-    if (redirect) redirectFunc('/');
-    return <></>;
-  }
+  useEffect(() => {
+    AuthServices.authorize()
+      .then(({ status }) => {
+        if (status === 200) {
+          setIsAuthorized(true);
+        } else {
+          setIsAuthorized(false);
+          if (redirect) {
+            redirectFunc('/');
+          }
+        }
+      })
+      .catch(() => {
+        setIsAuthorized(false);
+        if (redirect) {
+          redirectFunc('/');
+        }
+      });
+  }, [redirect, token]);
 
-  if (role && authorizedRoles.length && !authorizedRoles.includes(Number(role))) {
-    if (redirect) redirectFunc('/');
-    return <></>;
+  if (!isAuthorized) {
+    return null;
   }
 
   return <>{children}</>;

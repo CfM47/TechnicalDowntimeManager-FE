@@ -23,7 +23,7 @@ const navItems = [
 ];
 
 export const Navbar = () => {
-  const { token, name } = useSessionStore();
+  const { name, token } = useSessionStore();
 
   return (
     <ScrolledStyleContainer scrolledStyle="shadow-lg">
