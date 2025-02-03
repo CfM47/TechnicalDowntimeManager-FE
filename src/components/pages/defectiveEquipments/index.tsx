@@ -1,10 +1,12 @@
 import { Body } from './components/Body';
 
 import { EntityPage } from '@/components/common/entity-page';
+import { ExportButton } from '@/components/common/export-button';
 import { PrivateRouteContainer } from '@/components/containers/private-route-container';
 import { Role } from '@/lib/enums';
 import { PaginatedResponse } from '@/services/api/api';
 import { EquipmentServices } from '@/services/features/equipment';
+import { routes } from '@/services/routes/routes';
 import { PaginationQuery } from '@/services/routes/types';
 import { EquipmentMaintenancesCount } from '@/types/equipment';
 
@@ -37,6 +39,12 @@ export const DefectiveEquipmentsPage = async ({
 }: DefectiveEquipmentsPageProps): Promise<JSX.Element> => {
   const heads = ['Name', 'Type', 'Status', 'Department', 'Total maintenances'];
   const title = 'Defective Equipments';
+  const addButton = (
+    <ExportButton
+      query={{ page: 1, size: 1000000 }}
+      route={routes.equipment.maintenancesLastYearReport}
+    />
+  );
   const { data } = await EquipmentServices.maintenancesLastYear(query);
   const entries = data as PaginatedResponse<EquipmentMaintenancesCount>;
   const tableBody = <Body data={entries.items} />;
@@ -44,7 +52,7 @@ export const DefectiveEquipmentsPage = async ({
 
   return (
     <PrivateRouteContainer authorizedRoles={[Role.admin]} redirect>
-      <EntityPage {...{ title, heads, tableBody, totalItems }} />;
+      <EntityPage {...{ title, heads, tableBody, totalItems, addButton }} />;
     </PrivateRouteContainer>
   );
 };
